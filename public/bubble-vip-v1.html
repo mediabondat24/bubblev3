@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Bubble Photo Member</title>
+  <meta content="" name="description">
+  <meta name="keywords" content="TikTok,Live,Bubblephoto,BubblePhoto,Livestream,Chat,Reader,Scraper,Tracker,tiktok.com,broadcast,api,library,node,node.js,javascript">
+
+  <!-- Favicons -->
+  <link href="images/icon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Bootstrap JS (bundle sudah termasuk Popper.js) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=2PF3bYCT"></script>
+  <script src="connection.js"></script>
+
+  <!-- Template Main CSS File -->
+  <link href="/assets/css/member/stylesmemberv1.css" rel="stylesheet">
+  <link href="/assets/css/stylerocket.css" rel="stylesheet">
+  <link href="/assets/css/like.css" rel="stylesheet">
+  
+</head>
+
+<body style="background-size: cover;">
+
+  
+
+<button type="button" class="btn btn-success custom-button" data-bs-toggle="modal" data-bs-target="#basicModal">
+      PENGATURAN
+    </button>
+
+    <div class="spender-container"></div>
+
+    <div class="top1-container"></div>
+    </div>
+    <!-- <img id="gifImage" src="" alt="GIF" /> -->
+  <div id="imagePreload" style="display: none; position: absolute;"></div>
+    <div id="animation-container">
+        <!-- Animasi foto akan ditampilkan di sini -->
+         
+      </div>
+      
+<div id="app"></div>
+
+ <!-- Modal -->
+    <div class="modal fade" id="basicModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content" style="background-image: url('images/bagroundmodal.png'); background-size: cover; background-position: center;">
+          <div class="modal-header">
+            <h5 class="modal-title"><strong>PENGATURAN</strong></h5>
+        <!-- Tombol Full Screen -->
+        <button type="button" class="btn btn-success fullscreen-btn" id="togel" onclick="toggleFullScreen();">Fullscreen</button>
+        
+        <!-- Tombol Tutup (Close) -->
+        <button type="button" class="btn btn-danger" id="closeModalButton" data-bs-dismiss="modal">Tutup</button>
+      </div>
+<div class="modal-body" style="background-color: rgba(0, 0, 0, 0);">
+            
+  <!-- kode aplikasi -->
+
+  
+
+  <div class="inputFields" id="hidex"> 
+  <center>
+    <div style="width: 100%;">
+      <label for="uniqueIdInput" style="text-align: left; display: block;"><b>Akun</b></label>
+      <div style="display: flex; justify-content: space-between; width: 100%; margin-top: 5px;">
+        <!-- Dropdown untuk memilih TikTok username -->
+        <select id="uniqueIdInput" class="form-control"></select> 
+
+        <!-- Tombol untuk melakukan koneksi atau aksi lainnya -->
+        <input type="button" class="btn btn-success" id="connectButton" value="Connect">
+      </div>
+    </div>
+  </center>
+</div>
+<pre id="stateText" style="color:rgb(16, 12, 12)"></pre>
+
+
+<div class="card" style="background-color: rgba(0, 0, 0, 0);">
+    <div class="card-body pd-4">
+      <table>
+        <tr>
+          <td colspan="2"><hr><b>Musik dari link youtube</b>
+            <input type="text" id="youtubeURL" placeholder="Masukkan URL Video YouTube" class="form-control" onchange="playAudio()">
+            <label for="volumeRange">Volume:</label>
+            <input type="range" id="volumeRange" min="0" max="100" value="25"><br>
+            <div id="player"></div>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="2"><hr><b>Musik dari File Mp3</b>
+            <input type="file" id="musik" name="musik" accept=".mp3, .wav" class="form-control">
+            <audio controls loop id="audioPlayer" style="display:none;">
+              Your browser does not support the audio element.
+            </audio>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="2">
+            <div class="form-check">
+              <input name="klapklip" checked class="form-check-input" type="checkbox" id="klapklipid">
+              <label class="form-check-label" for="klapklip">Aktifkan background kelap-kelip</label><br/>
+              <i style="font-size:10px;color:green;margin-top:-5px;position:absolute">Foto pemberi gift diatas 20 koin menjadi background</i>
+            </div><br>
+          </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+              <div style="margin-bottom: 10px; display: flex; flex-direction: column; align-items: start;">
+                
+                <!-- Checkbox untuk menampilkan TOP Pemberi Hadiah -->
+                <div style="display: flex; align-items: center;">
+                  <input type="checkbox" id="toggle-top-givers" checked>
+                  <label for="toggle-top-givers" style="margin-left: 5px;">Tampilkan TOP Pemberi Hadiah</label>
+                </div>
+
+                <!-- Checkbox untuk menampilkan jumlah poin -->
+                <div style="display: flex; align-items: center; margin-top: 5px;">
+                  <input type="checkbox" id="toggle-diamond-points" checked>
+                  <label for="toggle-diamond-points" style="margin-left: 5px;">Tampilkan Diamond Points</label>
+                </div>
+
+              </div>
+            </td>
+          </tr>
+
+        
+        <tr>
+          <td colspan="2"><hr><b>SUARA GIFT</b>
+            <div class="audio-group" id="audioGroup">
+              <div>
+                <label for="volumeSlider">Volume Musik Gift:</label>
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5" onchange="updateVolume(this.value)">
+              </div>
+              <div>
+                <span>Upload MP3 untuk <b>Gift Kecil (1-5)</b></span><br>
+                <input type="file" class="audioFile" accept="audio/*" name="audioFile0" onchange="loadAudio(this, 0)">
+                <button class="playButton" disabled id="playButton0" style="display: none">Play</button>
+                <button class="stopButton" disabled id="stopButton0" onclick="estopAudio(0)" style="display: none">Stop</button>
+                <button class="clearButton btn btn-info btn-sm" id="tmbclear0" onclick="eclearAudio(0)">Clear</button>
+              </div><br>
+              <div>
+                <span>Upload MP3 untuk <b>Gift Sedang (10)</b></span><br>
+                <input type="file" class="audioFile" accept="audio/*" name="audioFile1" onchange="loadAudio(this, 1)">
+                <button class="playButton" disabled id="playButton1" style="display: none">Play</button>
+                <button class="stopButton" disabled id="stopButton1" style="display: none">Stop</button>
+                <button class="clearButton btn btn-info btn-sm" id="tmbclear1" onclick="eclearAudio(1)">Clear</button>
+              </div><br>
+              <div>
+                <span>Upload MP3 untuk <b>Gift Super Sedang(20)</b></span><br>
+                <input type="file" class="audioFile" accept="audio/*" name="audioFile2" onchange="loadAudio(this, 2)">
+                <button class="playButton" disabled id="playButton2" style="display: none">Play</button>
+                <button class="stopButton" disabled id="stopButton2" style="display: none">Stop</button>
+                <button class="clearButton btn btn-info btn-sm" id="tmbclear2" onclick="eclearAudio(2)">Clear</button>
+              </div><br>
+              <div>
+                <span>Upload MP3 untuk <b>Gift Besar (30)</b></span><br>
+                <input type="file" class="audioFile" accept="audio/*" name="audioFile3" onchange="loadAudio(this, 3)">
+                <button class="playButton" disabled id="playButton3" style="display: none">Play</button>
+                <button class="stopButton" disabled id="stopButton3" style="display: none">Stop</button>
+                <button class="clearButton btn btn-info btn-sm" id="tmbclear3" onclick="eclearAudio(3)">Clear</button>
+              </div><br>
+              <div>
+                <span>Upload MP3 untuk <b>Gift Super Besar(100)</b></span><br>
+                <input type="file" class="audioFile" accept="audio/*" name="audioFile4" onchange="loadAudio(this, 4)">
+                <button class="playButton" disabled id="playButton4" style="display: none">Play</button>
+                <button class="stopButton" disabled id="stopButton4" style="display: none">Stop</button>
+                <button class="clearButton btn btn-info btn-sm" id="tmbclear4" onclick="eclearAudio(4)">Clear</button>
+              </div><br>
+              
+              <div>
+                <span>Upload MP3 untuk <b>Gift Luar Biasa(200+ ~)</b></span><br>
+                <input type="file" class="audioFile" accept="audio/*" name="audioFile5" onchange="loadAudio(this, 5)">
+                <button class="playButton" disabled id="playButton5" style="display: none">Play</button>
+                <button class="stopButton" disabled id="stopButton5" style="display: none">Stop</button>
+                <button class="clearButton btn btn-info btn-sm" id="tmbclear5" onclick="eclearAudio(5)">Clear</button>
+              </div><br>
+              <button id="stopAllButton" onclick="stopAllAudio()" disabled style="display: none">Stop All</button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="2">
+            <hr>
+            <b>DURASI MUNCUL PHOTO </b>
+            <div style="padding:5px">
+              <label class="form-check-label" for="gift">
+                Photo kecil <input type="number" style="max-width: 70px;" id="smallDuration" value="40"> Detik
+              </label>
+            </div>
+            <div style="padding:5px">
+              <label class="form-check-label" for="gift">
+                Photo sedang <input type="number" style="max-width: 70px;" id="mediumDuration" value="35"> Detik
+              </label>
+            </div>
+            <div style="padding:5px">
+              <label class="form-check-label" for="gift">
+                Photo besar <input type="number" style="max-width: 70px;" id="largeDuration" value="30"> Detik
+              </label>
+            </div>
+
+            <table>
+              <tr>
+                <td><b>KECEPATAN PERGERAKAN PHOTO</b></td>
+                <td>
+                  <div class="btn-group">
+                    <button class="btn btn-sm btn-primary" onclick="changeSpeed('slow')">Perlahan</button>
+                    <button class="btn btn-sm btn-danger" onclick="changeSpeed('fast')">Cepat</button>
+                  </div>
+                </td>
+              </tr>
+            </table>
+
+            <hr>
+            <b>OPSI SUARA GOOGLE</b><br>
+            <div class="form-check">
+              <input name="vkomen" class="form-check-input" type="checkbox" id="vkomen">
+              <label class="form-check-label" for="vkomen">KOMENTAR DIBACA GOOGLE</label>
+            </div>
+
+            <div class="form-check">
+              <input name="vjoin" checked class="form-check-input" type="checkbox" id="vjoin">
+              <label class="form-check-label" for="vjoin">UCAPAN SELAMAT DATANG UNTUK YANG JOIN</label>
+            </div>
+
+            <div class="form-check">
+              <input name="vgift" checked class="form-check-input" type="checkbox" id="vgift">
+              <label class="form-check-label" for="vgift">UCAPAN TERIMAKASIH UNTUK YANG GIFT</label>
+            </div>
+
+            <div class="form-check">
+              <input name="vfollow" class="form-check-input" type="checkbox" id="vfollow">
+              <label class="form-check-label" for="vfollow">UCAPAN TERIMAKASIH UNTUK YANG FOLLOW</label>
+            </div>
+
+            <div class="form-check">
+              <input name="vshare" checked class="form-check-input" type="checkbox" id="vshare">
+              <label class="form-check-label" for="vshare">UCAPAN TERIMAKASIH UNTUK YANG SHARE</label>
+            </div>
+
+            <hr>
+            <b>OPSI SUARA :</b><br>
+            <select class="form-control" id="opsi_suara">
+              <option value="1">Lucu (contoh: selamat bergabung kak sherina yang baik hati)</option>
+              <option value="2">Biasa (contoh: selamat bergabung kak sherina)</option>
+            </select>
+
+            <hr><b>
+            BACKGROUND</b>
+            <input type="file" id="background-input" class="form-control" accept="image/*" onchange="changeBackground(event)">
+            <br>
+            <div id="gradient-box"></div>
+            <button class="btn btn-block btn-mini btn-success" onclick="gra()">Pilih Warna latar belakang</button>
+            <br>
+          </td> 
+        </tr>
+
+        <tr>
+          <td colspan="2">
+            <div id="roomStats" style="color:black;"></div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- END kode aplikasi -->
+
+</div>
+      <div class="modal-footer">
+            Designed by <a href="https://bubblephoto.online/">Bubble Photo</a>
+          </div>
+        </div>
+      </div>
+    </div><!-- End Basic Modal-->
+ 
+
+  <!-- Vendor JS Files -->
+  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/js/member/scriptmemberv1.js"></script>
+  <script src="/assets/js/like.js"></script>
+
+  
+</body>
+
+</html>

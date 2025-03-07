@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+    background: transparent;
+    position: relative;
+    height: 100vh;
+}
+
+.container {
+  position: fixed; /* Gunakan fixed agar elemen tetap di tempat saat scroll */
+  width: var(--size); /* Ukuran lebar kontainer */
+  height: var(--size); /* Ukuran tinggi kontainer */
+  right: 90px; /* Posisikan ke kanan */
+  bottom: 0; /* Posisikan ke bawah */
+  animation: float var(--animation-duration) forwards linear;
+  animation-delay: var(--animation-delay);
+  pointer-events: none;
+}
+
+.container img {
+  border-radius: 50%;
+  width: 200%; /* Mengisi lebar kontainer */
+  height: 80%; /* Mengisi tinggi kontainer */
+  object-fit: cover; /* Memastikan gambar terpotong sesuai ukuran */
+}
+
+.heart {
+  fill: var(--color);
+}
+
+@keyframes float {
+  50% {
+    opacity: 1;
+  }
+  to {
+    transform: translate(var(--target-x), var(--target-y));
+    opacity: 0;
+  }
+}
+
+/* Media query untuk layar lebih kecil */
+@media (max-width: 400px) {
+  .container {
+    max-width: 80%; /* Menyesuaikan lebar container untuk layar lebih kecil */
+  }
+  /* Atau sesuaikan lebih lanjut dengan pengaturan ukuran lain */
+  .heart {
+    width: 55px;
+    height: 55px;
+  }
+}

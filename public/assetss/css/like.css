@@ -1,0 +1,38 @@
+body {
+            margin: 0;
+            background: transparent;
+            position: relative;
+            height: 100vh;
+        }
+
+.container {
+  position: absolute;
+  width: var(--size); /* Ukuran lebar kontainer */
+  height: var(--size); /* Ukuran tinggi kontainer, sama dengan lebar untuk persegi */
+  left: var(--location);
+  bottom: calc(-1 * var(--size)); /* Mengatur posisi kontainer */
+  animation: float var(--animation-duration) forwards linear;
+  animation-delay: var(--animation-delay);
+  pointer-events: none;
+}
+
+.container img {
+  border-radius: 50%;  /* Membuat gambar bulat */
+  width: 200%;         /* Menjamin gambar mengisi lebar kontainer */
+  height: 80%;        /* Menjamin gambar mengisi tinggi kontainer */
+  object-fit: cover;   /* Memastikan gambar terpotong sesuai ukuran kontainer */
+}
+
+.heart {
+  fill: var(--color);
+}
+
+@keyframes float {
+  50% {
+    opacity: 1;
+  }
+  to {
+    transform: translate(var(--target-x), var(--target-y));
+    opacity: 0;
+  }
+}

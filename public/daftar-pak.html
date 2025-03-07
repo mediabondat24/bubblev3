@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Admin</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link ke CSS jika ada -->
+</head>
+<body>
+    <div class="container">
+        <h2>Register Admin</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter username" required />
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter password" required />
+            </div>
+            <div class="form-group">
+                <label for="nama">Nama</label>
+                <input type="text" id="nama" name="nama" placeholder="Enter your name" required />
+            </div>
+            <div class="form-group">
+                <label for="whatsapp">WhatsApp</label>
+                <input type="text" id="whatsapp" name="whatsapp" placeholder="Enter WhatsApp number" required />
+            </div>
+            <button type="submit">Register</button>
+        </form>
+        <p id="errorMessage" style="color: red; display: none;"></p>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async function (event) {
+            event.preventDefault();  // Prevent page reload
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const nama = document.getElementById('nama').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+
+            try {
+                const response = await fetch('/register-admin', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password, nama, whatsapp })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // If registration is successful, redirect or display success message
+                    alert('Registration successful!');
+                    window.location.href = '/login';  // Redirect to login page after successful registration
+                } else {
+                    // If registration failed, display error message
+                    document.getElementById('errorMessage').innerText = data.message;
+                    document.getElementById('errorMessage').style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('errorMessage').innerText = 'Something went wrong. Please try again.';
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
