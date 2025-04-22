@@ -33,290 +33,519 @@
             z-index: -2;
         }
 
+.blurred {
+            filter: blur(8px);
+            transition: filter 0.3s ease;
+        }
+   #petunjuk {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px; /* Sesuaikan dengan lebar elemen */
+            height: 120px; /* Sesuaikan dengan tinggi elemen */
+            background-color: #212427;
+            color: #fff;
+            text-align: center;
+            line-height: 100px;
+            font-family: Arial, sans-serif;
+        }
+        #animation-container span{
+          position: absolute;
+          color: #9e072a;
+        }
 
 
-#animation-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1; /* Agar berada di atas elemen lain */
-    pointer-events: none;
-}
+  #button-container {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 2;
+    }
 
+    #animation-container {
+      position: relative;
+    }
 
-.photo {
+    .photo {
       position: absolute;
       border-radius: 20px;
       transition: transform 5s ease-in-out, opacity 2s ease-in-out; /* Sesuaikan durasi transisi sesuai kebutuhan */
     }
 
-/* Menambahkan posisi absolut untuk tombol dan menempatkannya di tengah */
-.custom-button {
-  position: absolute;
-  top: 1000px;         /* Menjaga tombol berada pada jarak 1000px dari atas */
-  left: 50%;           /* Mengatur tombol berada di tengah secara horizontal */
-  transform: translateX(-50%); /* Menggeser tombol sebesar 50% dari lebar tombolnya, agar benar-benar di tengah */
-   z-index: 9999;
+#maskot {
+  position: absolute; /* Agar gambar bisa dipindahkan di dalam container */
+  
+  z-index: 9999;
+  transition: transform 5s ease; /* Menambahkan transisi lembut selama 5 detik */
 }
 
-
-/* Menempatkan tombol close di kanan atas modal */
-.modal-header .btn-danger {
-  position: absolute;
-  top: 10px;    /* Menjaga jarak dari atas */
-  right: 10px;  /* Menjaga jarak dari kanan */
+#mvp {
+  position: absolute; /* Agar bisa diposisikan tepat di bawah maskot */
+  top: 1px;
+  border-radius: 50px;
+  z-index: 9998;
+  transition: transform 5s ease;
 }
 
-/* Gaya untuk membuat body full screen */
-.fullscreen-body {
-  width: 100vw;   /* Lebar body 100% dari layar */
-  height: 100vh;  /* Tinggi body 100% dari layar */
-  margin: 0;      /* Menghapus margin default */
-  overflow: hidden;  /* Menyembunyikan scroll jika ada */
-}
+ body {
+            margin: 0;
+            background: transparent;
+            position: relative;
+            height: 100vh;
+        }
 
+        .rocket {
+            position: absolute;
+            width: 8vmin;
+            height: 8vmin;
+            border-radius: 50%;
+            background-size: cover;
+            bottom: -10vmin;
+            left: 50%;
+            animation: rocketAppear 0.5s ease-in-out forwards, rocketLaunch var(--rocket-launch-duration) ease-in-out forwards;
+        }
 
-    /* Mengatur posisi tombol di kanan atas */
-    .fullscreen-btn {
-      position: absolute;
-      top: 10px;
-      right: 85px;
-      z-index: 1000; /* Agar tombol berada di atas elemen lainnya */
+        .rocket::before {
+            content: '';
+            position: absolute;
+            width: 2vmin;
+            height: 10vmin;
+            background: linear-gradient(to bottom, rgba(255, 165, 0, 0.8), rgba(255, 69, 0, 0));
+            bottom: -10vmin;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: fireTail 0.1s infinite, fireTailHide 0.8s ease-out forwards calc(var(--rocket-launch-duration) - 0.5s);
+        }
+
+        @keyframes rocketAppear {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fireTail {
+            0% {
+                background: linear-gradient(to bottom, rgba(255, 165, 0, 0.8), rgba(255, 69, 0, 0));
+            }
+
+            50% {
+                background: linear-gradient(to bottom, rgba(255, 165, 0, 0.8), rgba(255, 69, 0, 0), rgba(255, 69, 0, 0));
+            }
+
+            100% {
+                background: linear-gradient(to bottom, rgba(255, 165, 0, 0.8), rgba(255, 69, 0, 0));
+            }
+        }
+
+        @keyframes fireTailHide {
+            0% {
+                opacity: 0.8;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .username {
+            font-family: "Edu AU VIC WA NT Dots", cursive;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            min-width: 80vmin;
+            text-align: center;
+            background-color: transparent;
+            min-height: 20vmin;
+
+            margin-left: -39vmin;
+            margin-bottom: -8vmin;
+            vertical-align: middle;
+            line-height: 20vmin;
+            animation: usernameGlow 1s ease-in-out infinite alternate, usernameZoom 2s ease-in-out forwards, usernameHide 3s ease-in-out forwards 3s;
+        }
+
+        @keyframes usernameGlow {
+    from {
+        text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px rgb(252, 168, 51), 0 0 5px rgb(252, 168, 51), 0 0 5px rgb(252, 168, 51), 0 0 5px rgb(252, 168, 51), 0 0 5px rgb(252, 168, 51);
+        transform: scale(0.5);
     }
 
-.spender-container {
-    position: relative;
-    top: 250px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 400px;
-    height: 350px; /* Ditambah tinggi agar cukup untuk teks "POIN :" */
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    text-align: center;
-    padding: 0;
-    z-index: 0;
-    border-radius: 15px;
-    display: block; /* Akan dikontrol oleh checkbox */
+    to {
+        text-shadow: 0 0 5px #fff, 0 0 5px rgb(255, 217, 0), 0 0 5px rgb(255, 217, 0), 0 0 5px rgb(255, 217, 0), 0 0 5px rgb(255, 217, 0), 0 0 5px rgb(255, 217, 0), 0 0 5px rgb(255, 217, 0);
+        transform: scale(1);
+    }
 }
 
-.spender-container img {
+
+        @keyframes usernameZoom {
+            from {
+                transform: scale(0.01) rotate(0deg);
+            }
+
+            to {
+                transform: scale(1) rotate(var(--username-rotate));
+            }
+        }
+
+        @keyframes usernameHide {
+            from {
+                opacity: 1;
+                transform: translateY(0vmin) rotate(var(--username-rotate));
+            }
+
+            to {
+                opacity: 0;
+                transform: translateY(3vmin) rotate(calc(var(--username-rotate) + 2deg));
+            }
+        }
+
+        @keyframes rocketLaunch {
+            0% {
+                bottom: 0;
+                transform: translateX(-50%);
+            }
+
+            100% {
+                bottom: var(--rocket-offset-bottom);
+                transform: translateX(calc(-60% + var(--rocket-offset)));
+            }
+        }
+
+        @keyframes rocketExplode {
+            0% {
+                bottom: var(--rocket-offset-bottom);
+                transform: translateX(calc(-60% + var(--rocket-offset))) scale(1);
+            }
+
+            100% {
+                bottom: var(--rocket-offset-bottom);
+                transform: translateX(calc(-60% + var(--rocket-offset))) scale(1.5);
+            }
+        }
+
+        @keyframes rocketHide {
+            0% {
+                bottom: var(--rocket-offset-bottom);
+                transform: translateX(calc(-60% + var(--rocket-offset))) scale(1.5);
+                opacity: 1;
+            }
+
+            100% {
+                bottom: var(--rocket-offset-bottom);
+                transform: translateX(calc(-60% + var(--rocket-offset))) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .explosion {
+            position: absolute;
+            width: 6vmin;
+            height: 6vmin;
+            background-size: cover;
+            animation: explosionEffect 2.5s ease-out forwards;
+        }
+
+        @keyframes explosionEffect {
+            0% {
+                transform: scale(0.5);
+                opacity: 1;
+            }
+
+            30% {
+                transform: translate(calc(var(--x) * 10vmin), calc(var(--y) * 10vmin)) scale(1.5);
+                opacity: 1;
+            }
+
+            60% {
+                transform: translate(calc(var(--x) * 25vmin), calc(var(--y) * 25vmin)) scale(2.8);
+                opacity: 0.8;
+            }
+
+            80% {
+                transform: translate(calc(var(--x) * 35vmin), calc(var(--y) * 35vmin)) scale(3);
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translate(calc(var(--x) * 40vmin), calc(var(--y) * 40vmin)) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+#animasishare {
+    width: 100vw;  /* Lebar 100% dari viewport */
+    height: 100vh; /* Tinggi 100% dari viewport */
+    display: none;
+    position: fixed;  /* Pastikan posisi fixed agar tetap terlihat saat scrolling */
+    top: 0;  /* Posisikan di atas layar */
+    left: 0; /* Posisikan di kiri layar */
+    z-index: 99998;  /* Pastikan di atas elemen lain */
+    object-fit: cover; /* Sesuaikan gambar agar memenuhi ruang tanpa mengubah rasio */
+    pointer-events: none;
+}
+
+
+#animasilike {
+    width: 100vw;  /* Lebar 100% dari viewport */
+    height: 100vh; /* Tinggi 100% dari viewport */
+    display: none;
+    position: fixed;  /* Pastikan posisi fixed agar tetap terlihat saat scrolling */
+    top: 0;  /* Posisikan di atas layar */
+    left: 0; /* Posisikan di kiri layar */
+    z-index: 99998;  /* Pastikan di atas elemen lain */
+    object-fit: cover; /* Sesuaikan gambar agar memenuhi ruang tanpa mengubah rasio */
+    pointer-events: none;
+}
+
+/* Initial state for the elements */
+/* Ensure the profile picture and gift icon are circular */
+.miniprofilepicture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.like-icon i {
+    font-size: 16px; /* Ukuran ikon love lebih kecil */
+}
+
+/* Position the name text correctly and display it next to like count */
+.slide-in {
+    display: flex; /* Atur elemen secara horizontal */
+    align-items: center; /* Vertikal tengah untuk foto profil dan teks */
+    gap: 10px;  /* Jarak antara elemen */
     position: absolute;
-}
+    top: 60%;    /* Posisi vertikal tetap di 60% */
+    left: 0%;    /* Posisi horizontal tetap di sisi kiri */
+    transform: translateY(-50%);
+    animation: slideIn 1s forwards;
+    
+    /* Background dengan transparansi di sisi kanan */
+    background: linear-gradient(to right, #f1c40f 0%, #e67e22 50%, rgba(255, 255, 255, 0) 100%);
+    /* Ini menciptakan gradasi yang lebih padat di kiri dan transparan di kanan */
+    background-size: 200% 100%;
+    animation: backgroundMove 1s linear infinite;
 
-/* Posisi Bubble */
-.gambar1 {
-    top: 45px;
-    left: 167px;
-    width: 66px;
-    height: 66px;
-    border-radius: 50px;
-}
-
-.gambar2 {
-    top: 222px;
-    left: 76px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-}
-
-.gambar3 {
-    top: 222px;
-    left: 276px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-}
-
-/* Posisi Maskot */
-.crownImg1 {
-    top: 5px;
-    left: 125px;
-    width: 150px;
-    height: 150px;
-}
-
-.crownImg2 {
-    top: 170px;
-    left: 25px;
-    width: 150px;
-    height: 150px;
-}
-
-.crownImg3 {
-    top: 170px;
-    left: 225px;
-    width: 150px;
-    height: 150px;
-}
-
-/* Teks Utama */
-.text1, .text2, .text3,
-.text1-point, .text2-point, .text3-point {
-    position: absolute;
+    border-radius: 10px;
+    padding: 2px 2px;
+    padding-right: 15px;
+    clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%);
     color: white;
-    font-size: 16px;
-    padding: 5px;
-    text-align: center;
+    box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.4);
+
+    z-index: 9999; /* To ensure visibility over other elements */
+}
+
+/* Animasi untuk cahaya bergerak di atas background */
+@keyframes backgroundMove {
+    0% {
+        background-position: 100% 0%;
+    }
+    100% {
+        background-position: -100% 0%;
+    }
+}
+
+
+/* Animasi untuk cahaya bergerak di atas background */
+@keyframes backgroundMove {
+    0% {
+        background-position: 100% 0%;
+    }
+    100% {
+        background-position: -100% 0%;
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        left: -100%;
+        opacity: 20%;
+    }
+    100% {
+        left: 0%;
+        opacity: 1;
+    }
+}
+
+/* Styling untuk nickname dan like count */
+.like-name {
+    font-size: 10px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.like-count {
+    font-size: 12px;
+    font-weight: bold;
+    text-align: left;
+}
+
+/* Untuk memposisikan nickname di atas like count */
+.like-info {
+    display: flex;
+    flex-direction: column; /* Nama di atas jumlah like */
+    align-items: flex-start; /* Pastikan teks rata kiri */
+}
+ 
+
+ /* Menambahkan CSS untuk menampilkan gambar GIF di atas elemen lain */
+#gifImage {
+    width: 100vw;  /* Lebar 100% dari viewport */
+    height: 100vh; /* Tinggi 100% dari viewport */
+    display: none;
+    position: fixed;  /* Pastikan posisi fixed agar tetap terlihat saat scrolling */
+    top: 0;  /* Posisikan di atas layar */
+    left: 0; /* Posisikan di kiri layar */
+    z-index: 9998;  /* Pastikan di atas elemen lain */
+    opacity: 0.5; /* Kontrol opacity, bisa sesuaikan */
+    object-fit: cover; /* Sesuaikan gambar agar memenuhi ruang tanpa mengubah rasio */
+}
+
+/* Jika kamu ingin menambahkan efek transisi untuk opacity */
+#gifImage.fadeIn {
+    animation: fadeInEffect 2s forwards;
+}
+
+@keyframes fadeInEffect {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+
+
+#top-givers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 85px;
     width: 100%;
+    z-index: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 10px;
 }
 
-/* Posisi Teks Utama */
-.text1 {
-    top: 135px; /* Sejajar dengan gambar1 */
+.title {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.giver-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.giver {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 10px;
+    border-radius: 10px;
+    opacity: 0.9;
+}
+
+.giver img.profile {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.giver .crown {
+    position: absolute;
+    top: 15px;
     left: 50%;
     transform: translateX(-50%);
 }
 
-.text2 {
-    top: 295px; /* Sejajar dengan gambar2 */
-    left: 25%;
-    transform: translateX(-50%);
+/* Untuk mahkota Top 1 */
+.top-1 .crown {
+    top: -20px;
+    width: 120px;
+    height: 120px;
 }
 
-.text3 {
-    top: 295px; /* Sejajar dengan gambar3 */
-    left: 75%;
-    transform: translateX(-50%);
+/* Untuk mahkota Top 2 */
+.top-2 .crown {
+    top: -15px;
+    width: 100px;
+    height: 100px;
 }
 
-/* Posisi Teks "POIN :" */
-.text1-point {
-    top: 160px; /* 25px di bawah .text1 */
-    left: 50%;
-    transform: translateX(-50%);
+/* Untuk mahkota Top 3 */
+.top-3 .crown {
+    top: -15px;
+    width: 100px;
+    height: 100px;
 }
 
-.text2-point {
-    top: 320px; /* 25px di bawah .text2 */
-    left: 25%;
-    transform: translateX(-50%);
-}
-
-.text3-point {
-    top: 320px; /* 25px di bawah .text3 */
-    left: 75%;
-    transform: translateX(-50%);
+.giver div {
+    margin-top: 20px;
+    font-size: 15px;
+    line-height: 1;
+    text-align: center;
+    font-weight: bold;
+    color: white;
 }
 
 
+/* Warna khusus untuk elemen Top 2-6 berdasarkan urutan */
 
-@keyframes flip-right {
-    0% { transform: rotateY(0deg); }
-    50% { transform: rotateY(180deg); }
-    100% { transform: rotateY(0deg); }
+
+
+
+  @keyframes flip-right {
+  0% {
+    transform: perspective(1000px) rotateY(0);
+  }
+  50% {
+    transform: perspective(1000px) rotateY(90deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateY(0);
+  }
 }
 
 @keyframes flip-left {
-    0% { transform: rotateY(0deg); }
-    50% { transform: rotateY(-180deg); }
-    100% { transform: rotateY(0deg); }
+  0% {
+    transform: perspective(1000px) rotateY(0);
+  }
+  50% {
+    transform: perspective(1000px) rotateY(-90deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateY(0);
+  }
 }
 
-.flip-right {
-    animation: flip-right 1.5s ease-in-out;
+.giver.flip-right {
+  animation: flip-right 1s ease-in-out;
 }
 
-.flip-left {
-    animation: flip-left 1.5s ease-in-out;
+.giver.flip-left {
+  animation: flip-left 1s ease-in-out;
 }
 
-@keyframes float-up-down {
-    0% {
-        transform: translateY(0); /* Posisi normal */
-    }
-    50% {
-        transform: translateY(-10px); /* Naik sedikit */
-    }
-    100% {
-        transform: translateY(0); /* Kembali ke posisi semula */
-    }
-}
-
-.float-up-down {
-    animation: float-up-down 2s ease-in-out infinite; /* Durasi animasi, tipe, dan pengulangan */
-}
-
-#gifImage {
-    width: 100vw; /* Lebar 100% dari viewport */
-    height: 100vh; /* Tinggi 100% dari viewport */
-    display: none; /* Pastikan gambar tampil */
-    position: fixed; /* Gunakan 'fixed' untuk menempatkan elemen tetap di layar */
-    top: 0; /* Menyelaraskan dengan atas layar */
-    left: 0; /* Menyelaraskan dengan kiri layar */
-    z-index: 10000; /* Memastikan gambar muncul di atas elemen lain */
-}
-
-
-.running-text-container {
-    position: fixed;
-    top: 180px; /* Posisikan di bagian atas */
-    left: 50%; /* Tengah */
-    transform: translateX(-50%); /* Memusatkan */
-    width: 500px; /* Lebar kontainer */
-    height: 150px; /* Menyesuaikan dengan isi kontainer */
-    background-image: url('/images/bannerfree.png'); /* Ganti dengan path gambar yang Anda inginkan */
-    background-size: cover; /* Menutupi seluruh area */
-    background-position: center; /* Gambar terpusat */
-    background-repeat: no-repeat; /* Menghindari pengulangan gambar */
-    color: black;
-    font-size: 12px;
-    text-align: center;
-    padding: 50px 0;
-    z-index: 99999; /* Pastikan berada di atas elemen lain */
-    opacity: 0.3; /* Atur opacity latar belakang kontainer */
-    pointer-events: none; /* Membuat kontainer tidak menghalangi interaksi */
-}
-
-
-
-
-@keyframes floating {
-    0% {
-        transform: translateY(0); /* Posisi awal, hanya mengubah Y */
-    }
-    50% {
-        transform: translateY(-10px); /* Gerakan ke atas */
-    }
-    100% {
-        transform: translateY(0); /* Kembali ke posisi semula */
-    }
-}
-
-
-.top1-container {
-    position: absolute;
-    top: 50px;
-    left: 5%;
-    width: 100px;
-    height: 150px; /* Ditambah tinggi agar cukup untuk teks "POIN :" */
-    z-index: 9999;
-    border-radius: 15px;
-    animation: transition: transform 5s; /* Animasi mengambang */
-}
-
-.top1-container img {
-    position: absolute;
-}
-
-/* Posisi Bubble */
-.gambar5 {
-    top: 33px;
-    left: 33px;
-    width: 43px;
-    height: 43px;
-    border-radius: 50%;
-    z-index: 1; /* Gambar profil tetap berada di bawah gambar mahkota */
-}
-
-/* Posisi Mahkota */
-.crownImg5 {
-    top: 5px;  /* Ubah top untuk menempatkan mahkota lebih baik di atas gambar profil */
-    left: 5px; /* Ubah left untuk menempatkan mahkota lebih tepat di atas gambar profil */
-    width: 100px;  /* Ukuran gambar mahkota yang lebih besar */
-    height: 100px; /* Ukuran gambar mahkota yang lebih besar */
-    z-index: 2;  /* Mahkota harus berada di atas gambar profil */
-}
+ 

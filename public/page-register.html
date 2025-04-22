@@ -112,28 +112,39 @@
                 <input type="text" class="form-control" id="username_tiktok1" name="username_tiktok1">
             </div>
 
-            <!-- Nomor Rekening Admin (Tampilkan sebagai teks, hanya muncul jika Member) -->
-        <div id="nomorRekening" class="mb-3" style="display: none;">
-            <p><strong>Nomor Rekening Admin:</strong></p>
-            <ul>
-                <li>BNI : 0434501276</li>
-                <li>BCA : 1930662646</li>
-                <li>Seabank: 901 8752 09277. Kode 535</li>
-                <li>LinkAja : 082334810232</li>
-                <li>Dana : 082334810232</li>
-                <li>Ovo: 082334810232</li>
-            </ul>
-            <p><strong>A.n: IBNU HARIF HALILI</strong></p>
+
+<div id="paketOptions" style="display: none;">
+    <div class="mb-3">
+        <label for="paket" class="form-label">Pilih Paket Pembayaran</label>
+        <div>
+            <input type="radio" id="paket1" name="paket" value="1" required>
+            <label for="paket1">Paket 1: Rp. 50.000,- / 1 Bulan</label>
         </div>
+        <div>
+            <input type="radio" id="paket2" name="paket" value="2" required>
+            <label for="paket2">Paket 2: Rp. 100.000,- / 3 Bulan</label>
+        </div>
+    </div>
+    <!-- Pilihan Metode Pembayaran -->
+<div class="mb-3">
+    <label for="payment_method" class="form-label">Pilih Metode Pembayaran</label>
+    <select class="form-select" id="payment_method" name="payment_method" required>
+        <option value="PERMATAVA">Permata VA</option>
+        <option value="BNIVA">BNI VA</option>
+        <option value="BRIVA">BRI VA</option>
+        <option value="MANDIRIVA">Mandiri VA</option>
+        <option value="BCAVA">BCA VA</option>
+        <option value="MUAMALATVA">Muamalat VA</option>
+        <option value="CIMBVA">CIMB VA</option>
+        <option value="OVO">OVO</option>
+        <option value="QRIS">QRIS</option>
+        <option value="SHOPEEPAY">ShopeePay</option>
+        <option value="DANA">DANA</option>
+    </select>
+</div>
 
+</div>
 
-            <!-- Field Member (Upload Bukti Bayar) -->
-            <div id="memberFields" style="display: none;">
-                <div class="mb-3">
-                    <label for="bukti_bayar" class="form-label">Upload Bukti Transfer</label>
-                    <input type="file" class="form-control" id="bukti_bayar" name="bukti_bayar">
-                </div>
-            </div>
 
             <button type="submit" class="btn btn-primary">Daftar</button>
         </form>

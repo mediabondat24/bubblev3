@@ -1,0 +1,393 @@
+.img-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: blink-color-animation 0.3s infinite;
+        }
+
+        @keyframes blink-color-animation {
+            0% {
+                opacity: 1;
+                filter: hue-rotate(0deg);
+            }
+            50% {
+                opacity: 0;
+                filter: hue-rotate(180deg);
+            }
+            100% {
+                opacity: 1;
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .fullscreenBG {
+        backgroundSize :cover;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+            z-index: -2;
+        }
+
+
+.blurred {
+            filter: blur(5px);
+            transition: filter 0.3s ease;
+        }
+   #instruction {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px; /* Sesuaikan dengan lebar elemen */
+            height: 120px; /* Sesuaikan dengan tinggi elemen */
+            background-color: #212427;
+            color: #fff;
+            text-align: center;
+            line-height: 100px;
+            font-family: Arial, sans-serif;
+        }
+        #animation-container span{
+          position: absolute;
+          color: #9e072a;
+        }
+
+
+ #button-container {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 2;
+    }
+
+    #animation-container {
+      position: relative;
+    }
+
+    
+
+    .photo {
+      position: absolute;
+      border-radius: 20px;
+      transition: transform 5s ease-in-out, opacity 2s ease-in-out; /* Sesuaikan durasi transisi sesuai kebutuhan */
+    }
+
+
+ body {
+            margin: 0;
+            background: transparent;
+            position: relative;
+            height: 100vh;
+        }
+
+        .rocket {
+            position: absolute;
+            width: 8vmin;
+            height: 8vmin;
+            border-radius: 50%;
+            background-size: cover;
+            bottom: -10vmin;
+            left: 50%;
+            animation: rocketAppear 0.5s ease-in-out forwards, rocketLaunch var(--rocket-launch-duration) ease-in-out forwards;
+        }
+
+        .rocket::before {
+            content: '';
+            position: absolute;
+            width: 2vmin;
+            height: 10vmin;
+            background: linear-gradient(to bottom, rgba(255, 165, 0, 0.8), rgba(255, 69, 0, 0));
+            bottom: -10vmin;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: fireTail 0.1s infinite, fireTailHide 0.8s ease-out forwards calc(var(--rocket-launch-duration) - 0.5s);
+        }
+
+        @keyframes rocketAppear {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fireTail {
+            0% {
+                background: linear-gradient(to bottom, rgba(255, 165, 0, 0.8), rgba(255, 69, 0, 0));
+            }
+
+            50% {
+                background: linear-gradient(to bottom, rgba(255, 165, 0, 0.8), rgba(255, 69, 0, 0), rgba(255, 69, 0, 0));
+            }
+
+            100% {
+                background: linear-gradient(to bottom, rgba(255, 165, 0, 0.8), rgba(255, 69, 0, 0));
+            }
+        }
+
+        @keyframes fireTailHide {
+            0% {
+                opacity: 0.8;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .username {
+            font-family: "Edu AU VIC WA NT Dots", cursive;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            min-width: 80vmin;
+            text-align: center;
+            background-color: transparent;
+            min-height: 20vmin;
+
+            margin-left: -39vmin;
+            margin-bottom: -8vmin;
+            vertical-align: middle;
+            line-height: 20vmin;
+            animation: usernameGlow 1s ease-in-out infinite alternate, usernameZoom 2s ease-in-out forwards, usernameHide 3s ease-in-out forwards 3s;
+        }
+
+        @keyframes usernameGlow {
+            from {
+                text-shadow: 0 0 10px #fff, 0 0 10px #fff, 0 0 10px rgb(252, 168, 51), 0 0 10px rgb(252, 168, 51), 0 0 50px rgb(252, 168, 51), 0 0 10px rgb(252, 168, 51), 0 0 10px rgb(252, 168, 51);
+                transform: scale(0.5);
+            }
+
+            to {
+                text-shadow: 0 0 20px #fff, 0 0 10px rgb(255, 217, 0), 0 0 10px rgb(255, 217, 0), 0 0 10px rgb(255, 217, 0), 0 0 10px rgb(255, 217, 0), 0 0 10px rgb(255, 217, 0), 0 0 10px rgb(255, 217, 0);
+                transform: scale(1);
+            }
+        }
+
+        @keyframes usernameZoom {
+            from {
+                transform: scale(0.01) rotate(0deg);
+            }
+
+            to {
+                transform: scale(1) rotate(var(--username-rotate));
+            }
+        }
+
+        @keyframes usernameHide {
+            from {
+                opacity: 1;
+                transform: translateY(0vmin) rotate(var(--username-rotate));
+            }
+
+            to {
+                opacity: 0;
+                transform: translateY(3vmin) rotate(calc(var(--username-rotate) + 2deg));
+            }
+        }
+
+        @keyframes rocketLaunch {
+            0% {
+                bottom: 0;
+                transform: translateX(-50%);
+            }
+
+            100% {
+                bottom: var(--rocket-offset-bottom);
+                transform: translateX(calc(-60% + var(--rocket-offset)));
+            }
+        }
+
+        @keyframes rocketExplode {
+            0% {
+                bottom: var(--rocket-offset-bottom);
+                transform: translateX(calc(-60% + var(--rocket-offset))) scale(1);
+            }
+
+            100% {
+                bottom: var(--rocket-offset-bottom);
+                transform: translateX(calc(-60% + var(--rocket-offset))) scale(1.5);
+            }
+        }
+
+        @keyframes rocketHide {
+            0% {
+                bottom: var(--rocket-offset-bottom);
+                transform: translateX(calc(-60% + var(--rocket-offset))) scale(1.5);
+                opacity: 1;
+            }
+
+            100% {
+                bottom: var(--rocket-offset-bottom);
+                transform: translateX(calc(-60% + var(--rocket-offset))) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .explosion {
+            position: absolute;
+            width: 6vmin;
+            height: 6vmin;
+            background-size: cover;
+            animation: explosionEffect 2.5s ease-out forwards;
+        }
+
+        @keyframes explosionEffect {
+            0% {
+                transform: scale(0.5);
+                opacity: 1;
+            }
+
+            30% {
+                transform: translate(calc(var(--x) * 10vmin), calc(var(--y) * 10vmin)) scale(1.5);
+                opacity: 1;
+            }
+
+            60% {
+                transform: translate(calc(var(--x) * 25vmin), calc(var(--y) * 25vmin)) scale(2.8);
+                opacity: 0.8;
+            }
+
+            80% {
+                transform: translate(calc(var(--x) * 35vmin), calc(var(--y) * 35vmin)) scale(3);
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translate(calc(var(--x) * 40vmin), calc(var(--y) * 40vmin)) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+
+
+.running-text-container {
+    position: fixed;
+    top: 250px; /* Posisikan di bagian atas */
+    left: 50%; /* Tengah */
+    transform: translateX(-50%); /* Memusatkan */
+    width: 475px; /* Lebar kontainer */
+    background: rgba(0, 0, 0, 0.5); /* Latar belakang transparan */
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    padding: 80px 0;
+    z-index: -0; /* Pastikan berada di atas elemen lain */
+}
+
+
+
+/* Posisi tetap untuk setiap pemberi gift */
+.top-giver {
+    position: absolute;
+}
+
+
+
+/* **Top 1 di Bawah (Tetap Ada jika Top 1 Ada)** */
+
+
+
+.top-giver-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Pusatkan elemen secara horizontal */
+}
+
+.top-giver-rank {
+    margin-bottom: 5px; /* Jarak antara TOP dan profil picture */
+}
+
+/* Untuk Top 1 */
+.top-1 {
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Untuk Top 2 */
+.top-2 {
+    top: 85px;
+    left: 25%;
+    transform: translateX(-50%);
+}
+
+/* Untuk Top 3 */
+.top-3 {
+    top: 85px;
+    left: 75%;
+    transform: translateX(-50%);
+}
+
+.top-1-container {
+    position: absolute; /* Pastikan bisa diposisikan dengan benar */
+    left: 50%;
+    z-index: 0; /* Agar berada di atas elemen lain */
+    cursor: grab; /* Menambahkan kursor agar jelas bahwa elemen dapat di-drag */
+}
+
+
+.top-1-img {
+    position: absolute;
+    top: 30px; /* Posisi di bawah top 2 dan top 3 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px; /* Sesuaikan ukuran gambar */
+    height: 180px;
+    border-radius: 50%;
+    z-index: 0;
+}
+
+
+/* Mahkota di atas Top 1 */
+/* Gaya untuk gambar Crown */
+.crown {
+    position: absolute;
+    top: 0px; /* Posisi sedikit di atas gambar profil */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px; /* Ukuran gambar crown */
+    height: 250px; /* Ukuran gambar crown */
+    z-index: 0; /* Pastikan berada di atas gambar profil */
+}
+
+
+@keyframes flip-right {
+    0% { transform: rotateY(0deg); }
+    50% { transform: rotateY(180deg); }
+    100% { transform: rotateY(0deg); }
+}
+
+@keyframes flip-left {
+    0% { transform: rotateY(0deg); }
+    50% { transform: rotateY(-180deg); }
+    100% { transform: rotateY(0deg); }
+}
+
+.flip-right {
+    animation: flip-right 1.5s ease-in-out;
+}
+
+.flip-left {
+    animation: flip-left 1.5s ease-in-out;
+}
+
+@keyframes float-up-down {
+    0% {
+        transform: translateY(0); /* Posisi normal */
+    }
+    50% {
+        transform: translateY(-10px); /* Naik sedikit */
+    }
+    100% {
+        transform: translateY(0); /* Kembali ke posisi semula */
+    }
+}
+
+.float-up-down {
+    animation: float-up-down 2s ease-in-out infinite; /* Durasi animasi, tipe, dan pengulangan */
+}

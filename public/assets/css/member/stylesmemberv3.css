@@ -1,0 +1,669 @@
+
+
+.img-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: blink-color-animation 0.3s infinite;
+        }
+
+        @keyframes blink-color-animation {
+            0% {
+                opacity: 1;
+                filter: hue-rotate(0deg);
+            }
+            50% {
+                opacity: 0;
+                filter: hue-rotate(180deg);
+            }
+            100% {
+                opacity: 1;
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .fullscreenBG {
+        backgroundSize :cover;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+            z-index: -2;
+        }
+
+.blurred {
+            filter: blur(8px);
+            transition: filter 0.3s ease;
+        }
+   #petunjuk {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px; /* Sesuaikan dengan lebar elemen */
+            height: 120px; /* Sesuaikan dengan tinggi elemen */
+            background-color: #212427;
+            color: #fff;
+            text-align: center;
+            line-height: 100px;
+            font-family: Arial, sans-serif;
+        }
+        #animation-container span{
+          position: absolute;
+          color: #9e072a;
+        }
+
+
+  #button-container {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 2;
+    }
+
+    #animation-container {
+      position: relative;
+    }
+
+    .photo {
+      position: absolute;
+      border-radius: 20px;
+      transition: transform 5s ease-in-out, opacity 2s ease-in-out; /* Sesuaikan durasi transisi sesuai kebutuhan */
+    }
+
+#maskot {
+  position: absolute; /* Agar gambar bisa dipindahkan di dalam container */
+  
+  z-index: 9999;
+  transition: transform 5s ease; /* Menambahkan transisi lembut selama 5 detik */
+}
+
+#mvp {
+  position: absolute; /* Agar bisa diposisikan tepat di bawah maskot */
+  top: 3px;
+  border-radius: 50px;
+  z-index: 9998;
+  transition: transform 5s ease;
+  pointer-events: none;
+}
+
+ body {
+            margin: 0;
+            background: transparent;
+            position: relative;
+            height: 100vh;
+        }
+
+        .rocket {
+            position: absolute;
+            width: 8vmin;
+            height: 8vmin;
+            border-radius: 50%;
+            background-size: cover;
+            bottom: -10vmin;
+            left: 50%;
+            animation: rocketAppear 0.5s ease-in-out forwards, rocketLaunch var(--rocket-launch-duration) ease-in-out forwards;
+        }
+
+        .rocket::before {
+            content: '';
+            position: absolute;
+            width: 2vmin;
+            height: 10vmin;
+            background: linear-gradient(to bottom, rgba(255, 165, 0, 0.8), rgba(255, 69, 0, 0));
+            bottom: -10vmin;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: fireTail 0.1s infinite, fireTailHide 0.8s ease-out forwards calc(var(--rocket-launch-duration) - 0.5s);
+        }
+
+        @keyframes rocketAppear {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fireTail {
+            0% {
+                background: linear-gradient(to bottom, rgba(255, 165, 0, 0.8), rgba(255, 69, 0, 0));
+            }
+
+            50% {
+                background: linear-gradient(to bottom, rgba(255, 165, 0, 0.8), rgba(255, 69, 0, 0), rgba(255, 69, 0, 0));
+            }
+
+            100% {
+                background: linear-gradient(to bottom, rgba(255, 165, 0, 0.8), rgba(255, 69, 0, 0));
+            }
+        }
+
+        @keyframes fireTailHide {
+            0% {
+                opacity: 0.8;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .username {
+            font-family: "Edu AU VIC WA NT Dots", cursive;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            min-width: 80vmin;
+            text-align: center;
+            background-color: transparent;
+            min-height: 20vmin;
+
+            margin-left: -39vmin;
+            margin-bottom: -8vmin;
+            vertical-align: middle;
+            line-height: 20vmin;
+            animation: usernameGlow 1s ease-in-out infinite alternate, usernameZoom 2s ease-in-out forwards, usernameHide 3s ease-in-out forwards 3s;
+        }
+
+        @keyframes usernameGlow {
+    from {
+        text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px rgb(252, 168, 51), 0 0 5px rgb(252, 168, 51), 0 0 5px rgb(252, 168, 51), 0 0 5px rgb(252, 168, 51), 0 0 5px rgb(252, 168, 51);
+        transform: scale(0.5);
+    }
+
+    to {
+        text-shadow: 0 0 5px #fff, 0 0 5px rgb(255, 217, 0), 0 0 5px rgb(255, 217, 0), 0 0 5px rgb(255, 217, 0), 0 0 5px rgb(255, 217, 0), 0 0 5px rgb(255, 217, 0), 0 0 5px rgb(255, 217, 0);
+        transform: scale(1);
+    }
+}
+
+
+        @keyframes usernameZoom {
+            from {
+                transform: scale(0.01) rotate(0deg);
+            }
+
+            to {
+                transform: scale(1) rotate(var(--username-rotate));
+            }
+        }
+
+        @keyframes usernameHide {
+            from {
+                opacity: 1;
+                transform: translateY(0vmin) rotate(var(--username-rotate));
+            }
+
+            to {
+                opacity: 0;
+                transform: translateY(3vmin) rotate(calc(var(--username-rotate) + 2deg));
+            }
+        }
+
+        @keyframes rocketLaunch {
+            0% {
+                bottom: 0;
+                transform: translateX(-50%);
+            }
+
+            100% {
+                bottom: var(--rocket-offset-bottom);
+                transform: translateX(calc(-60% + var(--rocket-offset)));
+            }
+        }
+
+        @keyframes rocketExplode {
+            0% {
+                bottom: var(--rocket-offset-bottom);
+                transform: translateX(calc(-60% + var(--rocket-offset))) scale(1);
+            }
+
+            100% {
+                bottom: var(--rocket-offset-bottom);
+                transform: translateX(calc(-60% + var(--rocket-offset))) scale(1.5);
+            }
+        }
+
+        @keyframes rocketHide {
+            0% {
+                bottom: var(--rocket-offset-bottom);
+                transform: translateX(calc(-60% + var(--rocket-offset))) scale(1.5);
+                opacity: 1;
+            }
+
+            100% {
+                bottom: var(--rocket-offset-bottom);
+                transform: translateX(calc(-60% + var(--rocket-offset))) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .explosion {
+            position: absolute;
+            width: 6vmin;
+            height: 6vmin;
+            background-size: cover;
+            animation: explosionEffect 2.5s ease-out forwards;
+        }
+
+        @keyframes explosionEffect {
+            0% {
+                transform: scale(0.5);
+                opacity: 1;
+            }
+
+            30% {
+                transform: translate(calc(var(--x) * 10vmin), calc(var(--y) * 10vmin)) scale(1.5);
+                opacity: 1;
+            }
+
+            60% {
+                transform: translate(calc(var(--x) * 25vmin), calc(var(--y) * 25vmin)) scale(2.8);
+                opacity: 0.8;
+            }
+
+            80% {
+                transform: translate(calc(var(--x) * 35vmin), calc(var(--y) * 35vmin)) scale(3);
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translate(calc(var(--x) * 40vmin), calc(var(--y) * 40vmin)) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+#animasishare {
+    width: 100vw;  /* Lebar 100% dari viewport */
+    height: 100vh; /* Tinggi 100% dari viewport */
+    display: none;
+    position: fixed;  /* Pastikan posisi fixed agar tetap terlihat saat scrolling */
+    top: 0;  /* Posisikan di atas layar */
+    left: 0; /* Posisikan di kiri layar */
+    z-index: 99998;  /* Pastikan di atas elemen lain */
+    object-fit: cover; /* Sesuaikan gambar agar memenuhi ruang tanpa mengubah rasio */
+    pointer-events: none;
+}
+
+
+#toplike {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 415px;
+    left: 35%;
+    width: auto;
+    z-index: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 10px;
+    cursor: grab;
+    overflow: hidden; /* Menyembunyikan elemen yang keluar dari container */
+    height: 150px; /* Menampilkan sejumlah elemen leaderboard */
+    
+}
+#toplike-title {
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+
+#leaderboard {
+    display: flex;
+    flex-direction: column;
+    animation: scrollLeaderboard 15s linear infinite; /* Animasi bergerak ke atas */
+    height: 200%; /* Memberikan ruang yang cukup agar elemen bergerak */
+    bottom: 0; /* Posisi dimulai dari bawah */
+}
+
+
+@keyframes scrollLeaderboard {
+    0% {
+        transform: translateY(100%); /* Mulai dari posisi awal */
+    }
+    100% {
+        transform: translateY(-150%); /* Menggerakkan seluruh daftar sehingga Top 1 muncul kembali */
+    }
+}
+
+#leaderboard .leaderboard-item {
+    display: flex;
+    align-items: center;
+    margin: 1px 0;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    width: 100%;
+    padding-right: 10px;
+}
+
+#leaderboard .rank-number {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    margin-right: 5px;
+    text-align: center;
+    width: 10px;
+}
+
+#leaderboard .profile-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+#leaderboard .text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    color: white;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+#leaderboard .like-container {
+    display: flex;
+    align-items: center;
+}
+
+#leaderboard .like-count {
+    font-weight: bold;
+    font-size: 10px;
+    color: #f1c40f;
+    margin-right: 5px;
+}
+
+#leaderboard .fa-thumbs-up {
+    color: #f1c40f;
+    font-size: 10px;
+}
+
+
+
+
+
+#animasilike {
+    width: 100vw;  /* Lebar 100% dari viewport */
+    height: 100vh; /* Tinggi 100% dari viewport */
+    display: none;
+    position: fixed;  /* Pastikan posisi fixed agar tetap terlihat saat scrolling */
+    top: 0;  /* Posisikan di atas layar */
+    left: 0; /* Posisikan di kiri layar */
+    z-index: 99998;  /* Pastikan di atas elemen lain */
+    object-fit: cover; /* Sesuaikan gambar agar memenuhi ruang tanpa mengubah rasio */
+    pointer-events: none;
+}
+
+/* Initial state for the elements */
+/* Ensure the profile picture and gift icon are circular */
+.miniprofilepicture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.like-icon i {
+    font-size: 16px; /* Ukuran ikon love lebih kecil */
+}
+
+/* Position the name text correctly and display it next to like count */
+.slide-in {
+    display: flex; /* Atur elemen secara horizontal */
+    align-items: center; /* Vertikal tengah untuk foto profil dan teks */
+    gap: 10px;  /* Jarak antara elemen */
+    position: absolute;
+    top: 60%;    /* Posisi vertikal tetap di 60% */
+    left: 0%;    /* Posisi horizontal tetap di sisi kiri */
+    transform: translateY(-50%);
+    animation: slideIn 1s forwards;
+    
+    /* Background dengan transparansi di sisi kanan */
+    background: linear-gradient(to right, #f1c40f 0%, #e67e22 50%, rgba(255, 255, 255, 0) 100%);
+    /* Ini menciptakan gradasi yang lebih padat di kiri dan transparan di kanan */
+    background-size: 200% 100%;
+    animation: backgroundMove 1s linear infinite;
+
+    border-radius: 10px;
+    padding: 2px 2px;
+    padding-right: 15px;
+    clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%);
+    color: white;
+    box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.4);
+
+    z-index: 9999; /* To ensure visibility over other elements */
+}
+
+/* Animasi untuk cahaya bergerak di atas background */
+@keyframes backgroundMove {
+    0% {
+        background-position: 100% 0%;
+    }
+    100% {
+        background-position: -100% 0%;
+    }
+}
+
+
+/* Animasi untuk cahaya bergerak di atas background */
+@keyframes backgroundMove {
+    0% {
+        background-position: 100% 0%;
+    }
+    100% {
+        background-position: -100% 0%;
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        left: -100%;
+        opacity: 20%;
+    }
+    100% {
+        left: 0%;
+        opacity: 1;
+    }
+}
+
+/* Styling untuk nickname dan like count */
+.like-name {
+    font-size: 10px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.like-count {
+    font-size: 12px;
+    font-weight: bold;
+    text-align: left;
+}
+
+/* Untuk memposisikan nickname di atas like count */
+.like-info {
+    display: flex;
+    flex-direction: column; /* Nama di atas jumlah like */
+    align-items: flex-start; /* Pastikan teks rata kiri */
+}
+ 
+
+
+       
+ /* Menambahkan CSS untuk menampilkan gambar GIF di atas elemen lain */
+#gifImage {
+    width: 100vw;  /* Lebar 100% dari viewport */
+    height: 100vh; /* Tinggi 100% dari viewport */
+    display: none;
+    position: fixed;  /* Pastikan posisi fixed agar tetap terlihat saat scrolling */
+    top: 0;  /* Posisikan di atas layar */
+    left: 0; /* Posisikan di kiri layar */
+    z-index: 9998;  /* Pastikan di atas elemen lain */
+    opacity: 0.5; /* Kontrol opacity, bisa sesuaikan */
+    object-fit: cover; /* Sesuaikan gambar agar memenuhi ruang tanpa mengubah rasio */
+    pointer-events: none;
+
+}
+
+/* Jika kamu ingin menambahkan efek transisi untuk opacity */
+#gifImage.fadeIn {
+    animation: fadeInEffect 2s forwards;
+}
+
+@keyframes fadeInEffect {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+
+#top-givers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 105px;
+    width: 100%;
+    z-index: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.title {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.giver-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.giver {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 10px;
+    border-radius: 10px;
+    opacity: 0.9;
+}
+
+.giver img.profile {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+/* Specific styling for the profile image of TOP 1 */
+.top-1 .profile {
+    width: 90px;  /* Custom width */
+    height: 90px;  /* Custom height */
+    object-fit: cover;  /* Optional: to ensure the image fits well */
+}
+
+.giver .crown {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Untuk mahkota Top 1 */
+.top-1 .crown {
+    top: -22px;
+    width: 120px;
+    height: 120px;
+}
+
+/* Untuk mahkota Top 2 */
+.top-2 .crown {
+    top: -15px;
+    width: 100px;
+    height: 100px;
+}
+
+/* Untuk mahkota Top 3 */
+.top-3 .crown {
+    top: -15px;
+    width: 100px;
+    height: 100px;
+}
+
+.giver div {
+    margin-top: 10px;
+    font-size: 11px;
+    line-height: 1;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+}
+
+.resize-handle {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    cursor: nwse-resize;
+}
+
+/* Warna khusus untuk elemen Top 2-6 berdasarkan urutan */
+
+
+
+
+  @keyframes flip-right {
+  0% {
+    transform: perspective(1000px) rotateY(0);
+  }
+  50% {
+    transform: perspective(1000px) rotateY(90deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateY(0);
+  }
+}
+
+@keyframes flip-left {
+  0% {
+    transform: perspective(1000px) rotateY(0);
+  }
+  50% {
+    transform: perspective(1000px) rotateY(-90deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateY(0);
+  }
+}
+
+.giver.flip-right {
+  animation: flip-right 1s ease-in-out;
+}
+
+.giver.flip-left {
+  animation: flip-left 1s ease-in-out;
+}
+
+ 
+

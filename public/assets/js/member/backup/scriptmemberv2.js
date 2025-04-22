@@ -1,0 +1,2586 @@
+var array_doa = [
+    "tahun ini bisa umroh","rezekinya lancar","dijauhkan dari marabahaya","suatu saat nanti punya usaha koskosan","tahun ini kebeli mobil","semakin kuat dalam menghadapi kehidupan","mendapat rezeki yang melimpah","selalu bahagia bersama pasangan kamu","tahun ini lebih hoki lagi","selalu dilimpahkan kebahagiaan","bisa umrohkan orang tua",
+    "ditahun ini semua impianmu terwujud","taun depan punya rumah baru","besok ada yang ngajak jalan","segera mendapatkan apa yang kamu impikan","hari ini ada yang traktir","tahun 2025 lebih baik lebih bahagia","diberikan kesehatan dan kekuatan","dilancarkan usahanya","diberikan keberuntungan dan keberkahan","selalu bahagia bersama dirinya",
+    "bulan depan punya motor baru","naik gaji","minggu depan punya iPhone","besok ada yang ngasih hadiah","menjadi orang yang sukses","kebeli sawah berhektarhektar","segera dapat kerjaan lebih baik","bisa jalan-jalan keluar negeri","bulan depan ada yang ngajak traveling","minggu depan kebeli sekupi","segera punya hape baru",
+    "apayang dicitacitakan bisa segera tercapai","besok ada yang ngajak hiling","segera punya sepatu baru","besok diangkat jadi sodara RafiAhmad","diberikan rizki yang melimpah","selalu dipertemukan dengan orang baik","selalu dicintai pasangan","besok ada yang ngajak liburan","diberikan kemudahan segala urusannya","makin lancar rezekinya",
+    "lelahmu menjadi lillah","besok ada yang ngajak ngabuburit","ada yang ngasih THR","suatu saat jadi sultan","suatu saat nanti jadi pengusaha sukses","kehidupanmu menjadi lebih sukses lagi","suatu saat nanti bisa merasakan apa yang RafiAhmad rasakan","panjang umur dan sehat selalu","kebeli tanah berhektarhektar",
+    "suatu saat nanti punya usaha cucian mobil","suatu saat nanti punya rumah mewah","hutangmu ada yang lunasi","besok yang ngajak shoping","suatu saat nanti punya mobil alpard","dilancarkan usaha dan aktivitasnya","punya kontrakan 10 pintu","diberikan keturunan yg soleh dan solehah","selalu dikelilingi orang-orang baik dan tulus",
+    "mendapatkan pekerjaan yang membahagiakan dan memuaskan","diberikan kesehatan mental yang baik","suatu saat bisa berkeliling dunia","memiliki kehidupan yang penuh syukur dan berkah","mendapatkan teman yang bisa diajak berbagi suka dan duka","mampu membangun keluarga yang harmonis dan bahagia","mendapatkan peningkatan karier yang lebih baik",
+    "selalu diberi kelancaran dalam berbisnis","suatu saat nanti memiliki yayasan amal","rezeki yang selalu berkecukupan dan cukup untuk berbagi","selalu diberikan ketenangan hati dalam setiap masalah","mendapatkan promosi di tempat kerja","selalu dilindungi dalam setiap perjalanan","diberikan kesempatan untuk belajar ilmu agama lebih dalam",
+    "selalu dimudahkan dalam segala urusan keuangan","mampu membahagiakan keluarga dan orang tua","selalu diberi kekuatan untuk membantu sesama","menjadi pribadi yang lebih sabar dan penyayang","dijauhkan dari segala bentuk kecelakaan dan bencana","selalu diberkahi dengan kesehatan tubuh dan jiwa","diberikan kesempatan beribadah dengan khusyuk",
+    "mendapatkan rezeki yang tak disangka-sangka","selalu dilimpahkan kedamaian dalam rumah tangga","mampu menjadi orang yang selalu rendah hati","selalu diberi jalan keluar dalam setiap kesulitan","menjadi panutan dan inspirasi bagi orang lain","selalu dikelilingi cinta dan kasih sayang","diberikan kemampuan untuk mendidik anak-anak dengan baik",
+    "selalu diberi petunjuk dalam menjalani kehidupan","mampu menjalankan bisnis yang sukses dan berkah","mendapatkan pasangan yang setia dan penuh perhatian","selalu dijauhkan dari rasa iri dan dengki","selalu bisa memberi manfaat bagi banyak orang","diberi kemampuan mengontrol emosi dan ego","mampu menjalani hidup yang penuh kesederhanaan",
+    "diberikan rezeki halal yang melimpah","selalu dalam lindungan Allah SWT dalam setiap langkah","mendapatkan kesempatan untuk berbakti lebih kepada orang tua","suatu saat nanti memiliki tanah dan kebun sendiri","selalu menjadi sumber kebahagiaan bagi orang lain","dijauhkan dari segala bentuk kesialan","diberi kesempatan untuk memperbaiki diri setiap hari",
+    "mendapatkan kemudahan dalam membayar hutang","dijauhkan dari teman-teman yang membawa pengaruh negatif","diberikan kelancaran dalam menghafal ayat-ayat suci","selalu disayangi oleh orang-orang di sekitar","mampu menjaga hubungan yang harmonis dengan keluarga","selalu diberi kepercayaan dalam setiap tanggung jawab",
+    "diberikan kemudahan dalam menyelesaikan pekerjaan dan tanggung jawab"
+  ];
+ 
+  var array_sambutan = [
+    "yang tercinta", "yang suka ngambek","yang lagi pengen jajan","yang kuat  kokoh dan terpercaya","yang kalau mandi sekali sehari","yang terindah dan tersayang", "yang sangat lucu", "yang sangat imut", "yang super cakep","yang masih jomblo haha","yang selalu dimanja nenek","yang selalu merindukan dia",
+    "yang mempesona", "yang sedikit agak galak","yang suka sama host","yang jutek banget","yang lagi males ngomong" ,"yang mungil dan lucu","yang kalau lagi seneng suka lupain dia", "yang baik hati dan tidak sombong", "yang pintar merayu","yang saat ini sedang buka tiktok","kamu kemana aja?","yang citacitanya jadi orang kaya",
+    "yang terhebat", "yang menawan nan rupawan", "yang sungguh aduhai","yang sedang menunggu jodoh","situkang bucin","yang masih suka ngompol","yang super seksi", "yang sangat cerdas","yang hanya ingin disayangi","yang selalu nurut apa kata orang tua","situkang gosting","yang hobinya tidur mulu","yang suka kabur kalau ditagih hutang",
+    "yang baik hati","yang kalau makan bakso 2 mangkok","yang kalau tidur masih dikelonin", "yang cabi", "yang gemoy", "yang manis", "yang tersayang","yang punya hati yang tulus","yang merindukan dia dan dirinya","yang suka ngegosip","yang pinter ngegombal","jagon mamah",
+    "yang super hebat","yang sedang memikirkan seseorang", "yang rajin menabung", "yang kalau makan ga cukup 2 piring","yang sopan dan santun","yang ingin punya pacar","yang masih cinta sama mantan","yang ingin diperhatikan","yang jarang mandi","yang masih sendiri","yang alergi kalau ga punya uang",
+    "kesayangan mamah","yang lagi laper", "idaman mertua","kesayangan papah","yang sedang memikirkan masa depan", "kesayangan pacar","yang selalu galau","sipenakluk cinta","yang selalu merindu","yang masih kepoin mantan","yang punya kapal pesiar","bolehkan pinjem seratus","yang hobinya jajan seblak",
+    "kesayangan mantan","yang sedang galau", "kesayangan keluarga","siraja gombal","yang kalau jajan suka lupa bayar", "yang tangguh dan kuat","yang selalu tersakiti","yang pinter ngomong","yang selalu gabut","yang selalu memaafkan","situkang makan","yang masih suka sama mantan",
+    "yang rajin dan pandai","kesayangan nene","yang manja","yang baik hati","yang dermawan","yang dirindukan","yang dicintai umat manusia","yang cakep ga ada obat","pinjem seratus dulu bisa kali","yang belum mandi dari tadi pagi","yang rajin ibadah","kembanggan orang tua",
+    "yang mageran","yang kalau makan 3 ngaku 2","yang marahmarah terus","yang disayangi pacar","kamu apa kabar?","yang ingin kawin lagi","yang suka jajan sembarangan","yang selalu bahagia"," yang cantiknya kebangetan","yang suka jajan sembarangan","yang sedang memikirkan aku","yang rajin bekerja",
+    "yang selalu nyari colokan kalau baterai low","yang tiap buka dompet selalu kaget","yang pengen liburan tapi mager keluar rumah","yang tiap malam mingguan nonton film","yang ngakunya bisa masak tapi cuma mie instan","yang selalu bilang 'bentar lagi' tapi kelamaan","yang suka kepoin medsos mantan",
+    "yang tiap lihat postingan makan langsung lapar","yang kalau makan pakai saus banyak banget","yang sering bilang 'besok mulai nabung'","yang tiap liburan pengennya tidur","yang suka bilang 'nanti aja' kalau ditagih kerjaan","yang kalau beli baju harus diskon","yang selalu update story tiap hari",
+    "yang paling cerewet kalau minta foto ulang","yang ngakunya pinter tapi suka bingung","yang nggak bisa lepas dari cemilan","yang tiap pagi ngeluh ngantuk","yang selalu bawa skincare kemana-mana","yang hobinya ngegalauin hidup","yang tiap kali selfie ambil 50 foto","yang suka bilang 'aku laper' tiap jam",
+    "yang ngaku-ngaku jago masak","yang paling susah bangun pagi","yang kalau ada masalah bilangnya 'yaudah lah'","yang tiap malam stalking orang","yang suka koleksi parfum tapi pakainya satu","yang kalau ngantuk suka ngigo","yang sering lupa bawa payung","yang ngakunya benci hujan tapi suka nyanyi di bawah hujan",
+    "yang paling jago scroll medsos","yang suka tiba-tiba galau","yang kalau weekend maunya di rumah aja","yang nggak bisa tahan lihat makanan enak","yang tiap hari bilang 'males banget'","yang selalu bawa tisu kemana-mana","yang tiap ketemu teman bilang 'kangen banget'","yang suka update foto makanan",
+    "yang tiap nonton film pasti nangis","yang selalu bilang 'gue diet' tapi makan terus","yang hobinya download aplikasi gratis","yang paling semangat kalau ada gratisan","yang suka bilang 'mager banget'","yang tiap hari bilang 'aduh capek banget'","yang suka ketawa sendirian lihat chat","yang selalu bawa power bank gede",
+    "yang kalau ke mall paling hobi window shopping","yang suka main game sampai lupa waktu","yang selalu bilang 'ini terakhir' saat makan","yang hobinya screenshot chat orang","yang kalau lihat drama pasti ikut marah-marah","yang suka lupa bawa kacamata","yang paling jago bikin status galau",
+    "yang selalu bawa hand sanitizer kemana-mana","yang kalau makan pedes nangis","yang kalau selfie pasti pake filter","yang tiap ketemu bilang 'kangen banget'","yang kalau nonton konser paling depan","yang paling ribet urusan outfit","yang tiap lihat promo langsung checkout","yang ngakunya low budget tapi belanja terus",
+    "yang suka ketawa ngakak kalau lihat video lucu","yang paling jago bikin meme","yang suka bawa bekal nasi kotak kemana-mana","yang kalau ketawa kenceng banget","yang tiap malam begadang scroll timeline","yang suka banget minum kopi","yang tiap ngumpul selalu cerita yang sama","yang nggak bisa jauh dari air putih",
+    "yang tiap buka kulkas nyari cemilan","yang suka lupa naruh HP","yang kalau belanja nggak pernah cukup satu kantong","yang suka pake emot lucu-lucu","yang sering ngeluh nggak punya uang","yang hobi banget cerita panjang","yang kalau pergi keluar lupa bawa jaket","yang suka bilang 'ah pengen tidur' tiap siang",
+    "yang sering bilang 'gue kuat kok' padahal rapuh","yang ngakunya hemat tapi suka boros","yang hobinya ngegibah online","yang nggak bisa lihat sesuatu lucu tanpa beli","yang suka ngeluh malas kerja","yang paling jago rebutan diskon","yang kalau dikasih tugas sering lupa","yang ngakunya sibuk padahal gabut",
+    "yang tiap hari bilang 'gue capek banget'","yang nggak bisa tidur tanpa peluk bantal","yang suka lihat review makanan online","yang kalau lihat sesuatu mahal langsung galau","yang nggak bisa lepas dari social media","yang suka banget cari diskon online","yang ngakunya pendiam tapi sering curhat panjang",
+    "yang paling jago menghindari utang","yang nggak bisa lepas dari es kopi","yang selalu pengen jadi influencer","yang hobinya bikin video lucu","yang selalu bilang 'ah nanti aja'","yang paling banyak nonton video unboxing","yang tiap hari nyari quotes motivasi","yang nggak bisa jauh dari charger",
+    "yang kalau makan selalu pesan ekstra sambal","yang sering bilang 'gue nggak posesif kok' tapi ngecek terus","yang kalau denger musik suka joget sendiri","yang hobinya koleksi barang unik","yang tiap ketemu teman lama bilang 'wah makin gendut ya'","yang suka belanja kado buat diri sendiri",
+    "yang suka koleksi kaos kaki lucu","yang selalu lupa password akun","yang tiap ada acara bilang 'nggak punya baju'"
+];
+
+
+
+
+
+// This will use the demo backend if you open index.html locally via file://, otherwise your server will be used
+// This will use the demo backend if you open index.html locally via file://, otherwise your server will be used
+let connection;
+
+        // Default backend URL untuk Server 1
+        let backendUrl = "https://tiktok-chat-reader.zerody.one/";
+
+        // Fungsi untuk mengubah tombol yang aktif dan memilih backend URL
+        function setBackendUrl(serverNumber) {
+            // Reset semua tombol ke kelas btn-info
+      document.getElementById("server1").classList.remove("btn-danger");
+            document.getElementById("server2").classList.remove("btn-danger");
+            document.getElementById("server3").classList.remove("btn-danger");
+
+            document.getElementById("server1").classList.add("btn-info");
+            document.getElementById("server2").classList.add("btn-info");
+            document.getElementById("server3").classList.add("btn-info");
+
+            // Menetapkan tombol yang aktif dengan kelas btn-danger dan update text
+                        if (serverNumber === 1) {
+                backendUrl = "https://tiktok-chat-reader.zerody.one/";
+                document.getElementById("server1").classList.add("btn-danger");
+                document.getElementById("selectedUrl").textContent = "Server 1";  // Menampilkan nama server
+            } else if (serverNumber === 2) {
+                backendUrl = "https://con.bubblephoto.online/";
+                document.getElementById("server2").classList.add("btn-danger");
+                document.getElementById("selectedUrl").textContent = "Server 2";  // Menampilkan nama server
+            } else if (serverNumber === 3) {
+                backendUrl = "https://bubblefoto.online/";
+                document.getElementById("server3").classList.add("btn-danger");
+                document.getElementById("selectedUrl").textContent = "Server 3";  // Menampilkan nama server
+            }
+
+            // Update URL yang ditampilkan
+            
+
+            // Membuat koneksi dengan backend yang dipilih
+            connection = new TikTokIOConnection(backendUrl);
+            console.log("Connection created with URL:", backendUrl);
+
+// Event handlers
+connection.on('roomUser', (msg) => {
+    if (typeof msg.viewerCount === 'number') {
+        viewerCount = msg.viewerCount;
+        updateRoomStats();
+    }
+})
+
+let isAnimating = false;
+let userLikes = {}; // Objek untuk menyimpan jumlah like per pengunjung berdasarkan userId
+
+connection.on('like', (msg) => {
+    if (typeof msg.totalLikeCount === 'number') {
+        likeCount = msg.totalLikeCount;
+        updateRoomStats();
+    }
+
+    if (window.settings.showLikes === "0") return;
+
+    if (typeof msg.likeCount === 'number') {
+        // Jika ingin menambahkan foto atau data lain, Anda bisa tetap menggunakan addBubble
+        addBubble("small", msg.profilePictureUrl, 1, msg.uniqueId);
+
+        // Hitung like untuk setiap pengunjung secara terpisah
+        // Jika pengunjung sudah ada dalam userLikes, tambahkan like-nya
+        if (userLikes[msg.userId]) {
+            userLikes[msg.userId] += msg.likeCount; // Tambah jumlah like pengunjung tersebut
+        } else {
+            userLikes[msg.userId] = msg.likeCount; // Pengunjung pertama kali memberi like, set jumlah like ke likeCount mereka
+        }
+
+        // Gunakan userLikes[msg.userId] untuk mendapatkan jumlah like terbaru per pengunjung
+        addLikeToAnimation(msg.profilePictureUrl, userLikes[msg.userId], msg.nickname);
+        
+        // Panggil window.onLikeReceived untuk menampilkan animasi hati atau efek lainnya
+        window.onLikeReceived({
+            likeCount: msg.likeCount,                   // Jumlah like yang diterima
+            profilePictureUrl: msg.profilePictureUrl,   // URL gambar profil yang memberikan like
+            userId: msg.userId,                         // ID pengguna yang memberikan like
+            uniqueId: msg.uniqueId,                     // ID unik untuk like tersebut
+            nickname: msg.nickname                      // Nama pengguna yang memberikan like
+        });
+    }
+});
+
+function addLikeToAnimation(profilePictureUrl, likeCount, nickname) {
+    if (isAnimating) return;  // Jika sedang ada animasi, jangan tambahkan elemen baru
+
+    isAnimating = true;  // Tandai bahwa animasi sedang berlangsung
+
+    const container = document.getElementById('animasilike');
+    const newItem = document.createElement('div');
+    newItem.className = 'slide-in'; // Menambahkan animasi slide-in
+
+    // Inisialisasi posisi awal elemen, bisa diubah saat drag
+    newItem.style.top = '20%';  // Posisi awal bisa disesuaikan atau berdasarkan drag
+    newItem.style.left = '1%';   // Posisi horizontal tetap di sisi kiri
+
+    newItem.innerHTML = `
+        <img class="miniprofilepicture" src="${profilePictureUrl}" alt="Profile Picture">
+        <div class="like-info">
+            <div class="like-name"><b>${nickname}</b></div> <!-- Nama Pengunjung -->
+            <span class="like-icon">
+                <i class="fas fa-thumbs-up" style="color: red;"></i> <!-- Ikon jempol -->
+            
+            <b>${likeCount}</b></span> <!-- Menampilkan total like -->
+        </div>
+    `;
+
+    // Menambahkan item ke kontainer
+    container.appendChild(newItem);
+    container.style.display = 'block';
+
+    // Menambahkan kemampuan dragging pada newItem
+    makeDraggable(newItem);  // Menambahkan fungsi dragging pada elemen baru
+
+    // Menyembunyikan dan menghapus item setelah 2 detik
+    setTimeout(() => {
+        newItem.classList.add('hide');
+        setTimeout(() => {
+            newItem.remove();
+            isAnimating = false;  // Menandakan animasi selesai dan bisa menambah elemen berikutnya
+        }, 1000);  // Waktu untuk menunggu sampai animasi selesai
+    }, 2000);
+}
+
+ // Member join
+var urut_sifat=0;
+let joinMsgDelay = 0;
+connection.on('member', (msg) => {
+    if (window.settings.showJoins === "0") return;
+
+    let addDelay = 250;
+    if (joinMsgDelay > 500) addDelay = 100;
+    if (joinMsgDelay > 1000) addDelay = 0;
+
+    joinMsgDelay += addDelay;
+    // gift(msg.profilePictureUrl,msg.nickname,false,false);
+    // setTimeout(() => {
+        joinMsgDelay -= addDelay;
+        // addChatItem('#21b2c2', msg, 'joined', true,"joined");
+        addBubble("small", msg.profilePictureUrl, 1, msg.uniqueId);
+
+       
+      
+        
+
+         
+        
+        let jumlahElemen = array_sambutan.length;
+       if(urut_sifat>=(jumlahElemen-1)){
+        urut_sifat=1;
+       }else{
+        urut_sifat++;
+       }
+       var sifat =  array_sambutan[urut_sifat];
+       var string = msg.nickname;
+       var nama = string.replace(/[^a-zA-Z]/g, '');
+
+       var opsi = $("#opsi_suara").val();
+       if(opsi==1){
+           aktifSuara("halo kak "+nama+" "+sifat,"join");
+       }else{
+           aktifSuara("selamat bergabung kak "+nama,"join");
+       }
+
+
+
+    // }, joinMsgDelay);
+})
+
+// New chat comment received
+connection.on('chat', (msg) => {
+    if (window.settings.showChats === "0") return;
+
+    // Pastikan jika vkomen tercentang, maka komentar dibacakan
+    var vkomen = document.getElementById("vkomen");
+    if (vkomen.checked) {
+        aktifSuaraKomen(msg.comment);
+    }
+
+    addBubble("small", msg.profilePictureUrl, 1, msg.uniqueId);
+    addBubble("small", msg.profilePictureUrl, 1, msg.uniqueId);
+
+});
+       
+
+var urut_doa = 0;
+connection.on('gift', (data) => {
+    if (!isPendingStreak(data) && data.diamondCount > 0) {
+         const { uniqueId, nickname, profilePictureUrl, diamondCount, repeatCount } = data;
+  const diamonds = diamondCount * repeatCount;
+
+ 
+saveDiamondsToDatabase(uniqueId, nickname, profilePictureUrl, diamonds);
+
+  // Update atau tambahkan ke topGivers (logika lokal)
+  if (topGivers[uniqueId]) {
+    topGivers[uniqueId].total_diamonds += diamonds;
+  } else {
+    topGivers[uniqueId] = { uniqueId, nickname, profilePictureUrl, total_diamonds: diamonds };
+  }
+
+  // Perbarui tampilan
+  fetchTopGivers(); 
+
+    }
+
+    if (window.settings.showGifts === "0") return;
+     
+    
+    
+
+    if (!data.repeatEnd) {
+        
+   addGiftItemToQueue(data);
+
+    if(data.diamondCount<=5){
+
+        for(i=1;i<=data.diamondCount;i++)
+        {
+            addBubble("medium",data.profilePictureUrl,data.diamondCount,data.uniqueId);
+            // addBubble("small",data.profilePictureUrl,data.uniqueId);
+            // addBubble("small",data.profilePictureUrl,data.uniqueId);
+        }
+        
+    estopAudio(0);
+    eplayAudio(0);
+        
+        
+    }else if(data.diamondCount<=10){
+    setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },500);
+        for(i=1;i<=5;i++)
+        {
+            addBubble("medium",data.profilePictureUrl,data.diamondCount,data.uniqueId); 
+        }
+        addBubble("large",data.profilePictureUrl,data.diamondCount,data.uniqueId); 
+         
+        for(i=1;i<=5;i++)
+        {
+            addBubble("small",data.profilePictureUrl,data.uniqueId);
+        }
+        estopAudio(0);
+        estopAudio(1);
+        eplayAudio(1);
+    }else if(data.diamondCount<=20){
+        bgklip(data.profilePictureUrl,data.diamondCount);
+        setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },500);
+        setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },1000);
+
+        for(i=1;i<=5;i++)
+        {
+            addBubble("medium",data.profilePictureUrl,data.diamondCount,data.uniqueId); 
+        }
+        addBubble("large",data.profilePictureUrl,data.diamondCount,data.uniqueId); 
+        addBubble("large",data.profilePictureUrl,data.diamondCount,data.uniqueId);  
+         
+        for(i=1;i<=20;i++)
+        {
+            addBubble("small",data.profilePictureUrl,data.uniqueId);
+        }
+        //supersmall
+        addBubble("supersmall",data.profilePictureUrl,data.diamondCount,data.uniqueId);
+        addBubble("supersmall",data.profilePictureUrl,data.diamondCount,data.uniqueId);
+        estopAudio(0);
+        estopAudio(1);
+        estopAudio(2);
+        eplayAudio(2);
+    }else if(data.diamondCount<=30){
+        setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },500);
+        setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },1000);
+        setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },3000);
+        for(i=1;i<=5;i++)
+        {
+            addBubble("supermedium",data.profilePictureUrl,data.diamondCount,data.uniqueId); 
+        }
+        
+  
+
+        addBubble("large",data.profilePictureUrl,data.diamondCount,data.uniqueId); 
+        addBubble("large",data.profilePictureUrl,data.diamondCount,data.uniqueId); 
+        addBubble("large",data.profilePictureUrl,data.diamondCount,data.uniqueId); 
+        addBubble("large",data.profilePictureUrl,data.diamondCount,data.uniqueId); 
+        addBubble("large",data.profilePictureUrl,data.diamondCount,data.uniqueId); 
+
+       
+    
+         
+        for(i=1;i<=25;i++)
+        {
+            addBubble("supersmall",data.profilePictureUrl,data.diamondCount,data.uniqueId);
+        }
+        bgklip(data.profilePictureUrl,data.diamondCount);
+        estopAudio(0);
+        estopAudio(1);
+        estopAudio(2);
+         estopAudio(3);
+        eplayAudio(3);
+    }else if(data.diamondCount<=50){
+        setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },500);
+        setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },1000);
+        setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },2000);
+        setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },3000);
+        for(i=1;i<=10;i++)
+        {
+             addBubble("large",data.profilePictureUrl,data.diamondCount,data.uniqueId); 
+            addBubble("supermedium",data.profilePictureUrl,data.diamondCount,data.uniqueId); 
+        }
+      
+        
+           
+        
+        
+        for(i=1;i<=40;i++)
+        {
+ 
+            addBubble("supersmall",data.profilePictureUrl,data.diamondCount,data.uniqueId); 
+        }
+        bgklip(data.profilePictureUrl,data.diamondCount);
+         estopAudio(0);
+        estopAudio(1);
+        estopAudio(2);
+         estopAudio(3);
+        eplayAudio(3);
+    }else if(data.diamondCount<=100){
+        setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },500);
+        setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },1000);
+        setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },2000);
+        setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },3000);
+        for(i=1;i<=20;i++)
+        {
+            addBubble("supermedium",data.profilePictureUrl,data.diamondCount,data.uniqueId); 
+        }
+        
+        for(i=1;i<=15;i++)
+        {
+             addBubble("large",data.profilePictureUrl,data.diamondCount,data.uniqueId);  
+        }
+        
+        
+                
+        
+        
+        for(i=1;i<=40;i++)
+        {
+            
+            addBubble("supersmall",data.profilePictureUrl,data.diamondCount,data.uniqueId); 
+        }
+        
+         bgklip(data.profilePictureUrl,data.diamondCount);
+          estopAudio(0);
+        estopAudio(1);
+        estopAudio(2);
+         estopAudio(3);
+         estopAudio(4);
+        eplayAudio(4);
+    }else if(data.diamondCount<=300){
+        
+          setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },500);
+    setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },1000);
+    setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },2000);
+    setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },3000);
+    setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },4000);        
+                    
+        for(i=1;i<=25;i++)
+        {
+            addBubble("supermedium",data.profilePictureUrl,data.diamondCount,data.uniqueId); 
+        }
+        
+        for(i=1;i<=20;i++)
+        {
+             addBubble("large",data.profilePictureUrl,data.diamondCount,data.uniqueId);  
+        }
+        
+         
+        
+        
+        for(i=1;i<=40;i++)
+        {
+            addBubble("supersmall",data.profilePictureUrl,data.diamondCount,data.uniqueId); 
+        }
+        bgklip(data.profilePictureUrl,data.diamondCount);
+         estopAudio(0);
+        estopAudio(1);
+        estopAudio(2);
+         estopAudio(3);
+         estopAudio(4);
+         estopAudio(5);
+        eplayAudio(5);
+    }else{
+        
+         
+                    
+       for(i=1;i<=35;i++)
+        {
+            addBubble("supermedium",data.profilePictureUrl,data.diamondCount,data.uniqueId); 
+        }
+        
+        
+                 
+        
+        for(i=1;i<=30;i++)
+        {
+             addBubble("large",data.profilePictureUrl,data.diamondCount,data.uniqueId);  
+        }
+       setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },500);
+        setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },1000);
+        setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },2000);
+        setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },3000);
+        setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },4000);
+        setTimeout(function() {
+        onGift(data.nickname, data.profilePictureUrl, data.giftPictureUrl, true, data.uniqueId)
+    },5000);
+        bgklip(data.profilePictureUrl,data.diamondCount);
+         estopAudio(0);
+        estopAudio(1);
+        estopAudio(2);
+         estopAudio(3);
+         estopAudio(4);
+         estopAudio(5);
+        
+        for(i=1;i<=50;i++)
+        {
+            addBubble("supersmall",data.profilePictureUrl,data.diamondCount,data.uniqueId); 
+        }
+        eplayAudio(5);
+    }
+
+
+    
+   
+
+      let jumlahElemen = array_doa.length;
+      if(urut_doa>=(jumlahElemen-1)){
+        urut_doa=1;
+      }else{
+        urut_doa++;
+      }
+      var doa= array_doa[urut_doa];
+
+      var string = data.nickname;
+      var nama = string;//.replace(/[^a-zA-Z]/g, '');
+
+
+      var opsi = $("#opsi_suara").val();
+      if(opsi==1){
+        aktifSuara("Terimakasih kak "+nama+"  sudah kasih "+data.giftName+" semoga "+doa+".","gift");
+      }else{
+        aktifSuara("Terimakasih kak "+nama+"  sudah kasih "+data.giftName+" semoga berkah","gift");
+      }
+
+
+          
+    
+
+
+
+
+        }  
+         
+})
+
+// share, follow
+let isAnimatingShare = false;
+
+connection.on('social', (data) => {
+    if (window.settings.showFollows === "0") return;
+
+    let color = data.displayType.includes('follow') ? '#ff005e' : '#2fb816';
+    
+    // Jika share, tampilkan animasi share
+    if (color === '#2fb816') {
+        aktifSuara("Terimakasih kak " + data.nickname + " sudah share", "share");
+        addShareToAnimation(data.profilePictureUrl, data.nickname, "Sudah Share", "share"); // Teks "Sudah Share"
+        addBubble("small", data.profilePictureUrl, data.uniqueId);
+    } else {
+        aktifSuara("Terimakasih kak " + data.nickname + " sudah jadikan aku teman", "follow");
+        addShareToAnimation(data.profilePictureUrl, data.nickname, "Mengikuti", "plus"); // Teks "Mengikuti" dengan ikon plus
+        addBubble("small", data.profilePictureUrl, data.uniqueId);
+    }
+});
+
+function addShareToAnimation(profilePictureUrl, nickname, actionText, actionIcon) {
+    if (isAnimatingShare) return;  // Jika sedang ada animasi share, jangan tambahkan elemen baru
+
+    isAnimatingShare = true;  // Tandai bahwa animasi share sedang berlangsung
+
+    const container = document.getElementById('animasishare');
+    const newItem = document.createElement('div');
+    newItem.className = 'slide-in'; // Menambahkan animasi slide-in
+
+    newItem.style.top = '30%';  // Posisi vertical untuk share
+    newItem.style.left = '2%';   // Posisi horizontal tetap di sisi kiri
+    // Tentukan ikon berdasarkan aksi
+    let iconHTML = '';
+    if (actionIcon === 'share') {
+        iconHTML = '<i class="fas fa-share-alt" style="font-size: 20px; color: #2fb816;"></i>';  // Ikon share
+    } else if (actionIcon === 'plus') {
+        iconHTML = '<i class="fas fa-plus" style="font-size: 20px; color: #ff005e;"></i>';  // Ikon plus
+    }
+
+    newItem.innerHTML = `
+        <img class="miniprofilepicture" src="${profilePictureUrl}" alt="Profile Picture">
+        <div class="like-info">
+            <div class="like-name"><b>${nickname}</b></div> <!-- Nama Pengunjung -->
+            <span class="like-icon">
+                ${iconHTML} <!-- Menampilkan ikon berdasarkan aksi -->
+                <b>${actionText}</b> <!-- Menampilkan teks sesuai jenis aksi -->
+            </span>
+        </div>
+    `;
+
+    // Menambahkan item ke kontainer share
+    container.appendChild(newItem);
+    container.style.display = 'block';
+
+    // Menambahkan kemampuan dragging pada newItem
+    makeDraggable(newItem);  // Menambahkan fungsi dragging pada elemen baru
+
+    // Menyembunyikan dan menghapus item setelah 2 detik
+    setTimeout(() => {
+        newItem.classList.add('hide');
+        setTimeout(() => {
+            newItem.remove();
+            isAnimatingShare = false;  // Menandakan animasi selesai dan bisa menambah elemen berikutnya
+        }, 1000);  // Waktu untuk menunggu sampai animasi selesai
+    }, 2000);
+}
+
+connection.on('streamEnd', () => {
+    $('#stateText').text('Stream ended.');
+
+    // schedule next try if obs username set
+    if (window.settings.username) {
+        setTimeout(() => {
+            connect(window.settings.username);
+        }, 30000);
+    }
+})
+
+        }
+
+        // Set default URL saat halaman pertama kali dimuat
+        document.getElementById("selectedUrl").textContent = "Server 1";
+
+
+// Counter
+let viewerCount = 0;
+let likeCount = 0;
+let diamondsCount = 0;
+
+// These settings are defined by obs.html
+if (!window.settings) window.settings = {};
+
+$(document).ready(() => {
+    $('#connectButton').click(connect);
+    $('#uniqueIdInput').on('keyup', function (e) {
+        if (e.key === 'Enter') {
+            connect();
+        }
+    });
+
+    if (window.settings.username) connect();
+})
+
+
+ 
+
+function toggleBlur(image) {
+  const uniqueId = image.getAttribute('data-unique-id');
+  const profilePictureUrl = image.src;
+
+  if (blurredUsers.has(uniqueId)) {
+    blurredUsers.delete(uniqueId);
+    fetch('/api/unblur-user', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ uniqueId })
+    });
+  } else {
+    blurredUsers.add(uniqueId);
+    fetch('/api/blur-user', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ uniqueId, profilePictureUrl }) // ✅ Kirim foto
+    });
+  }
+
+  // Apply blur effect langsung ke semua image yang pakai uniqueId
+  document.querySelectorAll('.photo').forEach(img => {
+    const id = img.getAttribute('data-unique-id');
+    img.classList.toggle('blurred', blurredUsers.has(id));
+  });
+}
+
+
+
+
+function connect() {
+   let uniqueId = window.settings.username || $('#uniqueIdInput').val();
+    
+    
+    if (uniqueId !== '') {
+        
+        $('#stateText').text('Mohon tunggu jangan klik apapun dulu...');
+
+        connection.connect(uniqueId, {
+            enableExtendedGiftInfo: true
+        }).then(state => {
+            $('#stateText').text(`Berhasil dikoneksikan`);
+
+            // Emit event ke server untuk menandai username sedang live
+            const socket = io(); // Pastikan sudah menginisialisasi Socket.IO di halaman ini
+            socket.emit('userLive', { username: uniqueId });
+
+            scrollToTop();
+            tutupmodal();
+            masukanpoto();
+            aktifSuara("Berhasil di koneksikan ke akun " + uniqueId);
+            $("#hide").hide();
+
+            // reset stats
+            viewerCount = 0;
+            likeCount = 0;
+            diamondsCount = 0;
+            updateRoomStats();
+
+        }).catch(errorMessage => {
+            if(errorMessage=="Error: LIVE has ended"){
+                $('#stateText').html("Gagal! tiktok <b>"+uniqueId+"</b> harus dalam keadaan LIVE.");
+            }else if(errorMessage=="Error: Request failed with status code 429"){
+                $('#stateText').text("Mohon maaf server sedang gangguan silahkan coba beberapa saat lagi. ");
+            }else if(errorMessage=="Error: Request failed with status code 500"){
+                $('#stateText').text("Mohon maaf server sedang gangguan silahkan coba beberapa saat lagi. ");
+            }else{
+                $('#stateText').text(errorMessage);
+            }
+
+            // schedule next try if obs username set
+            if (window.settings.username) {
+                setTimeout(() => {
+                    connect(window.settings.username);
+                }, 30000);
+            }
+        })
+
+    } else {
+        alert('no username entered');
+    }
+}
+// Prevent Cross site scripting (XSS)
+function sanitize(text) {
+    return text.replace(/</g, '&lt;')
+}
+
+function updateRoomStats() {
+    $('#roomStats').html(`Viewers: <b>${viewerCount.toLocaleString()}</b> Likes: <b>${likeCount.toLocaleString()}</b> Earned Diamonds: <b>${diamondsCount.toLocaleString()}</b>`)
+}
+
+function generateUsernameLink(data) {
+    return `<a class="usernamelink" href="https://www.tiktok.com/@${data.uniqueId}" target="_blank">${data.uniqueId}</a>`;
+}
+
+function isPendingStreak(data) {
+    return data.giftType === 1 && !data.repeatEnd;
+}
+
+// Logika untuk menambah chat item dengan foto profil kecil
+function addChatItem(color, data, text, summarize='',komen=false) {
+    return false;
+    const inputString = sanitize(text);
+    let container = location.href.includes('obs.html') ? $('.eventcontainer') : $('.chatcontainer');
+      
+    if (container.find('div').length > 500) {
+        container.find('div').slice(0, 200).remove();
+    }
+
+    container.find('.temporary').remove();
+
+
+if(komen==false || komen=="joined" || komen==""){
+    var hasil = ""; var awalan = "";
+}else{
+        aktifSuaraKomen(data.comment);
+
+}
+    container.prepend(`
+        <div    class=${summarize ? 'temporary' : 'static'}>
+         <a target="new" href="javascript:ganti_bg('"${data.profilePictureUrl}"')">
+            <img class="miniprofilepicture" src="${data.profilePictureUrl}">
+            <span>
+                <b>${generateUsernameLink(data)}</b>
+                ${awalan} : <span style="color:${color}">${sanitize(text)}</span>  <i>${hasil}</i>
+            </span>
+        </a>    
+        </div>
+    `);
+}
+
+
+let giftQueue = [];  // Antrian untuk menyimpan data hadiah
+let isDisplaying = false;  // Flag untuk memastikan hanya satu item yang tampil pada satu waktu
+
+function addGiftItemToQueue(data) {
+    giftQueue.push(data);
+    processNextGift();
+}
+
+function processNextGift() {
+    if (isDisplaying || giftQueue.length === 0) return;
+
+    isDisplaying = true;
+    const data = giftQueue.shift(); // Ambil hadiah pertama dari antrian
+    const isLastGift = giftQueue.length === 0; // Cek apakah ini hadiah terakhir
+
+    showGiftItem(data, isLastGift, () => {
+        isDisplaying = false;
+        processNextGift(); // Lanjutkan ke hadiah berikutnya
+    });
+}
+
+function showGiftItem(data, isLastGift, onComplete) {
+    const container = document.getElementById('animasigift');
+    const streakId = data.userId.toString() + '_' + data.giftId;
+
+    const newItem = document.createElement('div');
+    newItem.className = 'slide-in';
+    newItem.setAttribute('data-streakid', isPendingStreak(data) ? streakId : '');
+    newItem.innerHTML = `
+        <img class="miniprofilepicture" src="${data.profilePictureUrl}" alt="Profile Picture">
+        <span class="giver-name"><b>${data.nickname}</b></span>
+    `;
+
+    // Set top position based on diamond count
+    if (data.diamondCount < 100) {
+        newItem.style.top = '50%';  // Tampilkan di tengah
+    } else if (data.diamondCount >= 100) {
+        newItem.style.top = '65%';  // Tampilkan sedikit lebih bawah
+    }
+
+    container.appendChild(newItem);
+    container.style.display = 'block';
+
+    const displayDuration = isLastGift ? 5000 : 2000;  // Pemanggilan terakhir tampil 5 detik, lainnya 2 detik
+    setTimeout(() => {
+        newItem.classList.add('hide'); // Mulai animasi keluar
+        setTimeout(() => {
+            newItem.remove(); // Hapus elemen setelah animasi keluar
+            container.style.display = 'none';
+            onComplete(); // Panggil callback untuk lanjut ke antrian berikutnya
+        }, 1000); // Setelah animasi selesai
+    }, displayDuration); // Tampilkan selama 5 detik untuk yang terakhir, 2 detik untuk lainnya
+}
+
+
+
+
+
+
+
+function moveRandomly(element) {
+    const container = document.getElementById("profileContainer");
+    const moveInterval = 5000; // Interval perpindahan setiap 5 detik
+    const duration = 60000; // Durasi total perpindahan (60 detik)
+    const isMobile = window.innerWidth < 768; // Deteksi perangkat mobile berdasarkan lebar layar
+
+    function setInitialPositionWithSlideAndScatter() {
+        const containerWidth = container.offsetWidth;
+        const containerHeight = container.offsetHeight;
+        const elementWidth = element.offsetWidth;
+        const elementHeight = element.offsetHeight;
+
+        // Hitung posisi acak di dalam layar
+        const randomX = Math.random() * (containerWidth - elementWidth);
+        const randomY = Math.random() * (containerHeight - elementHeight);
+
+        // Set posisi awal di pojok kiri atas
+        element.style.top = `0px`;
+        element.style.left = `0px`;
+
+        // Terapkan kelas animasi dan posisi acak jika di Android
+        if (isMobile) {
+            element.classList.add('slide-and-scatter');
+            setTimeout(() => {
+                element.style.top = `${randomY}px`;
+                element.style.left = `${randomX}px`;
+            }, 10); // Mulai perpindahan setelah elemen di-render
+
+            // Hapus kelas animasi setelah selesai agar bisa melanjutkan gerakan bebas
+            setTimeout(() => {
+                element.classList.remove('slide-and-scatter');
+            }, 1000); // Durasi animasi slide-and-scatter
+        } else {
+            // Set posisi acak langsung tanpa animasi untuk desktop
+            element.style.top = `${randomY}px`;
+            element.style.left = `${randomX}px`;
+        }
+    }
+
+    function setRandomPosition() {
+        const containerWidth = container.offsetWidth;
+        const containerHeight = container.offsetHeight;
+        const elementWidth = element.offsetWidth;
+        const elementHeight = element.offsetHeight;
+
+        const randomX = Math.random() * (containerWidth - elementWidth);
+        const randomY = Math.random() * (containerHeight - elementHeight);
+
+        element.style.top = `${randomY}px`;
+        element.style.left = `${randomX}px`;
+    }
+
+    setInitialPositionWithSlideAndScatter();
+
+    const intervalId = setInterval(setRandomPosition, moveInterval);
+
+    setTimeout(() => {
+        clearInterval(intervalId);
+        element.classList.add('fade-out');
+    }, duration);
+
+    setTimeout(() => {
+        element.remove();
+    }, duration + 2000);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+setTimeout(() => {
+  openmodal();
+  // masukanpoto();
+
+}, 500);
+
+function masukanpoto(){
+  var img = "/images/bubbleawal.png";
+  addBubble("small",img);
+  addBubble("small",img);
+  addBubble("small",img);
+ 
+}
+function tutupmodal(){
+ 
+  scrollToTop();
+  $("#addBubbleModal").modal("hide");
+  petunjuk();
+}
+function petunjuk(){
+
+  setTimeout(() => {
+    $("#petunjuk").hide(3000);
+  }, 6000);
+  setTimeout(() => {
+    masukanpoto();
+  }, 4000);
+   
+}
+
+    function toggleFullScreen() {
+            const doc = window.document;
+            const docEl = doc.documentElement;
+
+            const requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+            const exitFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+            if (!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+                requestFullScreen.call(docEl);
+            } else {
+                exitFullScreen.call(doc);
+            }
+        }
+     
+
+       
+var no =1;
+var jawab = "xmxmxmmx";
+var alias = "xmxmxmmx";
+var koin=0;
+var mode = "soal";
+
+ 
+ 
+  
+$(".chatcontainer").show();
+$(".chatcontainer2").hide();
+$(".chatcontainer3").hide();
+function jawaban(komentar,poto,nama){
+     
+  
+} 
+
+ var ganti=true;
+ 
+ function okey(foto,nama,g=false){
+   
+   
+        $("#namas").html(nama);
+        var element = document.getElementById("g");
+        element.src= foto;  
+         
+        
+ }
+
+ function bahaya(){
+  var element = document.getElementById("g");
+        element.src= "/images/bubbleawal.png"; 
+ }
+ 
+ 
+      var start=true;
+      
+      function jo(){
+         if(start==true){
+             start=false;
+         }else{
+               start=true;
+         }
+      }
+
+    function hapus_class(){
+      $("#g").hide(300);
+      $("#g").show(1000);
+    }  
+
+    function add_class(){
+      $("#g").hide(300);
+      $("#g").show(1000);
+    }  
+      
+     function gift(foto,nama,sts=false,g=false,ket=null,kom=null,jml_coin=1){
+      var gift = document.getElementById("gift");
+if (gift.checked) {
+  var opsi_gift = true;
+} else {
+  var opsi_gift = false;
+}
+
+var follow = document.getElementById("follow");
+if (follow.checked) {
+  var opsi_follow = true;
+} else {
+  var opsi_follow = false;
+}
+
+var share = document.getElementById("share");
+if (share.checked) {
+  var opsi_share = true;
+} else {
+  var opsi_share = false;
+}
+
+var like = document.getElementById("like");
+if (like.checked) {
+  var opsi_like = true;
+} else {
+  var opsi_like = false;
+}
+
+var join = document.getElementById("join");
+if (join.checked) {
+  var opsi_join = true;
+} else {
+  var opsi_join = false;
+}
+var key = document.getElementById("key");
+if (key.checked) {
+  var opsi_key = true;
+} else {
+  var opsi_key = false;
+}
+
+ 
+         
+         if(sts==true && ganti==true){
+          console.log("jml"+jml_coin);
+        var min_coin = $("[name='min_coin']").val();
+        console.log("min"+min_coin);
+     
+
+          if(jml_coin>=min_coin){
+                ganti=false;
+                if(opsi_gift==true){
+                  
+                  add_class();
+
+                  okey(foto,nama,g); 
+                  setTimeout(() => {
+                                    ganti=true;
+                      },7000);
+                      return true;
+                }else{
+                  ganti=true;
+                }
+            }
+                
+         }
+         
+          if(sts==true && ganti==false){ 
+            console.log("jml"+jml_coin);
+var min_coin = $("[name='min_coin']").val();
+console.log("min"+min_coin);
+
+
+            if(jml_coin>=min_coin){
+              if(opsi_gift==true){
+                add_class();
+
+                  setTimeout(() => {
+                        okey(foto,nama,g); 
+                  
+                    },5000);
+                    
+                    setTimeout(() => {
+                                  ganti=true;
+                    },10000);
+                  }else{
+                    ganti=true;
+                  }
+              }
+               
+          }
+          
+    if(ket=="like" && opsi_like==true)      
+    {      
+            if(sts==false && ganti==true){ 
+              hapus_class();
+                            okey(foto,nama); 
+                                    ganti=true; 
+            }
+    }
+
+   else if(ket=="share" && opsi_share==true)      
+    {      
+            if(sts==false && ganti==true){ 
+              hapus_class();
+                            okey(foto,nama); 
+                                    ganti=true; 
+            }
+    }
+
+   else if(ket=="follow" && opsi_follow==true)      
+    {      
+            if(sts==false && ganti==true){ 
+              hapus_class();
+                            okey(foto,nama); 
+                                    ganti=true; 
+            }
+    }
+    else if(ket=="join" && opsi_join==true)      
+    {      
+            if(sts==false && ganti==true){ 
+              hapus_class();
+                            okey(foto,nama); 
+                                    ganti=true; 
+            }
+    }
+    else if(ket=="chat" && opsi_key==true)      
+    {      
+      var komentar_system = kom;
+           var komen_status = false;
+             var keyword = $("[name='komentar']").val();
+              const isKeywordExists = komentar_system.toLowerCase().includes(keyword.toLowerCase());
+              if(isKeywordExists!=false){ 
+                var komen_status = true;
+              }else if(keyword==""){
+                var komen_status = true;
+              }
+            if(sts==false && ganti==true && komen_status==true){ 
+              hapus_class();
+                            okey(foto,nama); 
+                                    ganti=true; 
+            }
+    }
+
+    
+
+
+
+
+               
+     }
+         
+
+
+let photoCount = 0;
+let speed = 5000;
+let blurredUsers = new Set(); // Simpan uniqueId yang sedang diblur
+
+fetch('/api/blurred-users')
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      data.blurredUsers.forEach(uid => blurredUsers.add(uid));
+    }
+  });
+
+function addBubble(size, img, coint = 1, uniqueId = '') {
+  const photo = document.createElement('img');
+  photo.src = img;
+  photo.classList.add('photo');
+  photo.id = `photo-${photoCount}`;
+  photo.setAttribute('data-unique-id', uniqueId);
+  photo.setAttribute('onclick', 'toggleBlur(this)');
+
+  const container = document.getElementById('animation-container');
+  container.appendChild(photo);
+
+  if (blurredUsers.has(uniqueId)) {
+    photo.classList.add('blurred'); // Tambahkan blur jika user ini sudah diblur
+  }
+
+      let durationInput;
+   
+    
+    if (size === 'small') {
+        photo.style.width = '50px';
+        photo.style.height = '50px';
+        durationInput = document.getElementById('smallDuration');
+        var colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'cyan', 'magenta','orange','#2F4F4F','#1E90FF','#CD5C5C','#20B2AA','#C71585','#DDA0DD','#9ACD32']; 
+        var randomColor = colors[Math.floor(Math.random() * colors.length)]; 
+        photo.style.border = '2px solid ' + randomColor;
+
+      } else if (size === 'medium') {
+        photo.style.width = '120px';
+        photo.style.height = '120px';
+        durationInput = document.getElementById('mediumDuration');
+        photo.style.zIndex = coint;
+        
+        var colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'cyan', 'magenta','orange','#2F4F4F','#1E90FF','#CD5C5C','#20B2AA','#C71585','#DDA0DD','#9ACD32']; 
+        var randomColor = colors[Math.floor(Math.random() * colors.length)]; 
+        photo.style.border = '2px solid ' + randomColor;
+        photo.style.boxShadow = '0 0 5px ' + randomColor;
+      }else if (size === 'large') {
+        photo.style.width = '250px';
+        photo.style.height = '250px';
+        durationInput = document.getElementById('largeDuration');
+        photo.style.zIndex = coint+1;
+        
+        var colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'cyan', 'magenta','orange','#2F4F4F','#1E90FF','#CD5C5C','#20B2AA','#C71585','#DDA0DD','#9ACD32']; 
+        var randomColor = colors[Math.floor(Math.random() * colors.length)]; 
+        photo.style.border = '2px solid ' + randomColor;
+        photo.style.boxShadow = '0 0 5px ' + randomColor;
+        
+      }else if (size === 'supermedium') {
+        photo.style.width = '120px';
+        photo.style.height = '120px';
+        photo.style.borderRadius = '240px';
+        durationInput = document.getElementById('mediumDuration');
+        photo.style.zIndex = coint;
+       var colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'cyan', 'magenta','orange','#2F4F4F','#1E90FF','#CD5C5C','#20B2AA','#C71585','#DDA0DD','#9ACD32']; 
+        var randomColor = colors[Math.floor(Math.random() * colors.length)]; 
+        photo.style.border = '2px solid ' + randomColor;
+        photo.style.boxShadow = '0 0 5px ' + randomColor;
+      }else if (size === 'supersmall') {
+        photo.style.width = '70px';
+        photo.style.height = '70px';
+        photo.style.borderRadius = '240px';
+        durationInput = document.getElementById('smallDuration');
+        photo.style.zIndex = coint;
+        var colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'cyan', 'magenta','orange','#2F4F4F','#1E90FF','#CD5C5C','#20B2AA','#C71585','#DDA0DD','#9ACD32']; 
+        var randomColor = colors[Math.floor(Math.random() * colors.length)]; 
+        photo.style.border = '2px solid ' + randomColor;
+        photo.style.boxShadow = '0 0 5px ' + randomColor;
+      }
+      
+      const fadeoutDuration = durationInput ? parseInt(durationInput.value) * 1000 : 120000; // default 2 menit
+
+      movePhoto(photo.id, fadeoutDuration);
+      
+      photoCount++;
+    }
+    
+    
+    function movePhoto(photoId, fadeoutDuration) {
+      const photo = document.getElementById(photoId);
+      if(photo===null){
+          return false;
+      }
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+      
+      const randomX = Math.floor(Math.random() * (screenWidth - parseInt(photo.style.width, 10))); 
+      const randomY = Math.floor(Math.random() * (screenHeight - parseInt(photo.style.height, 10))); 
+      
+      photo.style.transform = `translate(${randomX}px, ${randomY}px)`;
+      
+      setTimeout(() => {
+        fadeOutPhoto(photo.id);
+      }, fadeoutDuration);
+
+      setTimeout(() => {
+        movePhoto(photoId, fadeoutDuration);
+      }, speed); // Menggerakkan foto sesuai kecepatan yang diatur
+    }
+
+
+    function resizePhoto(size) {
+      const photos = document.querySelectorAll('.photo');
+      photos.forEach(photo => {
+        const currentWidth = parseInt(photo.style.width, 10) || 100;
+        const currentHeight = parseInt(photo.style.height, 10) || 100;
+
+        if (size === 'small') {
+          photo.style.width = `${Math.max(currentWidth - 20, 50)}px`;
+          photo.style.height = `${Math.max(currentHeight - 20, 50)}px`;
+        } else if (size === 'medium') {
+          photo.style.width = '150px';
+          photo.style.height = '150px';
+        } else if (size === 'large') {
+          photo.style.width = `${Math.min(currentWidth + 20, 300)}px`;
+          photo.style.height = `${Math.min(currentHeight + 20, 300)}px`;
+        } else if (size === 'fulllarge') {
+          photo.style.width = `${Math.min(currentWidth + 20, 300)}px`;
+          photo.style.height = `${Math.min(currentHeight + 20, 300)}px`;
+        }
+      });
+    }
+
+    function changeSpeed(newSpeed) {
+      if (newSpeed === 'slow') {
+        speed = 10000; // Kecepatan lambat, diatur dalam milidetik
+      } else if (newSpeed === 'fast') {
+        speed = 3000; // Kecepatan cepat, diatur dalam milidetik
+      }
+    }
+
+    function fadeOutPhoto(photoId) {
+      const photo = document.getElementById(photoId);
+          if(photo!==null){
+          photo.style.opacity = '0';
+          setTimeout(() => {
+            photo.remove();
+          }, 2000); // Fading selama 2 detik, sesuaikan dengan kebutuhan Anda
+      }
+    }
+
+    
+    function openmodal(){
+    $("#addBubbleModal").modal("show");
+ }
+    function tutup(){
+    $("#addBubbleModal").modal("hide");
+ }
+
+
+
+// Disable buttons initially
+document.getElementById('tmbclear0').disabled = true;
+document.getElementById('tmbclear1').disabled = true;
+document.getElementById('tmbclear2').disabled = true;
+document.getElementById('tmbclear3').disabled = true;
+document.getElementById('tmbclear4').disabled = true;
+document.getElementById('tmbclear5').disabled = true;
+const audioElements = [new Audio(), new Audio(), new Audio(), new Audio(), new Audio(), new Audio()];
+
+// Function to load audio file into the specified audio element
+function loadAudio(input, index) {
+    const file = input.files[0];
+    if (file) {
+        const fileURL = URL.createObjectURL(file);
+        audioElements[index].src = fileURL;
+        document.getElementById(`playButton${index}`).disabled = false;
+        document.getElementById(`stopButton${index}`).disabled = true;
+        document.getElementById('stopAllButton').disabled = false;
+        document.getElementById(`tmbclear${index}`).disabled = false;
+    }
+}
+
+// Update the volume for all audio elements
+let currentVolume = 1;
+function updateVolume(newVolume) {
+    currentVolume = newVolume;  // Update global volume
+    audioElements.forEach(audio => {
+        audio.volume = currentVolume;  // Set volume for each audio element
+    });
+}
+
+
+
+
+const videoFiles = [
+    { src: 'video/1.mp4', duration: 13 },
+    { src: 'video/2.mp4', duration: 10 },
+    { src: 'video/3.mp4', duration: 10 },
+    { src: 'video/4.mp4', duration: 10 },
+    { src: 'video/5.mp4', duration: 10 },
+    { src: 'video/6.mp4', duration: 10 },
+    { src: 'video/7.mp4', duration: 10 },
+    { src: 'video/8.mp4', duration: 10 },
+    { src: 'video/9.mp4', duration: 10 },
+    { src: 'video/10.mp4', duration: 8 },
+    { src: 'video/11.mp4', duration: 11 },
+    { src: 'video/12.mp4', duration: 10 },
+    { src: 'video/13.mp4', duration: 10 },
+    { src: 'video/14.mp4', duration: 7 },
+    { src: 'video/15.mp4', duration: 10 },
+    { src: 'video/16.mp4', duration: 5 },
+];
+
+// Function to show random video
+function showRandomVideo() {
+    const randomIndex = Math.floor(Math.random() * videoFiles.length);
+    const videoElement = document.getElementById('gifImage');
+    const selectedVideo = videoFiles[randomIndex];
+
+    console.log(`Displaying video: ${selectedVideo.src}`);
+
+    // Set the video source and ensure the video is ready
+    videoElement.src = selectedVideo.src;
+    videoElement.style.display = 'block';  // Ensure the video is shown
+    videoElement.style.opacity = 0.5;  // Adjust opacity if needed
+
+    // Listen for the 'canplay' event to make sure the video is ready
+    videoElement.oncanplay = function() {
+        // Set the volume of the video when it’s ready to play
+        updateVideoVolume(0.50);
+
+        // Start playing the video
+        videoElement.play();
+
+        // Hide the video after its duration is over
+        setTimeout(() => {
+            videoElement.style.display = 'none';
+        }, selectedVideo.duration * 1000);  // Duration in milliseconds
+    };
+}
+
+function updateVideoVolume(newVolume) {
+    // Get the video element
+    const videoElement = document.getElementById('gifImage');
+
+    if (videoElement) {
+        // Set the volume of the video element
+        videoElement.volume = newVolume;
+    }
+}
+
+
+let currentlyPlayingIndex = -1;  // Store the index of the currently playing audio, -1 means no audio is playing
+
+// Function to play audio and show a random video
+function eplayAudio(index) {
+    // Check if there's an audio file
+    var file = $(`[name='audioFile${index}']`).val();
+
+    // Display video even if no audio is provided
+    if (index !== 0) {
+        showRandomVideo();  // Show random video
+    }
+
+    // If no file is selected, exit early
+    if (!file || file == "") {
+        return false;
+    }
+
+    // Prevent playing a lower index audio if a higher one is already playing
+    if (currentlyPlayingIndex > index) {
+        console.log(`Audio index ${index} is cancelled because audio with index ${currentlyPlayingIndex} is playing.`);
+        return false;
+    }
+
+    // Pause the current playing audio if it's not the same index
+    if (currentlyPlayingIndex !== -1 && currentlyPlayingIndex !== index) {
+        audioElements[currentlyPlayingIndex].pause();
+        audioElements[currentlyPlayingIndex].currentTime = 0;
+        document.getElementById(`playButton${currentlyPlayingIndex}`).disabled = false;
+        document.getElementById(`stopButton${currentlyPlayingIndex}`).disabled = true;
+    }
+
+    // Play the audio at the selected index
+    audioElements[index].play();
+
+    // Hide the video after the audio duration ends
+    setTimeout(() => {
+        const videoElement = document.getElementById('gifImage');
+        videoElement.style.display = 'none';  // Hide video when audio ends
+    }, audioElements[index].duration * 1000);  // Audio duration in milliseconds
+
+    // Update the buttons for the audio being played
+    document.getElementById(`playButton${index}`).disabled = true;
+    document.getElementById(`stopButton${index}`).disabled = false;
+
+    // Store the index of the currently playing audio
+    currentlyPlayingIndex = index;
+}
+
+// Function to stop audio playback
+function estopAudio(index) {
+    audioElements[index].pause();
+    audioElements[index].currentTime = 0;
+    document.getElementById(`playButton${index}`).disabled = false;
+    document.getElementById(`stopButton${index}`).disabled = true;
+    currentlyPlayingIndex = -1;
+}
+
+// Function to clear the audio and reset everything
+function eclearAudio(index) {
+    estopAudio(index);
+    audioElements[index].src = "";
+    const input = document.querySelectorAll('.audioFile')[index];
+    input.value = "";
+    document.getElementById(`tmbclear${index}`).disabled = true;
+}
+
+// Function to stop all audio
+function stopAllAudio() {
+    audioElements.forEach((audio, index) => {
+        estopAudio(index);
+    });
+}
+
+
+
+function applyRandomTextShadow() {
+    const giverDivs = document.querySelectorAll('.giver div'); // Seleksi semua elemen div dalam class .giver
+    
+    giverDivs.forEach((div) => {
+        // Menghasilkan 4 warna acak untuk membuat efek text-shadow
+        const shadow1 = getRandomColor();
+        
+
+        // Setel nilai text-shadow menggunakan warna acak
+        div.style.textShadow = `-1px -1px 1px ${shadow1}`;
+    });
+}
+
+
+
+
+
+
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+            let colors = [];
+            for (let i = 0; i < 1; i++) {
+                let color = '#';
+                for (let j = 0; j < 6; j++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                colors.push(color);
+            }
+            return colors.join(', ');
+        }
+  function getRandomDirection() {
+            const directions = ['to right', 'to left'];
+            return directions[Math.floor(Math.random() * directions.length)];
+        }
+  function gra(){
+            const startColor = getRandomColor();
+            const endColor = getRandomColor();
+            const direction = getRandomDirection();
+
+            const gradientBox = document.getElementById('gradient-box');
+            gradientBox.style.background = `linear-gradient(${direction}, ${startColor}, ${endColor})`;
+
+            document.body.style.background = `linear-gradient(${direction}, ${startColor}, ${endColor})`;
+    
+  }
+   
+    
+   // Function to change the background when an image file is selected
+function changeBackground(event) {
+  const fileInput = event.target;
+  const file = fileInput.files[0];
+  
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      document.body.style.backgroundImage = `url('${e.target.result}')`;
+      document.body.style.backgroundSize = "cover";
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+
+// Set initial background image from 'images/background.png' in public folder
+document.body.style.backgroundImage = "url('images/background.png')";
+document.body.style.backgroundSize = "cover";
+
+var sumber=false;
+
+
+function hapusAngkaDanSimbol(string) {
+  // Ekspresi reguler untuk mencocokkan huruf dan spasi
+  let regex = /[a-zA-Z\s]/g;
+  
+  // Menggunakan metode replace() untuk mengganti semua karakter yang tidak cocok dengan string kosong
+  let stringHanyaHurufDanSpasi = string.replace(/[^a-zA-Z\s]/g, '');
+
+  return stringHanyaHurufDanSpasi;
+}
+
+
+var isSpeaking = false;
+
+function aktifSuaraKomen(text) {
+    var suara_filter = hapusAngkaDanSimbol(text);
+    let jumlahKarakter = suara_filter.length;
+    if (jumlahKarakter < 5) {
+        return false;
+    }
+
+    // Hentikan suara yang sedang berbicara
+    if (isSpeaking) {
+        return false;
+    }
+
+    isSpeaking = true;
+
+    // Pilih suara secara acak (cowok atau cewek)
+    var isMaleVoice = Math.random() < 0.5; // 50% peluang untuk suara cowok atau cewek
+
+    // Tentukan jenis suara: Cowok atau Cewek
+    var voice = isMaleVoice ? "Indonesian Male" : "Indonesian Female";
+
+    // Gunakan responsivevoice.js untuk berbicara
+    responsiveVoice.speak(text, voice, {
+        onend: function () {
+            isSpeaking = false;
+        }
+    });
+} 
+
+
+function aktifSuara(suaras,jenis){
+
+      var suara_ =  suaras.toLowerCase();
+      let suar = suara_.replace(/cara/g, "metode");
+      let suara = suar.replace(/kontol/g, "");
+      
+      var vgift = document.getElementById("vgift");
+      if (vgift.checked && jenis=="gift") {
+        if(responsiveVoice.isPlaying() && sumber!=true) {
+          responsiveVoice.cancel();
+        }
+        sumber = true;
+      
+          if(!responsiveVoice.isPlaying()) {
+            sumber = true;
+            bunyi(suara,jenis);  
+            }else{
+              sumber=true;
+              setTimeout(() => {
+                sumber=true;
+                bunyi(suara,jenis);
+              }, 2500);
+            }   
+            
+            setTimeout(() => {
+          sumber=false;
+        }, 15000);
+
+      }  
+  
+  
+      var vkomen = document.getElementById("vkomen");
+      if (vkomen.checked && jenis=="komen") {
+        if(sumber!=true){
+          if(!responsiveVoice.isPlaying()) {
+            bunyi(suara,jenis);  
+            }
+          }  
+      }  
+   
+      var vjoin = document.getElementById("vjoin");
+      if (vjoin.checked && jenis=="join") {
+        if(sumber!=true){
+          if(!responsiveVoice.isPlaying()) {
+            bunyi(suara,jenis);  
+            }
+          }  
+
+      }  
+    
+      var vshare = document.getElementById("vshare");
+      if (vshare.checked && jenis=="share") {
+          if(sumber!=true){
+          if(!responsiveVoice.isPlaying()) {
+            bunyi(suara,jenis);  
+            }
+          }  
+           
+      }
+  
+      var vfollow = document.getElementById("vfollow");
+      if (vfollow.checked && jenis=="follow") {
+        if(sumber!=true){
+          if(!responsiveVoice.isPlaying()) {
+            bunyi(suara,jenis);  
+            }
+          }  
+             
+      }  
+  
+   
+  
+      }
+
+
+  var vo=1; var asbun="";
+  function bunyi(suara,jenis){
+    if(asbun==suara){
+      return false;
+    } 
+    asbun=suara;
+    if(jenis!="gift" && sumber==true){
+      responsiveVoice.cancel();
+    }
+    if(responsiveVoice.isPlaying()){
+      // responsiveVoice.cancel(); 
+      return false;
+    }else{
+
+      if(vo==1){
+               vo=2;
+                 voice = "Indonesian Female";
+           }else{
+               vo=1;
+                  voice = "Indonesian Male";
+           }
+
+          responsiveVoice.speak(suara, voice, {
+            rate: 0.9,
+            pitch: 1,
+            volume: 3,
+            enableEstimationTimeout:false
+          });
+
+    }
+          
+  }
+
+  function reloadMainPageFromIframe() {
+  // Mengirim pesan ke halaman utama untuk memuat ulang
+  parent.postMessage({
+    type: 'reloadMainPage'
+  }, '*');
+}
+
+
+// Fungsi untuk melakukan scroll
+  function scrollDown() {
+    // Menentukan elemen yang akan dijadikan batas scroll
+    var stopElement = document.getElementById('stopScroll');
+
+    // Menentukan langkah scroll per interval (misalnya, 5 piksel)
+    var scrollStep = 5;
+
+    // Melakukan scroll setiap 10 milidetik
+  
+      // Menambahkan langkah scroll ke posisi scroll saat ini
+      window.scrollBy(0, scrollStep);
+
+       
+ 
+  }
+
+   
+  setTimeout(() => {
+    scrollDown();
+  }, 500);
+
+
+  // Fungsi untuk melakukan scroll ke atas
+  function scrollToTop() {
+    // Menentukan langkah scroll per interval (misalnya, 5 piksel)
+    var scrollStep = -5;
+
+    // Melakukan scroll setiap 10 milidetik
+    var scrollInterval = setInterval(function() {
+      // Menambahkan langkah scroll ke posisi scroll saat ini
+      window.scrollBy(0, scrollStep);
+
+      // Menghentikan scroll saat mencapai bagian atas dokumen
+      if (window.scrollY <= 0) {
+        clearInterval(scrollInterval);
+      }
+    }, 10);
+  }
+
+
+
+
+
+  setTimeout(() => {
+    if(!modeapp){
+    $("#togel").show();
+    $("#exit").hide();
+  }else{
+    $("#togle").show();
+    $("#togel").hide();
+  }
+  }, 500);
+
+
+ const audioPlayer = document.getElementById('audioPlayer');
+        const fileInput = document.getElementById('musik');
+        
+        fileInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const fileURL = URL.createObjectURL(file);
+            audioPlayer.src = fileURL;
+            audioPlayer.style.display = 'block';
+            audioPlayer.play();
+        });
+
+
+
+
+ let player;
+
+        function playAudio() {
+            const youtubeURL = document.getElementById('youtubeURL').value;
+            const videoID = getYoutubeVideoID(youtubeURL);
+            const volume = document.getElementById('volumeRange').value;
+
+            player = new YT.Player('player', {
+                height: '0',
+                width: '0',
+                videoId: videoID,
+                playerVars: {
+                    'autoplay': 1,
+                    'controls': 0,
+                    'loop': 1,
+                    'playlist': videoID
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            event.target.setVolume(document.getElementById('volumeRange').value); // Set volume
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.ENDED) {
+                event.target.playVideo(); // Play the video again when it ends
+            }
+        }
+
+        function getYoutubeVideoID(url) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = url.match(regExp);
+
+            if (match && match[2].length == 11) {
+                return match[2];
+            } else {
+                return null;
+            }
+        }
+
+        document.getElementById('volumeRange').addEventListener('input', function() {
+            if (player) {
+                player.setVolume(this.value);
+            }
+        });
+
+
+
+ let rocketsInAirCount = 0;
+
+    function onGift(username, profilePictureUrl, giftImageUrl, overrideEnableAudio, uniqueId = '') {
+  if (rocketsInAirCount > 10) return;
+    if (settings.firework_maxFireworks && rocketsInAirCount >= settings.firework_maxFireworks) return;
+
+    // Preload images
+    const preLoadImage1 = document.createElement('img');
+    preLoadImage1.src = profilePictureUrl;
+    document.getElementById('imagePreload').appendChild(preLoadImage1);
+
+    const preLoadImage2 = document.createElement('img');
+    preLoadImage2.src = giftImageUrl;
+    document.getElementById('imagePreload').appendChild(preLoadImage2);
+    // **(Tambahan baru) - Array warna untuk border**
+    var colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'cyan', 'magenta', 'orange', '#2F4F4F', '#1E90FF', '#CD5C5C', '#20B2AA', '#C71585', '#DDA0DD', '#9ACD32'];
+    var randomColor = colors[Math.floor(Math.random() * colors.length)]; 
+
+    // Create the rocket element
+    const rocket = document.createElement('div');
+    rocket.className = 'rocket';
+    rocket.style.backgroundImage = `url(${profilePictureUrl})`;
+    // **(Tambahan baru) - Menambahkan border warna-warni ke rocket**
+    rocket.style.border = `2px solid ${randomColor}`; 
+
+     if (blurredUsers.has(uniqueId)) {
+        rocket.classList.add('blurred');
+      }
+    // Add z-index for rocket
+    const coint = Math.floor(Math.random() * 10000 + 10000);  // Example: generate random coint value
+    rocket.style.zIndex = coint;
+
+    // Append the rocket to the body
+    const randomOffset = (Math.random() * 40 - 20) + 'vmin';
+    rocket.style.setProperty('--rocket-offset', randomOffset);
+
+    document.body.appendChild(rocket);
+
+    const verticalOffset = Math.floor(Math.random() * (75 - 60 + 1) + 60);
+    rocket.style.setProperty('--rocket-offset-bottom', (verticalOffset - 2) + "vh");
+
+    // Random duration between 2 and 3 seconds
+    rocket.style.setProperty('--rocket-launch-duration', (Math.random() * 1 + 2) + 's');
+
+    // Audio setup for rocket
+    const audioRocketStart = new Audio('sounds/firework/rocket_start/rocket_start.mp3');
+            audioRocketStart.volume = (settings.firework_soundVolume || 80) / 100 * 0.4;
+
+            audioRocketStart.volume = ((settings.firework_soundVolume || 80) / 100) * 0.4;
+
+            const audioRocketBoom = new Audio('sounds/firework/rocket_boom/rocket_boom.mp3');
+audioRocketBoom.volume = (settings.firework_soundVolume || 80) / 100;
+
+            audioRocketBoom.volume = (settings.firework_soundVolume || 80) / 100;
+
+    // Play rocket launch sound
+    if (overrideEnableAudio || (!location.href.includes("preview=1") && settings.firework_soundEnabled !== false)) {
+        setTimeout(() => {
+            audioRocketStart.play();
+        }, 300);
+    }
+
+    rocketsInAirCount += 1;
+
+    // Trigger explosion animation when rocket reaches the top
+    rocket.addEventListener('animationend', (e) => {
+        if (e.animationName === 'rocketLaunch') {
+            rocket.style.animation = 'rocketExplode 0.2s ease-out forwards';
+        }
+
+        if (e.animationName === 'rocketExplode') {
+            rocket.style.animation = 'rocketHide 1s ease-out forwards';
+
+            // Create multiple explosion elements (three rings)
+            // First ring (only profile pictures)
+            for (let i = 0; i < 10; i++) {
+                const explosion = document.createElement('div');
+                explosion.className = 'explosion';
+                explosion.style.borderRadius = '50%';
+                explosion.style.backgroundImage = `url(${profilePictureUrl})`;
+                explosion.style.setProperty('--x', Math.cos((i / 10) * 2 * Math.PI));
+                explosion.style.setProperty('--y', Math.sin((i / 10) * 2 * Math.PI));
+                explosion.style.transform = `translate(calc(var(--x) * ${20 + i * 5}vmin), calc(var(--y) * ${20 + i * 5}vmin))`;
+                explosion.style.left = `calc(50% + ${randomOffset} - 4vmin)`;
+                explosion.style.bottom = verticalOffset + 'vh';
+
+                 // **(Tambahan baru) - Hanya foto profil yang memiliki border warna-warni**
+                explosion.style.border = `2px solid ${colors[Math.floor(Math.random() * colors.length)]}`;
+                
+                // Add z-index for explosion
+                explosion.style.zIndex = coint + 9999;
+
+                if (blurredUsers.has(uniqueId)) {
+          explosion.classList.add('blurred');
+        }
+
+                document.body.appendChild(explosion);
+
+                // Remove explosion after animation ends
+                explosion.addEventListener('animationend', () => {
+                    document.body.removeChild(explosion);
+                });
+            }
+
+            // Username color and positioning
+            let possibleColors = ['#ffcc00', '#ff9d00', '#ff4d00', '#88ff00', '#00ccff', '#ff00b3', '#ff3333', '#33ff33', '#3333ff']; // Tambahkan lebih banyak warna
+const textLabel = document.createElement('div');
+
+if (settings.firework_showUsername !== false) {
+    textLabel.style.setProperty('--username-rotate', Math.floor(Math.random() * 20 - 10) + 'deg');
+    textLabel.innerText = username;
+    textLabel.style.position = 'absolute';
+    textLabel.style.left = `calc(50% + ${randomOffset} - 4vmin)`;
+    textLabel.style.bottom = verticalOffset + 'vh';
+    textLabel.style.color = possibleColors[Math.floor(Math.random() * possibleColors.length)]; // Pilih warna acak setiap kali muncul
+    textLabel.style.fontWeight = 'bold'; // Pastikan teks tebal
+
+    // Tambahkan z-index untuk memastikan teks di atas elemen lainnya
+    textLabel.style.zIndex = coint + 9999;
+}
+
+// Menyesuaikan ukuran font berdasarkan panjang username
+if (username.length > 30) textLabel.style.fontSize = '3vmin';
+else if (username.length > 15) textLabel.style.fontSize = '5vmin';
+else if (username.length > 12) textLabel.style.fontSize = '7vmin';
+else if (username.length > 8) textLabel.style.fontSize = '9vmin';
+else if (username.length > 5) textLabel.style.fontSize = '13vmin';
+else if (username.length > 3) textLabel.style.fontSize = '15vmin';
+else textLabel.style.fontSize = '18vmin';
+
+textLabel.classList.add('username');
+document.body.appendChild(textLabel);
+
+
+            // Second ring (mixed profile pictures and gifts)
+            setTimeout(() => {
+                for (let i = 0; i < 10; i++) {
+                    const explosion = document.createElement('div');
+                    explosion.className = 'explosion';
+                    explosion.style.borderRadius = '50%';
+                    explosion.style.backgroundImage = i % 2 === 0 ? `url(${profilePictureUrl})` : `url(${giftImageUrl})`;
+                    explosion.style.setProperty('--x', Math.cos((i / 10) * 2 * Math.PI));
+                    explosion.style.setProperty('--y', Math.sin((i / 10) * 2 * Math.PI));
+                    explosion.style.transform = `translate(calc(var(--x) * ${20 + i * 5}vmin), calc(var(--y) * ${20 + i * 5}vmin))`;
+                    explosion.style.left = `calc(50% + ${randomOffset} - 4vmin)`;
+                    explosion.style.bottom = verticalOffset + 'vh';
+                    // **(Tambahan baru) - Tentukan apakah gambar ini profil atau hadiah**
+                    const isProfile = i % 2 === 0;
+                    explosion.style.backgroundImage = isProfile ? `url(${profilePictureUrl})` : `url(${giftImageUrl})`;
+
+                    // **Hanya beri border jika explosion menggunakan foto profil**
+                    if (isProfile) {
+                        explosion.style.border = `2px solid ${colors[Math.floor(Math.random() * colors.length)]}`;
+                    }
+                    // Add z-index for second explosion ring
+                    explosion.style.zIndex = coint + 9999;
+
+                    if (isProfile && blurredUsers.has(uniqueId)) {
+            explosion.classList.add('blurred');
+          }
+
+                    document.body.appendChild(explosion);
+
+                    // Remove explosion after animation ends
+                    explosion.addEventListener('animationend', () => {
+                        document.body.removeChild(explosion);
+                    });
+                }
+            }, 400);
+
+            // Third ring (only gifts)
+            setTimeout(() => {
+                for (let i = 0; i < 10; i++) {
+                    const explosion = document.createElement('div');
+                    explosion.className = 'explosion';
+                    explosion.style.borderRadius = '50%';
+                    explosion.style.backgroundImage = `url(${giftImageUrl})`;
+                    explosion.style.setProperty('--x', Math.cos((i / 10) * 2 * Math.PI));
+                    explosion.style.setProperty('--y', Math.sin((i / 10) * 2 * Math.PI));
+                    explosion.style.transform = `translate(calc(var(--x) * ${25 + i * 5}vmin), calc(var(--y) * ${25 + i * 5}vmin))`;
+                    explosion.style.left = `calc(50% + ${randomOffset} - 4vmin)`;
+                    explosion.style.bottom = verticalOffset + 'vh';
+                    // **(Tambahan baru) - Tentukan apakah gambar ini profil atau hadiah**
+                    const isProfile = i % 2 === 0;
+                    explosion.style.backgroundImage = isProfile ? `url(${profilePictureUrl})` : `url(${giftImageUrl})`;
+
+                    // **Hanya beri border jika explosion menggunakan foto profil**
+                    if (isProfile) {
+                        explosion.style.border = `2px solid ${colors[Math.floor(Math.random() * colors.length)]}`;
+                    }
+                    // Add z-index for third explosion ring
+                    explosion.style.zIndex = coint + 9999;
+                    if (blurredUsers.has(uniqueId)) {
+        rocket.classList.add('blurred');
+      }
+                    document.body.appendChild(explosion);
+
+                    // Remove explosion after animation ends
+                    explosion.addEventListener('animationend', () => {
+                        document.body.removeChild(explosion);
+                    });
+                }
+            }, 800);
+
+            setTimeout(() => {
+                document.body.removeChild(rocket);
+                document.body.removeChild(textLabel);
+                preLoadImage1.remove();
+                preLoadImage2.remove();
+            }, 8000);
+
+            setTimeout(() => {
+                rocketsInAirCount += -1;
+                console.log("rockets in air count", rocketsInAirCount);
+            }, 2000);
+
+            if (overrideEnableAudio || (!location.href.includes("preview=1") && settings.firework_soundEnabled !== false)) {
+                setTimeout(() => {
+                    audioRocketBoom.play();
+                }, 200);
+            }
+        }
+    });
+}
+
+
+
+
+var sebelumnya = 0;
+    function bgklip(link,diamon) {
+   
+          var kk = document.getElementById("klapklipid");
+      if (!kk.checked) {
+        return false;
+      }
+      
+        if(diamon>=sebelumnya){
+        sebelumnya=diamon;
+                    const existingImage = document.getElementById('imageContainer');
+                    if (existingImage) {
+                        existingImage.remove();
+                    }
+
+        }else{
+              const existingImage = document.getElementById('imageContainer');
+                    if (existingImage) {
+                        return false;
+                    }
+             sebelumnya=diamon;
+        }
+
+        if(diamon<=20){
+            var detik = 500;
+        }else if(diamon<=30){
+            var detik = 8000;
+        }else if(diamon<=50){
+            var detik = 15000;
+        }else if(diamon<=100){
+            var detik = 20000;
+        }else if(diamon<=200){
+            var detik = 25000;
+        }else{
+            var detik = 35000;
+        }
+
+     
+        const imageContainer = document.createElement('div');
+        imageContainer.id = 'imageContainer';
+        imageContainer.className = 'image-container-bg';
+
+        const img = document.createElement('img');
+        img.classList.add('img-bg');
+        img.src = link;
+        img.alt = 'Contoh Gambar';
+
+        imageContainer.appendChild(img);
+        document.body.appendChild(imageContainer);
+
+        imageContainer.classList.add('fullscreenBG');
+
+        setTimeout(() => {
+            if (imageContainer.parentNode) {
+                imageContainer.remove();
+            }
+        }, detik); // Menghapus gambar setelah 15 detik
+    }
+
+
+//fungsi geser 
+function makeDraggable(element) {
+    let isDragging = false;
+    let startY = 0;
+
+    // Mouse Events
+    element.addEventListener("mousedown", (event) => {
+        isDragging = true;
+        startY = event.clientY - element.offsetTop;
+        element.style.cursor = "grabbing";
+
+        // Mencegah scroll saat dragging
+        event.preventDefault();
+    });
+
+    document.addEventListener("mousemove", (event) => {
+        if (!isDragging) return;
+        element.style.top = `${event.clientY - startY}px`;
+
+        // Mencegah scroll saat dragging
+        event.preventDefault();
+    });
+
+    document.addEventListener("mouseup", () => {
+        isDragging = false;
+        element.style.cursor = "grab";
+    });
+
+    // Touch Events
+    element.addEventListener("touchstart", (event) => {
+        isDragging = true;
+        startY = event.touches[0].clientY - element.offsetTop;
+        element.style.cursor = "grabbing";
+
+        // Mencegah scroll saat dragging
+        event.preventDefault();
+    }, { passive: false }); // Agar event.preventDefault() bisa bekerja
+
+    document.addEventListener("touchmove", (event) => {
+        if (!isDragging) return;
+        element.style.top = `${event.touches[0].clientY - startY}px`;
+
+        // Mencegah scroll saat dragging
+        event.preventDefault();
+    }, { passive: false });
+
+    document.addEventListener("touchend", () => {
+        isDragging = false;
+        element.style.cursor = "grab";
+    });
+}
+
+
+
+
+// Fungsi untuk menambahkan border acak pada foto
+function setRandomBorder(photo) {
+  const colors = [
+    'red', 'green', 'blue', 'yellow', 'orange', 'purple', 
+    'cyan', 'magenta', '#2F4F4F', '#1E90FF', '#CD5C5C', 
+    '#20B2AA', '#C71585', '#DDA0DD', '#9ACD32'
+  ];
+  const randomColor = colors[Math.floor(Math.random() * colors.length)];
+  photo.style.border = `3px solid ${randomColor}`;
+  photo.style.boxShadow = `0 0 3px ${randomColor}`;
+}
+
+function mvp() {
+  // Buat elemen gambar maskot secara dinamis
+  const maskot = document.createElement('img');
+  maskot.src = '/images/sayap.gif'; // Nama file gambar maskot
+  maskot.alt = 'Maskot';
+  maskot.style.width = '150px'; // Tentukan lebar gambar maskot
+  maskot.style.height = '150px'; // Tentukan tinggi gambar maskot
+  maskot.id = 'maskot';
+
+  // Buat elemen gambar mvp secara dinamis
+  const mvp = document.createElement('img');
+  mvp.src = '/images/mvp5.png'; // Gambar mvp pertama kali
+  mvp.alt = 'mvp';
+  mvp.style.width = '40px';  // Ukuran mvp lebih kecil dari maskot
+  mvp.style.height = '40px'; // Ukuran mvp lebih kecil dari maskot
+  mvp.id = 'mvp';
+
+  // Temukan container di dalam DOM dan masukkan gambar maskot dan mvp ke dalamnya
+  const container = document.getElementById('animation-container');
+  
+  if (container) {
+    container.appendChild(maskot); // Menambahkan gambar maskot ke dalam container
+    container.appendChild(mvp); // Menambahkan gambar mvp ke dalam container
+  } else {
+    console.error("Elemen dengan id 'animation-container' tidak ditemukan.");
+  }
+
+  // Fungsi untuk menggerakkan gambar maskot dan mvp secara acak
+  function moveMaskot() {
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+
+    // Menghitung posisi acak berdasarkan ukuran layar dan gambar maskot
+    const randomX = Math.floor(Math.random() * (screenWidth - parseInt(maskot.style.width, 10)));
+    const randomY = Math.floor(Math.random() * (screenHeight - parseInt(maskot.style.height, 10)));
+
+    // Menggunakan transform translate untuk memindahkan gambar maskot
+    maskot.style.transform = `translate(${randomX}px, ${randomY}px)`;
+
+    // Menggunakan transform translate untuk memindahkan gambar mvp
+    const maskotWidth = parseInt(maskot.style.width, 10);
+    const maskotHeight = parseInt(maskot.style.height, 10);
+    const mvpWidth = parseInt(mvp.style.width, 10);
+    const mvpHeight = parseInt(mvp.style.height, 10);
+
+    mvp.style.transform = `translate(${randomX + (maskotWidth / 2) - (mvpWidth / 2)}px, ${randomY + (maskotHeight / 2) - (mvpHeight / 2)}px)`;
+  }
+
+  // Fungsi untuk menetapkan posisi acak pertama kali
+  function setInitialPosition() {
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+
+    // Menghitung posisi acak pertama kali untuk maskot
+    // Menghindari gambar keluar dari layar dengan margin yang lebih lebar
+    const randomX = Math.floor(Math.random() * (screenWidth - parseInt(maskot.style.width, 10)));
+    const randomY = Math.floor(Math.random() * (screenHeight - parseInt(maskot.style.height, 10)));
+
+    // Tentukan posisi awal untuk maskot
+    maskot.style.transform = `translate(${randomX}px, ${randomY}px)`;
+
+    // Tentukan posisi mvp agar berada di tengah maskot
+    const maskotWidth = parseInt(maskot.style.width, 10);
+    const maskotHeight = parseInt(maskot.style.height, 10);
+    const mvpWidth = parseInt(mvp.style.width, 10);
+    const mvpHeight = parseInt(mvp.style.height, 10);
+
+    mvp.style.transform = `translate(${randomX + (maskotWidth / 2) - (mvpWidth / 2)}px, ${randomY + (maskotHeight / 2) - (mvpHeight / 2)}px)`;
+  }
+
+  // Menetapkan posisi acak pertama kali saat gambar dimuat
+  setInitialPosition();
+
+  // Panggil fungsi moveMaskot setiap 5 detik
+  setInterval(moveMaskot, 5000); // Gambar maskot dan mvp akan bergerak setiap 5 detik
+}
+
+// Memanggil fungsi mvp() setelah seluruh halaman dimuat
+window.onload = mvp;  // Pastikan fungsi ini dipanggil setelah halaman dimuat
+
+
+// Fungsi untuk mengambil data Top Givers
+async function fetchTopGivers() {
+  try {
+    const isTopGiftEnabled = document.getElementById('topGift').checked;
+    const container = document.getElementById('top-givers');
+    const showPointsContainer = document.getElementById('showPointsContainer');
+
+    if (isTopGiftEnabled) {
+      showPointsContainer.style.display = 'block';
+    } else {
+      showPointsContainer.style.display = 'none';
+    }
+
+    if (!isTopGiftEnabled) {
+      container.style.display = 'none';
+      return;
+    } else {
+      container.style.display = 'flex';
+    }
+
+    // Ambil data Top 1-3 dari `topGivers` (logika lokal)
+    const top3 = Object.values(topGivers)
+      .sort((a, b) => b.total_diamonds - a.total_diamonds)
+      .slice(0, 3);
+
+    // Render tampilan Top Givers
+    renderTopGivers(top3);
+
+    // Ganti foto MVP dengan foto dari pemberi hadiah top 1
+if (top3.length > 0) {
+      const top1 = top3[0]; // Pemberi hadiah top 1
+      const mvp = document.getElementById('mvp'); // Elemen MVP
+
+      mvp.src = top1.profilePictureUrl;
+      mvp.alt = top1.nickname;
+
+      // ✅ Tambahkan efek blur jika top1 termasuk dalam blurredUsers
+      if (blurredUsers.has(top1.uniqueId)) {
+        mvp.classList.add('blurred');
+      } else {
+        mvp.classList.remove('blurred');
+      }
+    }
+
+  } catch (error) {
+    console.error('Error fetching top givers:', error);
+  }
+}
+
+  
+
+// Fungsi untuk merender Top Givers ke dalam DOM
+function renderTopGivers(top3) {
+  const container = document.getElementById('top-givers');
+  container.innerHTML = ''; // Bersihkan konten sebelumnya
+
+  // Tambahkan judul
+  const titleDiv = document.createElement('div');
+  titleDiv.className = 'title';
+  titleDiv.textContent = 'TOP LIVE';
+  container.appendChild(titleDiv);
+
+  // Periksa apakah checkbox "Munculkan Poin" dicentang
+  const showPoints = document.getElementById('showPoints').checked;
+
+  // Container untuk Top 1
+  const top1Container = document.createElement('div');
+  top1Container.className = 'giver top-1'
+
+  // Tampilkan data default untuk TOP 1
+  top1Container.innerHTML = `
+    <img src="/images/maskot.gif" class="crown" alt="Crown"> <!-- Maskot tetap muncul pertama kali -->
+    <img src="/images/bubble1.png" class="profile" alt="Profile Picture">
+    <div>
+      <strong>TOP 1</strong><br>
+      <strong>Nickname</strong><br>
+      ${showPoints ? `<span>0 POIN</span>` : ''}
+    </div>
+  `;
+  container.appendChild(top1Container);
+  setRandomBorder(top1Container.querySelector('.profile'));
+
+  // Container untuk Top 2 dan Top 3
+  const top2and3Container = document.createElement('div');
+  top2and3Container.className = 'giver-container';
+
+  // Tampilkan data default untuk TOP 2 dan TOP 3
+  for (let i = 0; i < 2; i++) {
+    const giverDiv = document.createElement('div');
+    giverDiv.className = `giver top-${i + 2}`;
+
+    // Ganti gambar crown untuk Top 2 dan Top 3
+    const crownSrc = i === 0 ? '/images/maskot2.gif' : '/images/maskot3.gif'; // Maskot untuk Top 2 dan Top 3
+
+    giverDiv.innerHTML = `
+      <img src="${crownSrc}" class="crown" alt="Crown"> <!-- Maskot berbeda untuk Top 2 dan Top 3 -->
+      <img src="/images/bubble2.png" class="profile" alt="Profile Picture">
+      <div>
+        <strong>TOP ${i + 2}</strong><br>
+        <strong>Nickname</strong><br>
+        ${showPoints ? `<span>0 POIN</span>` : ''}
+      </div>
+    `;
+    top2and3Container.appendChild(giverDiv);
+    setRandomBorder(giverDiv.querySelector('.profile'));
+  }
+
+  container.appendChild(top2and3Container);
+  makeDraggable(container);
+  applyRandomTextShadow();
+
+  // Setelah itu, update data dengan top givers
+  updateTopGiversData(top3);
+}
+
+// Fungsi untuk memperbarui data Top Givers setelah berhasil di-fetch
+// Fungsi untuk memperbarui data Top Givers setelah berhasil di-fetch
+function updateTopGiversData(top3) {
+  const container = document.getElementById('top-givers');
+  const showPoints = document.getElementById('showPoints').checked;
+
+  // Update data TOP 1
+  const top1 = container.querySelector('.top-1');
+  if (top3[0]) {
+    top1.innerHTML = `
+      <img src="/images/maskot.gif" class="crown" alt="Crown">
+      <img src="${top3[0].profilePictureUrl}" class="profile" alt="Profile Picture" onerror="this.src='/images/bubble1.png';">
+      <div>
+        <strong>TOP 1</strong><br>
+        <strong>${top3[0].nickname}</strong><br>
+        ${showPoints ? `<span>${top3[0].total_diamonds} POIN</span>` : ''}
+      </div>
+    `;
+    const profileImg = top1.querySelector('.profile');
+  setRandomBorder(profileImg);
+  if (blurredUsers.has(top3[0].uniqueId)) {
+    profileImg.classList.add('blurred');
+  }
+}
+
+  // Update data TOP 2 dan TOP 3
+  const top2and3 = container.querySelector('.giver-container');
+  
+  top3.slice(1, 3).forEach((giver, index) => {
+    const giverDiv = top2and3.querySelector(`.top-${index + 2}`);
+    
+    // Ganti gambar maskot sesuai dengan Top 2 dan Top 3
+    const crownSrc = index === 0 ? '/images/maskot2.gif' : '/images/maskot3.gif';  // Maskot untuk Top 2 dan Top 3
+    
+    giverDiv.innerHTML = `
+      <img src="${crownSrc}" class="crown" alt="Crown"> <!-- Maskot berbeda untuk Top 2 dan Top 3 -->
+      <img src="${giver.profilePictureUrl}" class="profile" alt="Profile Picture" onerror="this.src='/images/bubble2.png';">
+      <div>
+        <strong>TOP ${index + 2}</strong><br>
+        <strong>${giver.nickname}</strong><br>
+        ${showPoints ? `<span>${giver.total_diamonds} POIN</span>` : ''}
+      </div>
+    `;
+    const profileImg = giverDiv.querySelector('.profile');
+setRandomBorder(profileImg);
+if (blurredUsers.has(giver.uniqueId)) {
+  profileImg.classList.add('blurred');
+}
+  });
+}
+
+
+// Event listener untuk checkbox "Aktifkan TOP Gift"
+document.getElementById('topGift').addEventListener('change', fetchTopGivers);
+
+// Event listener untuk checkbox "Munculkan Poin"
+document.getElementById('showPoints').addEventListener('change', fetchTopGivers);
+
+// Tambahkan animasi flip
+function addFlipAnimation() {
+  const givers = document.querySelectorAll('.giver');
+  givers.forEach((giver) => {
+    giver.classList.remove('flip-right', 'flip-left');
+    const randomDirection = Math.random() > 0.5 ? 'flip-right' : 'flip-left';
+    giver.classList.add(randomDirection);
+  });
+}
+
+// Fetch data setiap 10 detik
+fetchTopGivers();
+setInterval(fetchTopGivers, 2000);
+
+// Tambahkan animasi setiap 6 detik
+addFlipAnimation();
+setInterval(addFlipAnimation, 6000);
+
+
+
+const sessionUserId = document.getElementById('sessionUserId')?.value || null;
+
+
+function saveDiamondsToDatabase(uniqueId, nickname, profilePictureUrl, diamonds) {
+  fetch('/save-diamonds', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      uniqueId,
+      nickname,
+      profilePictureUrl,
+      diamonds,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        console.log('Diamonds berhasil disimpan:', data.message);
+      } else {
+        console.error('Gagal menyimpan diamonds:', data.message);
+      }
+    })
+    .catch((error) => console.error('Error:', error));
+}
+
+
+
+
+
+// New gift received
+let topGivers = {};
+
+let userDiamonds = {};
+
+
+
+// Fungsi untuk memeriksa autentikasi dan mendapatkan data pengguna
+fetch('/user/profile')
+    .then(response => {
+        if (response.status === 401) {
+            alert("Anda harus login untuk mengakses halaman ini.");
+            window.location.href = '/login'; // Arahkan ke halaman login jika belum login
+        } else {
+            return response.json(); // Ambil data dalam format JSON jika berhasil
+        }
+    })
+
+    document.addEventListener("DOMContentLoaded", function() {
+    fetch('/user/tiktok-data') 
+        .then(response => {
+            if (response.status === 401) {
+                alert("Anda harus login untuk mengakses halaman ini.");
+                window.location.href = '/login';
+                return;
+            }
+            return response.json();
+        })
+        .then(data => {
+            const selectElement = document.getElementById('uniqueIdInput');
+
+            // Menambahkan opsi akun TikTok jika ada
+            if (data.username_tiktok1) {
+                const option1 = document.createElement('option');
+                option1.value = data.username_tiktok1;
+                option1.textContent = data.username_tiktok1;
+                selectElement.appendChild(option1);
+            }
+
+            if (data.username_tiktok2) {
+                const option2 = document.createElement('option');
+                option2.value = data.username_tiktok2;
+                option2.textContent = data.username_tiktok2;
+                selectElement.appendChild(option2);
+            }
+
+            if (data.username_tiktok3) {
+                const option3 = document.createElement('option');
+                option3.value = data.username_tiktok3;
+                option3.textContent = data.username_tiktok3;
+                selectElement.appendChild(option3);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+});
+
+
+

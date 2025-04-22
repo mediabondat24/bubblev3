@@ -1,0 +1,871 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<!--script async src="https://www.googletagmanager.com/gtag/js?id=G-X19HFHX4G5">/script>-->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+  <style>
+.limit-text {
+ width: 50px;
+  word-wrap: break-word;
+  line-height: 1;
+}
+        #draggable-area {
+            padding-left: 60px;
+  padding-right: 60px;
+           background-color: rgba(0, 0, 0, 0.4); 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            border-radius: 10px;
+            cursor: grab;
+            position: absolute;
+            padding-top: 5px;
+             
+            transition: transform 0.3s ease;
+            gap: 5px; /* Jarak antar gambar default */
+            /*z-index: 1;*/
+            
+      top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+        }
+
+        .image-container {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between; /* Menambahkan jarak antar gambar */
+            align-items: center;
+            width: 100%;
+            padding-top: 40px;
+            gap: 40px; /* Jarak antar gambar default */
+            /*flex-wrap: wrap;*/
+        }
+
+        .image-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation-duration: 5s;
+        }
+
+        #draggable-area .imgtop {
+            width: 60px;
+            height: 60px;
+            border-radius: 45px;
+            /* border: 2px solid #fff; */
+            /*animation:  rotate 10s; */
+            /*animation: colorShift 5s ease-in-out infinite, rotate 10s linear infinite; */
+        }
+
+        /* Efek warna-warni pelan untuk gambar 1 */
+        .image-item:nth-child(1) .imgtop {
+           /*animation: colorShift1 5s ease-in-out infinite, rotate 10s linear infinite;*/
+        }
+
+            
+  
+        #juara1{
+            width: 800px;
+       
+        height: auto;
+        display: block;
+       
+        }
+        /* Efek warna-warni pelan untuk gambar 2 */
+        .image-item:nth-child(2) .imgtop {
+            /*animation: colorShift2 5s ease-in-out infinite, rotate 10s linear infinite;*/
+        }
+
+        /* Efek warna-warni pelan untuk gambar 3 */
+        .image-item:nth-child(3) .imgtop {
+            /*animation: colorShift3 5s ease-in-out infinite, rotate 10s linear infinite;*/
+        }
+
+
+        .flip-container {
+    perspective: 1000px; /* Memberikan efek 3D */
+}
+ 
+
+       
+.flip-img {
+    
+    transform-style: preserve-3d;
+    animation: flips 10s infinite; /* Animasi flip setiap 10 detik */
+}
+
+#poin1{
+    color:teal;
+}
+
+#poin2{
+    color:black;
+}
+
+#poin3{
+    color:black;
+}
+
+
+
+
+ /* Efek rotasi pelan */
+ @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(180deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+
+@keyframes flips {
+    0% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(180deg); /* Gambar dibalik */
+    }
+    100% {
+        transform: rotateY(360deg); /* Gambar kembali ke posisi semula */
+    }
+}
+
+        /* Animasi perubahan warna pelan untuk gambar default */
+        @keyframes colorShiftx {
+            0% { filter: hue-rotate(0deg); }
+            25% { filter: hue-rotate(90deg); }
+            50% { filter: hue-rotate(180deg); }
+            75% { filter: hue-rotate(270deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        /* Efek perubahan warna pelan untuk gambar 1 */
+        @keyframes colorShift1x {
+            0% { filter: hue-rotate(0deg); }
+            33% { filter: hue-rotate(120deg); }
+            66% { filter: hue-rotate(240deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        /* Efek perubahan warna pelan untuk gambar 2 */
+        @keyframes colorShift2x {
+            0% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(180deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        /* Efek perubahan warna pelan untuk gambar 3 */
+        @keyframes colorShift3x {
+            0% { filter: hue-rotate(0deg); }
+            25% { filter: hue-rotate(60deg); }
+            50% { filter: hue-rotate(120deg); }
+            75% { filter: hue-rotate(180deg); }
+            100% { filter: hue-rotate(240deg); }
+        }
+
+        .text {
+            color: white;
+            font-size: 14px;
+            text-align: center;
+            margin: 5px 0;
+        }
+
+        
+        
+
+        /* Input untuk mengatur jumlah gambar */
+        #quantity-input {
+            position: fixed;
+            top: 120px; /* Posisi input lebih rendah dari slider */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            padding: 5px;
+            text-align: center;
+        }
+
+        /* Gambar mahkota di bawah teks nama gambar */
+        .crown1,.crown3 {
+            min-width: 0px;
+            min-height: 70px;
+            max-height: 56px;
+            margin-top: -10px; /* Jarak antara teks nama gambar dan mahkota */
+            margin-bottom: -23px; /* Jarak antara mahkota dan gambar */
+            border: none;
+            z-index: 1;
+           
+        }
+        /* Gambar mahkota di bawah teks nama gambar */
+        .crown2 {
+            /*min-width: 80px;*/
+            max-height: 40px;
+            margin-top: -80px; /* Jarak antara teks nama gambar dan mahkota */
+            margin-bottom: -2px; /* Jarak antara mahkota dan gambar */
+            border: none;
+            z-index: 1;
+        }
+        /* Gambar mahkota di bawah teks nama gambar */
+         
+       
+    </style>
+ 
+ 
+<script>
+//   window.dataLayer = window.dataLayer || [];
+//   function gtag(){dataLayer.push(arguments);}
+//   gtag('js', new Date());
+
+//   gtag('config', 'G-X19HFHX4G5');
+</script>
+ 
+ 
+
+ 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok LIVE</title> 
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=s7MjjIgj"></script>
+
+
+    
+ <link href="https://play.livetok.online/assets/css/bubble3.css" rel="stylesheet">
+  <link href="https://play.livetok.online/assets/css/roket2.css" rel="stylesheet">
+  
+  
+    
+     <script>
+    //   document.addEventListener("contextmenu", function(event) {
+    //     event.preventDefault();
+    //   });
+
+    //   document.addEventListener("keydown", function(event) {
+    //     if (
+    //       event.ctrlKey && (event.key === "u" || event.key === "U") ||
+    //       event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J") ||
+    //       event.key === "F12"
+    //     ) {
+    //       event.preventDefault();
+    //       alert("Fitur ini dinonaktifkan!");
+    //     }
+    //   });
+    
+    </script>
+    
+    
+  
+</head>
+<div id="imagePreload" style="display: none; position: absolute;"></div>
+<input type="hidden" id="akunres">
+<input type="hidden" id="tglnow" value="2025-02-07">
+<body style="background-size: cover;">
+    
+     <div id="draggable-area" class="draggable draggable-cepi" >
+        <div class="image-container" id="image-container">
+       
+        </div>
+    </div>
+    
+    
+     
+  <!--<div id="petunjuk">-->
+    <!--<h3>OKE KEREN!!<br> TOMBOL PENGATURAN <br> ADA DIBAWAH</h3>-->
+<!--</div>-->
+    <div id="animation-container">
+        <!-- Animasi foto akan ditampilkan di sini -->
+         
+      </div>
+<center>
+
+    <button class="btn btn-primary" style="position: absolute;margin-top:1000px;margin-left:-60px" onclick="openmodal()">PENGATURAN</button>
+    <br><br>
+</center>
+   
+
+
+ 
+
+      <div class="card-body">
+            
+              
+   
+   
+          
+              
+ </div>
+
+
+
+
+        
+  <!--<button type="button" onclick="addPhoto('supersmall','https://img.freepik.com/premium-vector/tik-tok-logo_578229-290.jpg')">1</button>-->
+  <!-- <button type="button"  onclick="addPhoto('small','https://img.freepik.com/premium-vector/tik-tok-logo_578229-290.jpg')">5</button>-->
+  <!-- <button type="button"  onclick="addPhoto('medium','https://www.w3schools.com/tags/img_girl.jpg',10)">10</button>-->
+  <!-- <button type="button"  onclick="addPhoto('large','https://assets-global.website-files.com/61af164800e38cf1b6c60b55/64d5ffe3a24c66e7813f32d1_2-html-image-64d5f7308f24c.webp',20)">20a</button>-->
+  <!-- <button type="button"  onclick="addPhoto('large','https://img.freepik.com/premium-vector/tik-tok-logo_578229-290.jpg',20)">20b</button>-->
+  <!-- <button type="button"  onclick="addPhoto('large','https://img.freepik.com/premium-vector/tik-tok-logo_578229-290.jpg',100)">100a</button>-->
+  <!-- <button type="button"  onclick="addPhoto('large','https://assets-global.website-files.com/61af164800e38cf1b6c60b55/64d5ffe3a24c66e7813f32d1_2-html-image-64d5f7308f24c.webp',100)">large</button>-->
+  <!-- <button type="button"  onclick="addPhoto('superbig','https://www.w3schools.com/tags/img_girl.jpg',200)">superbig</button>-->
+  <!-- <button type="button"  onclick="addPhoto('supermedium','https://www.w3schools.com/tags/img_girl.jpg',200)">supermedium</button><br><br>-->
+  <!-- <button type="button"  onclick='onGift("username", "https://www.w3schools.com/tags/img_girl.jpg", "https://img.freepik.com/premium-vector/tik-tok-logo_578229-290.jpg", true,50)'>supersmall</button>-->
+   
+
+
+
+
+<!-- <div id="button-containers">
+    <button onclick="addPhoto('small')">Tambah Foto Kecil</button>
+    <input type="number" id="smallDuration" placeholder="Durasi Kecil (detik)" />
+    <button onclick="addPhoto('medium')">Tambah Foto Sedang</button>
+    <input type="number" id="mediumDuration" placeholder="Durasi Sedang (detik)" />
+    <button onclick="addPhoto('large')">Tambah Foto Besar</button>
+    <input type="number" id="largeDuration" placeholder="Durasi Besar (detik)" />
+    <button onclick="resizePhoto('small')">Kecilkan Foto</button>
+    <button onclick="resizePhoto('medium')">Normalkan Foto</button>
+    <button onclick="resizePhoto('large')">Perbesar Foto</button>
+    <button onclick="changeSpeed('slow')">Perlahan</button>
+    <button onclick="changeSpeed('fast')">Cepat</button>
+  </div> -->
+
+
+
+
+ 
+   
+
+</body>
+ </html>
+  
+ 
+
+ 
+
+
+
+
+
+
+<!-- <script>
+  var u=1; var poto1=""; var poto2="";
+  function match(poto){
+    if(u==1){
+
+    }
+
+  }
+</script> -->
+
+
+
+
+
+ 
+
+
+
+
+ 
+ <div class="modal fade" id="addPhotoModal"  aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addPhotoModalLabel">Pengaturan</h5>
+          <button class='btn btn-danger btn-sm' id="togel" onclick="toggleFullScreen();">FULLSCREEN</button>
+          <!--<button class='btn btn-danger btn-sm' id="exit" onclick="reloadMainPageFromIframe();">KELUAR DARI APLIKASI</button>-->
+          
+        </div>
+        <div class="modal-body">
+          
+            
+
+        <pre id="stateText"  style="color:rgb(16, 12, 12)"></pre>
+          
+          <div class="inputFields" id="hidex"> 
+            <center>
+              <input  type="button" id="connectButton" value="CONNECT">
+              <button id="togel" onclick="cek_server();">CEK SERVER</button>
+              <button type="button"   onclick="tutupmodal()" >TUTUP</button>
+            </center>
+          </div>
+          </div>
+    <div class="cards">
+        <!--<div class="alert alert-success">-->
+        <!--  <center> Mulai Januari 2025 perpanjangan langganan aplikasi bubble hanya dapat dilakukan oleh akun yang sudah join dengan mahakarya agency, untuk akun yang belum join dengan agency tidak dapat melakukan perpanjangan seluruh layanan aplikasi livetok<br>-->
+        <!--    <a href="https://wa.me/+6285281531230?text=Mohon info tentang agency">klik disini Info join agency</a>-->
+        <!--    </center> -->
+        <!--</div>-->
+    <div class="card-body ">
+<table>
+  <tr>
+    <td colspan="2"><b>PENGATURAN</b></td>
+  </tr>
+  <tr>
+    <td style="width:200px">
+      Akun
+    </td>
+    <td>
+      <select id="uniqueIdInput" class="form-control"> 
+      
+      <!--php-->
+      <!--$this->db->where("kode",$this->input->get("id"));-->
+      <!--$db = $this->db->get("data_order")->row();-->
+       
+      <!--$db = json_decode($db->akun,true);-->
+      <!--foreach($db as $val){-->
+      <!--    echo "<option value='".$val."'>$val</option>";-->
+      <!--}-->
+      <!--?>-->
+      
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Masa Aktif
+    </td>
+    <td>
+<span id="tgl"></span>
+    </td>
+  </tr>
+     <tr>
+      <td colspan="2"><hr>Musik dari link youtube 
+     
+
+ <input type="text" id="youtubeURL" placeholder="Masukkan URL Video YouTube" class="form-control" onchange="playAudio()">
+   
+<label for="volumeRange"> Volume:</label>
+    <input type="range" id="volumeRange" min="0" max="100" value="25"> 
+    
+    <div id="player" ></div>
+    
+    </td>
+  </tr>
+  <tr>
+      <td colspan="2">Musik dari File Mp3   
+
+<input type="file" id="musik" name="musik" accept=".mp3, .wav"  class="form-control" >
+   
+    <audio controls loop id="audioPlayer" style="display:none;">
+        Your browser does not support the audio element.
+    </audio></td>
+    <hr>
+  </tr>
+    
+<tr>
+    <td colspan="2"><hr>
+         
+        <div class="form-check">
+  <input name="topdi"  checked class="form-check-input" type="checkbox" id="topdi" onclick="topdi()">
+  <label class="form-check-label" for="topdi">
+      Munculkan TOP diamond
+  </label>
+</div>
+
+    </td>
+</tr>
+<tr id='jmltopdix'>
+    <td colspan="2"> 
+         
+        <div class="form-check">
+  <input name="jmltopdi"  checked class="form-check-input" type="checkbox" id="jmltopdi" onclick="topdi()">
+  <label class="form-check-label" for="jmltopdi">
+      Tampilkan jumlah koin Top diamond
+  </label>
+</div>
+       
+ 
+
+ <div class="form-check">
+   <label class="form-check-label" for="gift">
+               Atur  background transparan Top diamond
+            </label>
+        <input type="range" id="transparency-slider" min="0" max="100" value="30">
+        <label for="transparency-slider" class="slider-label"> 30%</label>
+</div>
+  </td>
+</tr>
+
+
+
+
+
+
+
+<tr>
+    <td colspan="2"> 
+         
+        <div class="form-check">
+  <input name="sticky"  class="form-check-input" type="checkbox" id="sticky" >
+  <label class="form-check-label" for="sticky">
+      Aktifkan Sticky (teks doa melayang)
+  </label>
+</div>
+
+    </td>
+</tr>
+<tr>
+    <td colspan="2"> 
+         
+        <div class="form-check">
+  <input name="klapklip" checked class="form-check-input" type="checkbox" id="klapklipid">
+  <label class="form-check-label" for="klapklip">
+      Aktifkan background kelap-kelip 
+  </label><br/>
+   <i style='font-size:10px;color:green;margin-top:-5px;position:absolute'>Foto pemberi gift diatas 20 koin menjadi background</i>
+</div>
+ <div style="padding:5px">
+            <label class="form-check-label" for="gift">
+                Minimal koin roket photo  <input type="number"  name='roketkoin'  style="max-width: 70px;" id="roketkoin" value="30">   
+            </label>
+        </div>
+        
+        
+            <div class="slider-container">
+        <label for="volumeSlider">Volume Suara Roket: </label><br>
+        <input type="range" id="volumeSlider" class="slider" min="0" max="100" value="35">
+        <span id="volumeValue">35</span> %
+    </div>
+    
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2"> 
+         
+       
+ <div style="padding:5px">
+            <label class="form-check-label" for="gift">
+                Minimal koin animasi hewan  <input type="number"  name='animal'  style="max-width: 70px;" id="animal" value="30">   
+            </label>
+        </div>
+        
+        
+    <!-- <div class="slider-container">-->
+    <!--    <label for="volumeSlider">Volume Suara Roket: </label><br>-->
+    <!--    <input type="range" id="volumeSlider" class="slider" min="0" max="100" value="35">-->
+    <!--    <span id="volumeValue">35</span> %-->
+    <!--</div>-->
+    
+    </td>
+</tr>
+
+
+ 
+        <tr>
+            <td>  <input type="hidden" id="size-slider" min="0.5" max="2" step="0.1" value="1">
+            
+         <input type="hidden" id="gap-slider" min="10" max="100" step="5" value="0">
+        <input type="hidden" id="quantity-input" min="1" max="5" value="3">
+            </td>
+        </tr>
+
+ 
+
+
+  <tr>
+    <td colspan="2">
+        <hr>
+        <b>DURASI MUNCUL PHOTO </b>
+        <div style="padding:5px">
+            <label class="form-check-label" for="gift">
+                Photo kecil  <input type="number"   style="max-width: 70px;" id="smallDuration" value="50">   Detik
+            </label>
+        </div>
+        <div style="padding:5px">
+            <label class="form-check-label" for="gift">
+               Photo sedang  <input type="number"   style="max-width: 70px;"  id="mediumDuration" value="50">   Detik
+            </label>
+        </div>
+        <div style="padding:5px">
+            <label class="form-check-label" for="gift">
+                Photo besar  <input type="number"   style="max-width: 70px;" id="largeDuration" value="60">   Detik
+            </label>
+        </div>
+        
+        
+
+       
+        
+        
+         <hr>
+        <b> MUSIK EXPRESI </b><br>
+        <i>(Musik dibawah ini akan diputar sesuai kondisi gift)</i><br>
+        <i>(Gunakan musik berdurasi pendek)</i><br>
+        <a href="https://play.livetok.online/home" target="_blank"> Download musik sample</a>
+         <div class="audio-group" id="audioGroup">
+             <br>
+        <div>
+            <span>Upload MP3 untuk <b>Gift kecil</b></span><br>
+            <input type="file" class="audioFile" accept="audio/*" name="audioFile0" onchange="loadAudio(this, 0)">
+            <button class="playButton" disabled  id="playButton0" onclick="eplayAudio(0)" style="display:none">Play</button>
+            <button class="stopButton" disabled  id="stopButton0"  onclick="estopAudio(0)" style="display:none" >Stop</button>
+            <button class="clearButton btn btn-info btn-sm" id="tmbclear0" onclick="eclearAudio(0)">Clear</button>
+        </div><br>
+        <div>
+            <span>Upload MP3 untuk <b>Gift sedang</b></span><br>
+            <input type="file" class="audioFile" accept="audio/*"  name="audioFile1" onchange="loadAudio(this, 1)">
+            <button class="playButton" disabled id="playButton1" style="display:none">Play</button>
+            <button class="stopButton" disabled id="stopButton1" style="display:none">Stop</button>
+            <button class="clearButton btn btn-info btn-sm"   id="tmbclear1" onclick="eclearAudio(1)">Clear</button>
+        </div><br>
+        <div>
+            <span>Upload MP3 untuk <b>Gift besar</b></span><br>
+            <input type="file" class="audioFile" accept="audio/*"  name="audioFile2" onchange="loadAudio(this, 2)">
+            <button class="playButton" disabled id="playButton2" style="display:none">Play</button>
+            <button class="stopButton" disabled id="stopButton2" style="display:none">Stop</button>
+            <button class="clearButton btn btn-info btn-sm"  id="tmbclear2" onclick="eclearAudio(2)">Clear</button>
+        </div><br>
+        <div>
+              <span>Upload MP3 untuk <b>Gift super besar</b></span><br>
+            <input type="file" class="audioFile" accept="audio/*"  name="audioFile3" onchange="loadAudio(this, 3)">
+            <button class="playButton" disabled id="playButton3" style="display:none">Play</button>
+            <button class="stopButton" disabled id="stopButton3" style="display:none">Stop</button>
+            <button class="clearButton btn btn-info btn-sm"  id="tmbclear3" onclick="eclearAudio(3)">Clear</button>
+        </div><br>
+          <button id="stopAllButton" onclick="stopAllAudio()" disabled  style="display:none">Stop All</button>
+    </div>
+    <br>
+        
+         
+      
+        
+      <!-- <b>OPSI MUNCUL FHOTO</b>  
+   
+      <div class="form-check">
+        <input name="gift" checked class="form-check-input" type="checkbox" id="gift">
+        <label class="form-check-label" for="gift">
+            GIFT   <input type="hidden" size="10" id="min_coin" style="max-width: 70px;" name="min_coin" value="1" placeholder="minimal koin untuk muncul foto">
+        </label>
+    </div>
+    <div class="form-check">
+      <input name="follow" checked class="form-check-input" type="checkbox" id="follow">
+      <label class="form-check-label" for="follow">
+          FOLLOW
+      </label>
+  </div>
+  <div class="form-check">
+    <input name="share" class="form-check-input" type="checkbox" id="share">
+    <label class="form-check-label" for="share">
+        SHARE
+    </label>
+</div>
+  <div class="form-check">
+      <input name="join" class="form-check-input" type="checkbox" id="join">
+      <label class="form-check-label" for="join">
+          JOIN
+      </label>
+  </div>
+  <div class="form-check">
+    <input name="like" class="form-check-input" type="checkbox" id="like">
+    <label class="form-check-label" for="like">
+        LIKE
+    </label>
+</div> -->
+
+<!-- <div class="form-check">
+  <input name="key" class="form-check-input" type="checkbox" id="key">
+  <label class="form-check-label" for="key">
+      KOMENTAR <input type="text" id="komentar" name="komentar" value="keren" placeholder="kosongkan = semua koment muncul foto">
+  </label>
+</div> -->
+<table>
+  <tr>
+    <td><b>KECEPATAN PERGERAKAN PHOTO</b></td>
+    <td>
+      <div class="btn-group">
+        <button class="btn btn-sm btn-primary" onclick="changeSpeed('slow')">Perlahan</button>
+        <button class="btn btn-sm btn-danger" onclick="changeSpeed('fast')">Cepat</button></button>
+      </div>
+
+    </td>
+  </tr>
+</table>
+
+
+
+<hr>
+ <b>AKTIKAN SUARA GOOGLE</b><br>
+<div class="form-check">
+  <input name="vkomen" checked class="form-check-input" type="checkbox" id="vkomen">
+  <label class="form-check-label" for="vkomen">
+      KOMENTAR DIBACA GOOGLE
+  </label>
+</div>
+
+<div class="form-check">
+  <input name="vjoin" checked class="form-check-input" type="checkbox" id="vjoin">
+  <label class="form-check-label" for="vjoin">
+      UCAPAN SELAMAT DATANG UNTUK YANG JOIN
+  </label>
+</div>
+
+
+<div class="form-check">
+  <input name="vgift" checked class="form-check-input" type="checkbox" id="vgift">
+  <label class="form-check-label" for="vgift">
+      UCAPAN TERIMAKASIH UNTUK YANG GIFT
+  </label>
+</div>
+
+<div class="form-check">
+  <input name="vfollow"   class="form-check-input" type="checkbox" id="vfollow">
+  <label class="form-check-label" for="vfollow">
+      UCAPAN TERIMAKASIH UNTUK YANG FOLLOW
+  </label>
+</div>
+
+<div class="form-check">
+  <input name="vshare" checked class="form-check-input" type="checkbox" id="vshare">
+  <label class="form-check-label" for="vshare">
+      UCAPAN TERIMAKASIH UNTUK YANG SHARE
+  </label>
+</div>
+
+<hr>
+<b>OPSI SUARA :</b><br>
+<select class="form-control" id="opsi_suara">
+  <option value="1">Lucu (contoh: selamat bergabung kak sherina yang baik hati) </option>
+  <option value="2">Biasa (contoh: selamat bergabung kak sherina )</option>
+</select>
+
+<hr>
+Background  
+<input type="file" id="background-input" class="form-control" accept="image/*" onchange="changeBackground(event)">
+
+<br>
+<div id="gradient-box" style="width:100%;height:50px"></div>
+<button class="btn btn-block btn-mini btn-primary" onclick="gra()">Pilih Warna latar belakang</button>
+<br><br>
+   
+    </td> 
+  </tr>
+
+  
+  <tr>
+    <td colspan="2">
+   <div id="roomStats" style="color:black;"></div>
+           
+    </table>
+
+
+    </td>
+  </tr>
+    
+</table>
+</div>
+</div>
+
+
+
+            
+        </div>
+       
+      </div>
+    </div>
+  </div>
+
+ 
+<script>
+    function showAnimal(){
+        
+    }
+</script>
+ 
+
+<script>
+        let player;
+
+        function playAudio() {
+            const youtubeURL = document.getElementById('youtubeURL').value;
+            const videoID = getYoutubeVideoID(youtubeURL);
+            const volume = document.getElementById('volumeRange').value;
+
+            player = new YT.Player('player', {
+                height: '0',
+                width: '0',
+                videoId: videoID,
+                playerVars: {
+                    'autoplay': 1,
+                    'controls': 0,
+                    'loop': 1,
+                    'playlist': videoID
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            event.target.setVolume(document.getElementById('volumeRange').value); // Set volume
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.ENDED) {
+                event.target.playVideo(); // Play the video again when it ends
+            }
+        }
+
+        function getYoutubeVideoID(url) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = url.match(regExp);
+
+            if (match && match[2].length == 11) {
+                return match[2];
+            } else {
+                return null;
+            }
+        }
+
+        document.getElementById('volumeRange').addEventListener('input', function() {
+            if (player) {
+                player.setVolume(this.value);
+            }
+        });
+    </script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+     
+    
+   
+   
+    
+   
+ <script>
+        const slider = document.getElementById('transparency-slider');
+        const draggableAreaz = document.getElementById('draggable-area');
+        const label = document.querySelector('.slider-label');
+
+        // Update background transparency when slider value changes
+        slider.addEventListener('input', function () {
+            const transparencyValue = slider.value;
+            draggableAreaz.style.backgroundColor = `rgba(0, 0, 0, ${transparencyValue / 100})`;
+            label.textContent = `Transparansi: ${transparencyValue}%`;
+        });
+    </script>
+     
+<script async src="https://play.livetok.online/assets/js/bubble3.js" defer></script>
+  <script async src="https://play.livetok.online/assets/js/roket3.js" defer></script>
+  <script src="https://play.livetok.online/connection.js"></script>
+     <script src="https://play.livetok.online/assets/js/main3.js"></script>
+     
+ 
+     

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3CM2JCDYNF"></script>
+  
+  
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok LIVE</title> 
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="stylesv2.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=s7MjjIgj"></script>
+
+    <script src="connection.js"></script>
+    <script src="appv2.js" defer></script>
+    
+ 
+   
+</head>
+<body style="background-size: cover;">
+  <div id="instruction">
+    <h3>SEMANGAT YA...!! TOMBOL SETTING ADA DI BAWAH!!</h3>
+  </div>
+  <div class="running-text-container">
+    <div class="running-text">
+      Selamat datang Guys, Tunjukkan Pesonamu
+    </div>
+  </div>
+
+  <div id="imagePreload" style="display: none; position: absolute;"></div>
+  <div id="animation-container">
+    <!-- Animasi foto akan ditampilkan di sini -->
+  </div>
+
+  <center>
+    <button class="btn btn-primary" style="position: absolute; margin-top: 1000px; margin-left: -60px" onclick="openmodal()">PENGATURAN</button>
+    <br><br>
+  </center>
+
+  <div class="card-body"></div>
+  
+  <div class="modal fade" id="addBubbleModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addBubbleModalLabel">Pengaturan</h5>
+          <button class="btn btn-danger btn-sm" id="togel" onclick="toggleFullScreen();">FULLSCREEN</button>
+        </div>
+        <div class="modal-body">
+          <pre id="stateText" style="color: rgb(16, 12, 12);"></pre>
+          <div class="inputFields" id="hidex"> 
+            <center>
+              <input type="button" id="connectButton" value="connect">
+              <button type="button" onclick="tutupmodal()">TUTUP</button>
+            </center>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body pd-4">
+            <table>
+              <tr>
+                <td colspan="2"><b>PENGATURAN</b></td>
+              </tr>
+              <tr>
+                <td style="width: 200px">Akun</td>
+                <td>
+                  <select id="uniqueIdInput" class="form-control"></select>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <hr>
+                  Musik dari Link YouTube
+                  <input type="text" id="youtubeURL" placeholder="Masukkan URL Video YouTube" class="form-control" onchange="playAudio()">
+                  <label for="volumeRange"> Volume:</label>
+                  <input type="range" id="volumeRange" min="0" max="100" value="25"><br>
+                  <div id="player"></div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <hr>
+                  MusiK File Mp3
+                  <input type="file" id="musik" name="musik" accept=".mp3, .wav" class="form-control">
+                  <audio controls loop id="audioPlayer" style="display: none;">
+                    Your browser does not support the audio element.
+                  </audio>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <div class="form-check">
+                    <input name="klapklip" checked class="form-check-input" type="checkbox" id="klapklipid">
+                    <label class="form-check-label" for="klapklip">
+                      Aktifkan background kelap-kelip
+                    </label><br />
+                    <i style="font-size: 10px; color: green; margin-top: -5px; position: absolute">Foto pemberi gift diatas 20 koin menjadi background</i>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <div style="margin-bottom: 10px; display: flex; align-items: center;">
+                    <div style="display: flex; align-items: center;">
+                      <input type="checkbox" id="toggle-diamond-points" checked>
+                      <label for="toggle-diamond-points" style="margin-left: 5px;">Tampilkan Diamond Points</label>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <hr>
+                  <b>DURASI MUNCUL BUBBLE</b>
+                  <div style="padding: 5px">
+                    <label class="form-check-label" for="gift">
+                      Photo kecil <input type="number" style="max-width: 70px;" id="smallDuration" value="40"> Detik
+                    </label>
+                  </div>
+                  <div style="padding: 5px">
+                    <label class="form-check-label" for="gift">
+                      Photo sedang <input type="number" style="max-width: 70px;" id="mediumDuration" value="35"> Detik
+                    </label>
+                  </div>
+                  <div style="padding: 5px">
+                    <label class="form-check-label" for="gift">
+                      Photo besar <input type="number" style="max-width: 70px;" id="largeDuration" value="30"> Detik
+                    </label>
+                  </div>
+                  <hr>
+                  <b>SUARA GIFT</b><br>
+                  <div class="audio-group" id="audioGroup">
+                    <br>
+                    <div>
+                      <label for="volumeSlider">Volume Musik Gift:</label>
+                      <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5" onchange="updateVolume(this.value)">
+                    </div>
+                    <div>
+                      <span>Upload MP3 untuk <b>Gift Kecil (1-5)</b></span><br>
+                      <input type="file" class="audioFile" accept="audio/*" name="audioFile0" onchange="loadAudio(this, 0)">
+                      <button class="playButton" disabled id="playButton0" style="display: none">Play</button>
+                      <button class="stopButton" disabled id="stopButton0" onclick="estopAudio(0)" style="display: none">Stop</button>
+                      <button class="clearButton btn btn-info btn-sm" id="tmbclear0" onclick="eclearAudio(0)">Clear</button>
+                    </div><br>
+                    <div>
+                      <span>Upload MP3 untuk <b>Gift Sedang (10)</b></span><br>
+                      <input type="file" class="audioFile" accept="audio/*" name="audioFile1" onchange="loadAudio(this, 1)">
+                      <button class="playButton" disabled id="playButton1" style="display: none">Play</button>
+                      <button class="stopButton" disabled id="stopButton1" style="display: none">Stop</button>
+                      <button class="clearButton btn btn-info btn-sm" id="tmbclear1" onclick="eclearAudio(1)">Clear</button>
+                    </div><br>
+                    <div>
+                      <span>Upload MP3 untuk <b>Gift Super Sedang(20)</b></span><br>
+                      <input type="file" class="audioFile" accept="audio/*" name="audioFile2" onchange="loadAudio(this, 2)">
+                      <button class="playButton" disabled id="playButton2" style="display: none">Play</button>
+                      <button class="stopButton" disabled id="stopButton2" style="display: none">Stop</button>
+                      <button class="clearButton btn btn-info btn-sm" id="tmbclear2" onclick="eclearAudio(2)">Clear</button>
+                    </div><br>
+                    <div>
+                      <span>Upload MP3 untuk <b>Gift Besar (30)</b></span><br>
+                      <input type="file" class="audioFile" accept="audio/*" name="audioFile3" onchange="loadAudio(this, 3)">
+                      <button class="playButton" disabled id="playButton3" style="display: none">Play</button>
+                      <button class="stopButton" disabled id="stopButton3" style="display: none">Stop</button>
+                      <button class="clearButton btn btn-info btn-sm" id="tmbclear3" onclick="eclearAudio(3)">Clear</button>
+                    </div><br>
+                    <div>
+                      <span>Upload MP3 untuk <b>Gift Super Besar(100)</b></span><br>
+                      <input type="file" class="audioFile" accept="audio/*" name="audioFile4" onchange="loadAudio(this, 3)">
+                      <button class="playButton" disabled id="playButton3" style="display: none">Play</button>
+                      <button class="stopButton" disabled id="stopButton3" style="display: none">Stop</button>
+                      <button class="clearButton btn btn-info btn-sm" id="tmbclear3" onclick="eclearAudio(3)">Clear</button>
+                    </div><br>
+                    
+                    <div>
+                      <span>Upload MP3 untuk <b>Gift Luar Biasa(200+ ~)</b></span><br>
+                      <input type="file" class="audioFile" accept="audio/*" name="audioFile4" onchange="loadAudio(this, 3)">
+                      <button class="playButton" disabled id="playButton3" style="display: none">Play</button>
+                      <button class="stopButton" disabled id="stopButton3" style="display: none">Stop</button>
+                      <button class="clearButton btn btn-info btn-sm" id="tmbclear3" onclick="eclearAudio(3)">Clear</button>
+                    </div><br>
+                    <button id="stopAllButton" onclick="stopAllAudio()" disabled style="display: none">Stop All</button>
+                  </div>
+                  <br>
+                </div>
+                <table>
+                  <tr>
+                    <td><b>KECEPATAN PERGERAKAN PHOTO</b></td>
+                    <td>
+                      <div class="btn-group">
+                        <button class="btn btn-sm btn-primary" onclick="changeSpeed('slow')">Perlahan</button>
+                        <button class="btn btn-sm btn-danger" onclick="changeSpeed('fast')">Cepat</button>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+
+                <hr>
+                <b>AKTIKAN SUARA GOOGLE</b><br>
+                <i class="text-danger">Mohon maaf untuk suara masih belum stabil, masih kami sempurnakan</i>
+                <div class="form-check">
+                  <input name="vkomen" class="form-check-input" type="checkbox" id="vkomen">
+                  <label class="form-check-label" for="vkomen">KOMENTAR DIBACA GOOGLE</label>
+                </div>
+
+                <div class="form-check">
+                  <input name="vjoin" checked class="form-check-input" type="checkbox" id="vjoin">
+                  <label class="form-check-label" for="vjoin">UCAPAN SELAMAT DATANG UNTUK YANG JOIN</label>
+                </div>
+
+                <div class="form-check">
+                  <input name="vgift" checked class="form-check-input" type="checkbox" id="vgift">
+                  <label class="form-check-label" for="vgift">UCAPAN TERIMAKASIH UNTUK YANG GIFT</label>
+                </div>
+
+                <div class="form-check">
+                  <input name="vfollow" class="form-check-input" type="checkbox" id="vfollow">
+                  <label class="form-check-label" for="vfollow">UCAPAN TERIMAKASIH UNTUK YANG FOLLOW</label>
+                </div>
+
+                <div class="form-check">
+                  <input name="vshare" checked class="form-check-input" type="checkbox" id="vshare">
+                  <label class="form-check-label" for="vshare">UCAPAN TERIMAKASIH UNTUK YANG SHARE</label>
+                </div>
+
+                <hr>
+                <b>OPSI SUARA :</b><br>
+                <select class="form-control" id="opsi_suara">
+                  <option value="1">Lucu (contoh: selamat bergabung kak sherina yang baik hati)</option>
+                  <option value="2">Biasa (contoh: selamat bergabung kak sherina)</option>
+                </select>
+
+                <hr>
+                Background
+                <input type="file" id="background-input" class="form-control" accept="image/*" onchange="changeBackground(event)">
+                <br>
+                <div id="gradient-box" style="width: 100%; height: 50px;"></div>
+                <button class="btn btn-block btn-mini btn-primary" onclick="gra()">Pilih Warna latar belakang</button>
+                <br><br>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <div id="roomStats" style="color: black;"></div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

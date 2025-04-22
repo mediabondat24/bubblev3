@@ -1,95 +1,490 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="assets/img/favicon.png">
-  <title>
-    BUBBLE PHOTO VERSI 3
-  </title>
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-  <!-- Nucleo Icons -->
-  <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- Font Awesome Icons -->
-  <script src="https://code.responsivevoice.org/responsivevoice.js?key=2PF3bYCT"></script>
-  <!-- CSS Files -->
-  <link id="pagestyle" href="/assets/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3CM2JCDYNF"></script>
   
-  <style>
-    .announcement {
-      font-size: 36px; /* Adjust the size as needed */
-      font-weight: bold;
-      text-align: center;
-      margin-top: 50px;
-      color: #333;
-    }
-    .subtext {
-      font-size: 20px;
-      text-align: center;
-      margin-top: 20px;
-      color: #555;
-    }
-    .cta-buttons {
-      text-align: center;
-      margin-top: 30px;
-    }
-    .cta-buttons a {
-      margin: 10px;
-      padding: 15px 30px;
-      font-size: 18px;
-      text-decoration: none;
-      border-radius: 5px;
-      color: white;
-      background-color: #4CAF50; /* Green background */
-    }
-    .cta-buttons a.back-home {
-      background-color: #007bff; /* Blue background */
-    }
-  </style>
+  
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok LIVE</title> 
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=2PF3bYCT"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="connection.js"></script>
+    <link rel="stylesheet" href="assets/css/member/stylesmemberv3.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <script src="assets/js/like.js" defer></script>
+   <link href="/assets/css/like.css" rel="stylesheet">
+
+ 
+    
+   
 </head>
+<body style="background-size: cover;">
+  <video id="gifImage" src="" style="display: none;" controls>
+  Your browser does not support the video tag.
+</video>
+  
+  <div id="top-givers"></div>
+  <div id="app"></div>
+<div id="maskot-container">
+  <div id="imagePreload" style="display: none; position: absolute;"></div>
+    <div id="animation-container"></div>
+    <div id="animasilike"></div> 
+<div id="animasishare"></div>
 
-<body class="g-sidenav-show bg-gray-100">
+<div id="toplike">
+    <div id="leaderboard">
+        <div id="toplike-title">10 TOP LIKE</div>
 
-  <div class="announcement">
-    "Versi Berikutnya Segera Hadir!"
-  </div>
+        <!-- Rank 1 -->
+        <div class="leaderboard-item">
+            <div class="rank-number">1</div>
+            <img src="/images/bubble.png" class="profile-pic" alt="Profile Picture">
+            <div class="text-container">
+                <span class="nickname">Waiting...</span>
+                <div class="like-container">
+                    <i class="fa fa-thumbs-up"></i><span class="like-count">0</span>
+                </div>
+            </div>
+        </div>
 
-  <div class="subtext">
-    Terima kasih telah setia menggunakan layanan Bubble Photo dari kami! Kami sangat senang mengumumkan bahwa versi berikutnya sedang dalam tahap pengembangan. Kami sedang bekerja keras untuk menghadirkan pembaruan dan fitur-fitur menarik yang akan semakin memudahkan pengalaman Anda! 🚀
+        <!-- Rank 2 -->
+        <div class="leaderboard-item">
+            <div class="rank-number">2</div>
+            <img src="/images/bubble.png" class="profile-pic" alt="Profile Picture">
+            <div class="text-container">
+                <span class="nickname">Waiting...</span>
+                <div class="like-container">
+                    <i class="fa fa-thumbs-up"></i><span class="like-count">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rank 3 -->
+        <div class="leaderboard-item">
+            <div class="rank-number">3</div>
+            <img src="/images/bubble.png" class="profile-pic" alt="Profile Picture">
+            <div class="text-container">
+                <span class="nickname">Waiting...</span>
+                <div class="like-container">
+                    <i class="fa fa-thumbs-up"></i><span class="like-count">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rank 3 -->
+        <div class="leaderboard-item">
+            <div class="rank-number">4</div>
+            <img src="/images/bubble.png" class="profile-pic" alt="Profile Picture">
+            <div class="text-container">
+                <span class="nickname">Waiting...</span>
+                <div class="like-container">
+                    <i class="fa fa-thumbs-up"></i><span class="like-count">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rank 3 -->
+        <div class="leaderboard-item">
+            <div class="rank-number">5</div>
+            <img src="/images/bubble.png" class="profile-pic" alt="Profile Picture">
+            <div class="text-container">
+                <span class="nickname">Waiting...</span>
+                <div class="like-container">
+                    <i class="fa fa-thumbs-up"></i><span class="like-count">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rank 3 -->
+        <div class="leaderboard-item">
+            <div class="rank-number">6</div>
+            <img src="/images/bubble.png" class="profile-pic" alt="Profile Picture">
+            <div class="text-container">
+                <span class="nickname">Waiting...</span>
+                <div class="like-container">
+                    <i class="fa fa-thumbs-up"></i><span class="like-count">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rank 3 -->
+        <div class="leaderboard-item">
+            <div class="rank-number">7</div>
+            <img src="/images/bubble.png" class="profile-pic" alt="Profile Picture">
+            <div class="text-container">
+                <span class="nickname">Waiting...</span>
+                <div class="like-container">
+                    <i class="fa fa-thumbs-up"></i><span class="like-count">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rank 3 -->
+        <div class="leaderboard-item">
+            <div class="rank-number">8</div>
+            <img src="/images/bubble.png" class="profile-pic" alt="Profile Picture">
+            <div class="text-container">
+                <span class="nickname">Waiting...</span>
+                <div class="like-container">
+                    <i class="fa fa-thumbs-up"></i><span class="like-count">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rank 3 -->
+        <div class="leaderboard-item">
+            <div class="rank-number">9</div>
+            <img src="/images/bubble.png" class="profile-pic" alt="Profile Picture">
+            <div class="text-container">
+                <span class="nickname">Waiting...</span>
+                <div class="like-container">
+                    <i class="fa fa-thumbs-up"></i><span class="like-count">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rank 3 -->
+        <div class="leaderboard-item">
+            <div class="rank-number">10</div>
+            <img src="/images/bubble.png" class="profile-pic" alt="Profile Picture">
+            <div class="text-container">
+                <span class="nickname">Waiting...</span>
+                <div class="like-container">
+                    <i class="fa fa-thumbs-up"></i><span class="like-count">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<center>
+
+    <button class="btn btn-primary" style="position: absolute;margin-top:1000px;margin-left:-60px" onclick="openmodal()">PENGATURAN</button>
     <br><br>
-    Tunggu sebentar lagi, dan tetap pantau informasi terbaru dari kami. Kami akan segera menginformasikan Anda ketika versi baru siap digunakan. Terima kasih atas kesabaran Anda! 🙏
-  </div>
+</center>
+   
+      <div class="card-body">
+ </div>
 
-  <div class="subtext">
-    Pastikan Anda sudah tergabung dalam Raifast Kreatif Agency untuk mendapatkan update terbaru dan akses penuh! 
-  </div>
-
-  <div class="cta-buttons">
-    <!-- Button to contact Admin on WhatsApp -->
-    <a href="https://wa.me/6282334810232?text=Halo%20Admin%2C%20saya%20ingin%20bertanya%20mengenai%20versi%20terbaru%20Bubble%20Photo" target="_blank">
-      Hub. Admin
-    </a>
-
-    <!-- Button to go back to the homepage -->
-    <a href="/dashboard.html" class="back-home">
-      Back to Home
-    </a>
-  </div>
-
-  <!-- Core JS Files -->
-  <script src="/assets/js/core/popper.min.js"></script>
-  <script src="/assets/js/core/bootstrap.min.js"></script>
-
-  <!-- Github buttons -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="/assets/js/argon-dashboard.min.js?v=2.1.0"></script>
-  <script src="/assets/js/like.js"></script>
-  <script src="/assets/js/free/scriptfreev1.js" defer></script>
+<script src="assets/js/member/scriptmemberv3.js" defer></script>
 </body>
+ </html>
 
-</html>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ <div class="modal fade" id="addBubbleModal"  aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addBubbleModalLabel">Pengaturan</h5>
+          <button class='btn btn-danger btn-sm' id="togel" onclick="toggleFullScreen();">FULLSCREEN</button>
+          
+        </div>
+        <div class="modal-body">
+          
+                          <p>Server Aktif: <span id="selectedUrl">Server 1</span></p> 
+      
+    <div id="serverButtons">
+        <button id="server1" class="btn btn-info btn-sm" onclick="setBackendUrl(1)">Server 1</button>
+        <button id="server2" class="btn btn-info btn-sm" onclick="setBackendUrl(2)">Server 2</button>
+        <button id="server3" class="btn btn-info btn-sm" onclick="setBackendUrl(3)">Server 3</button>
+    </div> 
+
+        <pre id="stateText"  style="color:rgb(16, 12, 12)"></pre>
+          
+          <div class="inputFields" id="hidex"> 
+            <center>
+              <input type="button" id="connectButton" value="connect">
+              <button type="button"   onclick="tutupmodal()" >TUTUP</button>
+            </center>
+          </div>
+          </div>
+    <div class="card">
+    <div class="card-body pd-4">
+<table>
+  
+    <tr>
+    <td colspan="2"><b>PENGATURAN</b></td>
+  </tr>
+  <tr>
+    <td style="width:200px">
+      Akun
+    </td>
+    <td>
+      <select id="uniqueIdInput" class="form-control">
+    </select> 
+    </td>
+  </tr>
+   <tr>
+      <td colspan="2"><hr>Musik dari link youtube
+     
+
+ <input type="text" id="youtubeURL" placeholder="Masukkan URL Video YouTube" class="form-control" onchange="playAudio()">
+   
+<label for="volumeRange"> Volume:</label>
+    <input type="range" id="volumeRange" min="0" max="100" value="25"><br>
+    
+    <div id="player" ></div>
+    
+    </td>
+  </tr>
+  <tr>
+      <td colspan="2"><hr>Musik dari File Mp3   
+
+<input type="file" id="musik" name="musik" accept=".mp3, .wav"  class="form-control" >
+   
+    <audio controls loop id="audioPlayer" style="display:none;">
+        Your browser does not support the audio element.
+    </audio></td>
+    <hr>
+  </tr>
+  <tr>
+    <td colspan="2"> 
+         
+        <div class="form-check">
+  <input name="klapklip" checked class="form-check-input" type="checkbox" id="klapklipid">
+  <label class="form-check-label" for="klapklip">
+      Aktifkan background kelap-kelip 
+  </label><br/>
+   <i style='font-size:10px;color:green;margin-top:-5px;position:absolute'>Foto pemberi gift diatas 20 koin menjadi background</i>
+</div><br>
+
+ 
+    </td>
+</tr>
+<tr>
+    <td colspan="2">
+<div class="form-check">
+  <input name="topGift" class="form-check-input" type="checkbox" id="topGift" checked>
+  <label class="form-check-label" for="topGift">
+    Aktifkan TOP Gift
+  </label><br/>
+  <i style="font-size:10px;color:green;margin-top:-5px;position:absolute">
+    Centang untuk menampilkan daftar TOP Gift
+  </i>
+</div>
+
+<div class="form-check" id="showPointsContainer">
+  <input name="showPoints" class="form-check-input" type="checkbox" id="showPoints" checked>
+  <label class="form-check-label" for="showPoints">
+    Munculkan Poin
+  </label><br/>
+  <i style="font-size:10px;color:green;margin-top:-5px;position:absolute">
+    Centang untuk menampilkan jumlah poin setiap Top Giver
+  </i>
+</div>
+
+
+</td>
+</tr>
+
+  <tr>
+    <td colspan="2">
+        <hr>
+        <b>DURASI MUNCUL PHOTO </b>
+        <div style="padding:5px">
+            <label class="form-check-label" for="gift">
+                Photo kecil  <input type="number"   style="max-width: 70px;" id="smallDuration" value="40">   Detik
+            </label>
+        </div>
+        <div style="padding:5px">
+            <label class="form-check-label" for="gift">
+               Photo sedang  <input type="number"   style="max-width: 70px;"  id="mediumDuration" value="35">   Detik
+            </label>
+        </div>
+        <div style="padding:5px">
+            <label class="form-check-label" for="gift">
+                Photo besar  <input type="number"   style="max-width: 70px;" id="largeDuration" value="30">   Detik
+            </label>
+        </div>
+
+      <hr>
+      <div>  
+    <label for="volumeSlider">Volume Musik Gift:</label>
+    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5" 
+        onchange="updateVolume(this.value)">
+</div>
+<label for="videoVolumeSlider">Volume Animasi Transparan:</label>
+<input type="range" id="videoVolumeSlider" min="0" max="1" step="0.01" value="0.5" onchange="updateVideoVolume(this.value)">
+
+        <b> SUARA GIFT </b><br>
+          <div>
+            <span>Upload MP3 untuk <b>Gift kecil (1-5)</b></span><br>
+            <input type="file" class="audioFile" accept="audio/*" name="audioFile0" onchange="loadAudio(this, 0)">
+            <button class="playButton" disabled  id="playButton0" onclick="eplayAudio(0)" style="display:none">Play</button>
+            <button class="stopButton" disabled  id="stopButton0"  onclick="estopAudio(0)" style="display:none" >Stop</button>
+            <button class="clearButton btn btn-danger btn-sm" id="tmbclear0" onclick="eclearAudio(0)">Clear</button>
+        </div><br>
+        <div>
+            <span>Upload MP3 untuk <b>Gift sedang (10)</b></span><br>
+            <input type="file" class="audioFile" accept="audio/*"  name="audioFile1" onchange="loadAudio(this, 1)">
+            <button class="playButton" disabled id="playButton1" style="display:none">Play</button>
+            <button class="stopButton" disabled id="stopButton1" style="display:none">Stop</button>
+            <button class="clearButton btn btn-danger btn-sm"   id="tmbclear1" onclick="eclearAudio(1)">Clear</button>
+        </div><br>
+        <div>
+            <span>Upload MP3 untuk <b>Gift Super Sedang (20)</b></span><br>
+            <input type="file" class="audioFile" accept="audio/*"  name="audioFile2" onchange="loadAudio(this, 2)">
+            <button class="playButton" disabled id="playButton2" style="display:none">Play</button>
+            <button class="stopButton" disabled id="stopButton2" style="display:none">Stop</button>
+            <button class="clearButton btn btn-danger btn-sm"  id="tmbclear2" onclick="eclearAudio(2)">Clear</button>
+        </div><br>
+        <div>
+              <span>Upload MP3 untuk <b>Gift Besar (30)</b></span><br>
+            <input type="file" class="audioFile" accept="audio/*"  name="audioFile3" onchange="loadAudio(this, 3)">
+            <button class="playButton" disabled id="playButton3" style="display:none">Play</button>
+            <button class="stopButton" disabled id="stopButton3" style="display:none">Stop</button>
+            <button class="clearButton btn btn-danger btn-sm"  id="tmbclear3" onclick="eclearAudio(3)">Clear</button>
+        </div><br>
+        <div>
+              <span>Upload MP3 untuk <b>Gift Super Besar (100)</b></span><br>
+            <input type="file" class="audioFile" accept="audio/*"  name="audioFile4" onchange="loadAudio(this, 4)">
+            <button class="playButton" disabled id="playButton4" style="display:none">Play</button>
+            <button class="stopButton" disabled id="stopButton4" style="display:none">Stop</button>
+            <button class="clearButton btn btn-danger btn-sm"  id="tmbclear4" onclick="eclearAudio(4)">Clear</button>
+        </div><br>
+        <div>
+              <span>Upload MP3 untuk <b>Gift Luar Biasa (200 +~)</b></span><br>
+            <input type="file" class="audioFile" accept="audio/*"  name="audioFile5" onchange="loadAudio(this, 5)">
+            <button class="playButton" disabled id="playButton5" style="display:none">Play</button>
+            <button class="stopButton" disabled id="stopButton5" style="display:none">Stop</button>
+            <button class="clearButton btn btn-danger btn-sm"  id="tmbclear5" onclick="eclearAudio(5)">Clear</button>
+        </div><br>
+          <button id="stopAllButton" onclick="stopAllAudio()" disabled  style="display:none">Stop All</button>
+    </div>
+    <br>
+        
+       
+      
+<table>
+  <tr>
+    <td><b>KECEPATAN PERGERAKAN PHOTO</b></td>
+    <td>
+      <div class="btn-group">
+        <button class="btn btn-primary btn-sm" onclick="changeSpeed('slow')">Perlahan</button>
+        <button class="btn btn-danger btn-sm" onclick="changeSpeed('fast')">Cepat</button></button>
+      </div>
+
+    </td>
+  </tr>
+</table>
+
+
+
+<hr>
+ <b>AKTIKAN SUARA GOOGLE</b><br>
+ <i class="text-danger">Mohon maaf untuk suara masih belum stabil, masih kami sempurnakan</i>
+<div class="form-check">
+  <input name="vkomen" class="form-check-input" type="checkbox" id="vkomen">
+  <label class="form-check-label" for="vkomen">
+      KOMENTAR DIBACA GOOGLE
+  </label>
+</div>
+
+<div class="form-check">
+  <input name="vjoin" checked class="form-check-input" type="checkbox" id="vjoin">
+  <label class="form-check-label" for="vjoin">
+      UCAPAN SELAMAT DATANG UNTUK YANG JOIN
+  </label>
+</div>
+
+<div class="form-check">
+  <input name="vgift" checked class="form-check-input" type="checkbox" id="vgift">
+  <label class="form-check-label" for="vgift">
+      UCAPAN TERIMAKASIH UNTUK YANG GIFT
+  </label>
+</div>
+
+<div class="form-check">
+  <input name="vfollow"   class="form-check-input" type="checkbox" id="vfollow">
+  <label class="form-check-label" for="vfollow">
+      UCAPAN TERIMAKASIH UNTUK YANG FOLLOW
+  </label>
+</div>
+
+<div class="form-check">
+  <input name="vshare" checked class="form-check-input" type="checkbox" id="vshare">
+  <label class="form-check-label" for="vshare">
+      UCAPAN TERIMAKASIH UNTUK YANG SHARE
+  </label>
+</div>
+
+<hr>
+<b>OPSI SUARA :</b><br>
+<select class="form-control" id="opsi_suara">
+  <option value="1">Lucu (contoh: selamat bergabung kak sherina yang baik hati) </option>
+  <option value="2">Biasa (contoh: selamat bergabung kak sherina )</option>
+</select>
+
+<hr>
+Background  
+<input type="file" id="background-input" class="form-control" accept="image/*" onchange="changeBackground(event)">
+<br>
+<div id="gradient-box" style="width:100%;height:50px"></div>
+<button class="btn btn-block btn-mini btn-primary" onclick="gra()">Pilih Warna latar belakang</button>
+<br><br>
+ 
+    </td> 
+  </tr>
+
+  
+  <tr>
+    <td colspan="2">
+   <div id="roomStats" style="color:black;"></div>
+           
+    </table>
+
+
+    </td>
+  </tr>
+    
+</table>
+</div>
+</div>
+    
+        </div>
+       
+      </div>
+    </div>
+  </div>
+
+
+ 
+
+
+
+
+    
+   

@@ -1,0 +1,432 @@
+
+
+.img-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: blink-color-animation 0.3s infinite;
+        }
+
+        @keyframes blink-color-animation {
+            0% {
+                opacity: 1;
+                filter: hue-rotate(0deg);
+            }
+            50% {
+                opacity: 0;
+                filter: hue-rotate(180deg);
+            }
+            100% {
+                opacity: 1;
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .fullscreenBG {
+        backgroundSize :cover;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+            z-index: -2;
+        }
+
+.blurred {
+            filter: blur(5px);
+            transition: filter 0.3s ease;
+        }
+   #petunjuk {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px; /* Sesuaikan dengan lebar elemen */
+            height: 120px; /* Sesuaikan dengan tinggi elemen */
+            background-color: #212427;
+            color: #fff;
+            text-align: center;
+            line-height: 100px;
+            font-family: Arial, sans-serif;
+        }
+        #animation-container span{
+          position: absolute;
+          color: #9e072a;
+        }
+
+
+  #button-container {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 2;
+    }
+
+    #animation-container {
+      position: relative;
+    }
+
+    .photo {
+      position: absolute;
+      border-radius: 20px;
+      transition: transform 5s ease-in-out, opacity 2s ease-in-out; /* Sesuaikan durasi transisi sesuai kebutuhan */
+    }
+
+#maskot {
+  position: absolute; /* Agar gambar bisa dipindahkan di dalam container */
+  
+  z-index: 9999;
+  transition: transform 5s ease; /* Menambahkan transisi lembut selama 5 detik */
+}
+
+#mvp {
+  position: absolute; /* Agar bisa diposisikan tepat di bawah maskot */
+  top: -2px;
+  border-radius: 50px;
+  z-index: 9998;
+  transition: transform 5s ease;
+}
+
+ body {
+            margin: 0;
+            background: transparent;
+            position: relative;
+            height: 100vh;
+        }
+
+        .rocket {
+            position: absolute;
+            width: 8vmin;
+            height: 8vmin;
+            border-radius: 50%;
+            background-size: cover;
+            bottom: -10vmin;
+            left: 50%;
+            animation: rocketAppear 0.5s ease-in-out forwards, rocketLaunch var(--rocket-launch-duration) ease-in-out forwards;
+        }
+
+        .rocket::before {
+            content: '';
+            position: absolute;
+            width: 2vmin;
+            height: 10vmin;
+            background: linear-gradient(to bottom, rgba(255, 165, 0, 0.8), rgba(255, 69, 0, 0));
+            bottom: -10vmin;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: fireTail 0.1s infinite, fireTailHide 0.8s ease-out forwards calc(var(--rocket-launch-duration) - 0.5s);
+        }
+
+        @keyframes rocketAppear {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fireTail {
+            0% {
+                background: linear-gradient(to bottom, rgba(255, 165, 0, 0.8), rgba(255, 69, 0, 0));
+            }
+
+            50% {
+                background: linear-gradient(to bottom, rgba(255, 165, 0, 0.8), rgba(255, 69, 0, 0), rgba(255, 69, 0, 0));
+            }
+
+            100% {
+                background: linear-gradient(to bottom, rgba(255, 165, 0, 0.8), rgba(255, 69, 0, 0));
+            }
+        }
+
+        @keyframes fireTailHide {
+            0% {
+                opacity: 0.8;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .username {
+            font-family: "Edu AU VIC WA NT Dots", cursive;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            min-width: 80vmin;
+            text-align: center;
+            background-color: transparent;
+            min-height: 20vmin;
+
+            margin-left: -39vmin;
+            margin-bottom: -8vmin;
+            vertical-align: middle;
+            line-height: 20vmin;
+            animation: usernameGlow 1s ease-in-out infinite alternate, usernameZoom 2s ease-in-out forwards, usernameHide 3s ease-in-out forwards 3s;
+        }
+
+        @keyframes usernameGlow {
+    from {
+        text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px rgb(252, 168, 51), 0 0 5px rgb(252, 168, 51), 0 0 5px rgb(252, 168, 51), 0 0 5px rgb(252, 168, 51), 0 0 5px rgb(252, 168, 51);
+        transform: scale(0.5);
+    }
+
+    to {
+        text-shadow: 0 0 5px #fff, 0 0 5px rgb(255, 217, 0), 0 0 5px rgb(255, 217, 0), 0 0 5px rgb(255, 217, 0), 0 0 5px rgb(255, 217, 0), 0 0 5px rgb(255, 217, 0), 0 0 5px rgb(255, 217, 0);
+        transform: scale(1);
+    }
+}
+
+
+        @keyframes usernameZoom {
+            from {
+                transform: scale(0.01) rotate(0deg);
+            }
+
+            to {
+                transform: scale(1) rotate(var(--username-rotate));
+            }
+        }
+
+        @keyframes usernameHide {
+            from {
+                opacity: 1;
+                transform: translateY(0vmin) rotate(var(--username-rotate));
+            }
+
+            to {
+                opacity: 0;
+                transform: translateY(3vmin) rotate(calc(var(--username-rotate) + 2deg));
+            }
+        }
+
+        @keyframes rocketLaunch {
+            0% {
+                bottom: 0;
+                transform: translateX(-50%);
+            }
+
+            100% {
+                bottom: var(--rocket-offset-bottom);
+                transform: translateX(calc(-60% + var(--rocket-offset)));
+            }
+        }
+
+        @keyframes rocketExplode {
+            0% {
+                bottom: var(--rocket-offset-bottom);
+                transform: translateX(calc(-60% + var(--rocket-offset))) scale(1);
+            }
+
+            100% {
+                bottom: var(--rocket-offset-bottom);
+                transform: translateX(calc(-60% + var(--rocket-offset))) scale(1.5);
+            }
+        }
+
+        @keyframes rocketHide {
+            0% {
+                bottom: var(--rocket-offset-bottom);
+                transform: translateX(calc(-60% + var(--rocket-offset))) scale(1.5);
+                opacity: 1;
+            }
+
+            100% {
+                bottom: var(--rocket-offset-bottom);
+                transform: translateX(calc(-60% + var(--rocket-offset))) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .explosion {
+            position: absolute;
+            width: 6vmin;
+            height: 6vmin;
+            background-size: cover;
+            animation: explosionEffect 2.5s ease-out forwards;
+        }
+
+        @keyframes explosionEffect {
+            0% {
+                transform: scale(0.5);
+                opacity: 1;
+            }
+
+            30% {
+                transform: translate(calc(var(--x) * 10vmin), calc(var(--y) * 10vmin)) scale(1.5);
+                opacity: 1;
+            }
+
+            60% {
+                transform: translate(calc(var(--x) * 25vmin), calc(var(--y) * 25vmin)) scale(2.8);
+                opacity: 0.8;
+            }
+
+            80% {
+                transform: translate(calc(var(--x) * 35vmin), calc(var(--y) * 35vmin)) scale(3);
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translate(calc(var(--x) * 40vmin), calc(var(--y) * 40vmin)) scale(0.8);
+                opacity: 0;
+            }
+        }
+ /* Menambahkan CSS untuk menampilkan gambar GIF di atas elemen lain */
+#gifImage {
+    width: 100vw;  /* Lebar 100% dari viewport */
+    height: 100vh; /* Tinggi 100% dari viewport */
+    display: none;
+    position: fixed;  /* Pastikan posisi fixed agar tetap terlihat saat scrolling */
+    top: 0;  /* Posisikan di atas layar */
+    left: 0; /* Posisikan di kiri layar */
+    z-index: 9997;  /* Pastikan di atas elemen lain */
+    opacity: 1; /* Kontrol opacity, bisa sesuaikan */
+    object-fit: cover; /* Sesuaikan gambar agar memenuhi ruang tanpa mengubah rasio */
+}
+
+/* Jika kamu ingin menambahkan efek transisi untuk opacity */
+#gifImage.fadeIn {
+    animation: fadeInEffect 2s forwards;
+}
+
+@keyframes fadeInEffect {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+#top-givers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 85px;
+    width: 100%;
+    z-index: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.title {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.giver-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.giver {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 10px;
+    border-radius: 10px;
+    opacity: 0.9;
+}
+
+.giver img.profile {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.giver .crown {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Untuk mahkota Top 1 */
+.top-1 .crown {
+    top: -20px;
+    width: 120px;
+    height: 120px;
+}
+
+/* Untuk mahkota Top 2 */
+.top-2 .crown {
+    top: -15px;
+    width: 100px;
+    height: 100px;
+}
+
+/* Untuk mahkota Top 3 */
+.top-3 .crown {
+    top: -15px;
+    width: 100px;
+    height: 100px;
+}
+
+.giver div {
+    margin-top: 20px;
+    font-size: 15px;
+    line-height: 1;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+}
+
+
+/* Warna khusus untuk elemen Top 2-6 berdasarkan urutan */
+
+
+
+
+  @keyframes flip-right {
+  0% {
+    transform: perspective(1000px) rotateY(0);
+  }
+  50% {
+    transform: perspective(1000px) rotateY(90deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateY(0);
+  }
+}
+
+@keyframes flip-left {
+  0% {
+    transform: perspective(1000px) rotateY(0);
+  }
+  50% {
+    transform: perspective(1000px) rotateY(-90deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateY(0);
+  }
+}
+
+.giver.flip-right {
+  animation: flip-right 1s ease-in-out;
+}
+
+.giver.flip-left {
+  animation: flip-left 1s ease-in-out;
+}
+
+ 
+

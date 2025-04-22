@@ -102,6 +102,14 @@
                     <span class="nav-link-text ms-1">Tidak Aktif</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="loadSection('blurredusers')">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Daftar Blur</span>
+                </a>
+            </li>
         </ul>
     </div>
 </aside>
@@ -117,6 +125,8 @@
           </ol>
           <h6 class="font-weight-bolder text-white mb-0">Tables</h6>
         </nav>
+
+        
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
             
@@ -125,7 +135,15 @@
             <li class="nav-item d-flex align-items-center">
               <button class="btn btn-danger" onclick="logout()">Logout</button>
             </li>
-           
+            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line bg-white"></i>
+                  <i class="sidenav-toggler-line bg-white"></i>
+                  <i class="sidenav-toggler-line bg-white"></i>
+                </div>
+              </a>
+            </li>
            
             
           </ul>
@@ -383,6 +401,35 @@
                               <!-- Data pengguna Tidak Aktif akan dimasukkan di sini oleh JavaScript -->
                           </tbody>
                       </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div id="blurredusers" class="section" style="display: none;">
+  <div class="row">
+      <div class="col-12">
+          <div class="card mb-4">
+              <div class="card-header pb-0">
+                  <h6>Daftar Pengguna yang Diblur</h6>
+              </div>
+              <div class="card-body px-0 pt-0 pb-2">
+                  <div class="table-responsive p-0">
+                      <table class="table align-items-center mb-0" id="blurredTable">
+                          <thead>
+                            <tr>
+                              <th>No.</th>
+                              <th>TikTok Unique ID</th>
+                              <th>Foto</th>
+                              <th>Waktu</th>
+                              <th>Aksi</th> <!-- Tambahan kolom -->
+                            </tr>
+                          </thead>
+                          <tbody></tbody>
+                        </table>
+
                   </div>
               </div>
           </div>
