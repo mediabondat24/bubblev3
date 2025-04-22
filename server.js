@@ -4,7 +4,9 @@ const express = require('express');
 const moment = require('moment'); // Pastikan moment.js telah diinstal
 const mysql = require('mysql2');
 const session = require('express-session');
+const axios = require('axios');
 const multer = require('multer');
+const fs = require('fs');  // Import fs
 const path = require('path');
 const { createServer } = require('http');
 const { Server } = require('socket.io');
@@ -14,6 +16,8 @@ const bcrypt = require('bcryptjs');
 const app = express();
 const httpServer = createServer(app);
 const uploadDir = path.join(__dirname, 'public', 'uploads', 'images');
+const imageUploadDir = path.join(__dirname, 'public', 'uploads', 'images');
+const audioUploadDir = path.join(__dirname, 'public', 'uploads', 'audio');
 app.use(express.json()); // Menggunakan middleware built-in dari Express
 app.use(express.urlencoded({ extended: true })); // Menggunakan middleware built-in dari Express
 
@@ -28,7 +32,7 @@ app.use(session({
 // Enable cross-origin resource sharing (CORS)
 const io = new Server(httpServer, {
     cors: {
-        origin: '*'
+        origin: 'https://bubblephoto.online'
     }
 });
 
@@ -189,34 +193,229 @@ const upload = multer({
 });
 
 
-// Route to handle registration
-// Route to handle registration
-app.post('/register', upload.single('bukti_bayar'), (req, res) => {
-    const { nama, whatsapp, jenis_anggota, username_tiktok1 } = req.body;
 
-    // Pastikan file berhasil diupload, hanya untuk jenis anggota 'Member'
-    let bukti_bayar = req.file ? req.file.filename : null;
-    if (jenis_anggota === 'Member' && !bukti_bayar) {
-        return res.status(400).json({ success: false, message: 'Bukti bayar is required for paid memberships' });
+
+// Route untuk handle registration
+app.post('/register', async (req, res) => {
+    const { nama, whatsapp, jenis_anggota, username_tiktok1, paket, payment_method } = req.body;
+
+    let harga = 0;
+    let masaAktif = 0;
+    if (paket === '1') {
+        harga = 50000;
+        masaAktif = 1; // 1 Bulan
+    } else if (paket === '2') {
+        harga = 100000;
+        masaAktif = 3; // 3 Bulan
     }
 
-    // Tentukan status berdasarkan jenis anggota
-    let status = jenis_anggota === 'Free' ? 'Aktif' : 'Tidak Aktif';
+    
+let paymentData = {
+    merchant_code: process.env.TRIPAY_MERCHANT_CODE,
+    order_ref: 'ORDER_' + Date.now(),  // Generate order_ref unik
+    amount: harga,
+    payment_type: payment_method,  // Menggunakan payment_type sesuai pilihan
+    customer_name: nama,
+    customer_email: '',
+    customer_phone: whatsapp,
+    callback_url: process.env.TRIPAY_CALLBACK_URL,  // URL callback untuk menerima pembayaran
+};
 
-    // Query untuk menambahkan data pengguna
-    const sql = 'INSERT INTO users (nama, whatsapp, jenis_anggota, username_tiktok1, bukti_bayar, status) VALUES (?, ?, ?, ?, ?, ?)';
-    db.query(sql, [nama, whatsapp, jenis_anggota, username_tiktok1, bukti_bayar, status], (err, result) => {
+// Hanya menambahkan 'method' jika pembayaran menggunakan metode tertentu
+if (['OVO', 'DANA', 'QRIS', 'SHOPEEPAY'].includes(payment_method)) {
+    paymentData.method = payment_method;
+}
+
+const tripayRequest = {
+    method: 'POST',
+    url: 'https://tripay.co.id/api-sandbox/transaction/create',
+    headers: {
+        'Authorization': `Bearer ${process.env.TRIPAY_API_KEY}`,
+        'Content-Type': 'application/json',
+    },
+    data: paymentData,
+};
+
+try {
+    const tripayResponse = await axios(tripayRequest);
+
+    // Simpan data pendaftaran pengguna dan order tripay ke database
+    const sql = 'INSERT INTO users (nama, whatsapp, jenis_anggota, username_tiktok1, status, paket, harga, masa_aktif, tripay_order_ref) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    db.query(sql, [nama, whatsapp, jenis_anggota, username_tiktok1, 'Tidak Aktif', paket, harga, masaAktif, tripayResponse.data.data.order_ref], (err, result) => {
         if (err) {
             console.error('Error inserting data:', err);
             return res.status(500).json({ success: false, message: 'Error registering user.' });
         }
 
-        // Respons berdasarkan jenis anggota
-        if (jenis_anggota === 'Free') {
-            return res.json({ success: true, message: 'Registration successful. Please login.', redirectTo: '/login' });
-        } else if (jenis_anggota === 'RK Agency' || jenis_anggota === 'Member') {
-            return res.json({ success: true, message: 'Account is being processed. Contact Admin to activate.', redirectTo: `https://wa.me/6282334810232?text=Hi%20Admin%20I%20have%20registered%20for%20the%20${jenis_anggota}%20package.` });
+        // Mengembalikan URL pembayaran Tripay untuk redirect
+        return res.json({
+            success: true,
+            message: 'Registration successful. Please proceed to payment.',
+            paymentUrl: tripayResponse.data.data.payment_url, // URL pembayaran dari Tripay
+        });
+    });
+} catch (error) {
+    console.error('Tripay API error:', error.response ? error.response.data : error.message);
+    return res.status(500).json({ success: false, message: 'Error with payment gateway.' });
+}
+
+});
+
+
+
+
+
+app.post('/payment/callback', (req, res) => {
+    const { order_ref, status_code, status_message } = req.body;
+
+    // Jika status pembayaran sukses
+    if (status_code === '00') {
+        const updateSql = 'UPDATE users SET status = "Aktif", activated_at = NOW(), expired_at = DATE_ADD(NOW(), INTERVAL 1 MONTH) WHERE tripay_order_ref = ?';
+        db.query(updateSql, [order_ref], (err, result) => {
+            if (err) {
+                return res.status(500).json({ success: false, message: 'Error updating payment status' });
+            }
+            res.json({ success: true, message: 'Payment successful. User activated.' });
+        });
+    } else {
+        res.status(400).json({ success: false, message: 'Payment failed' });
+    }
+});
+
+
+const settingsUpload = multer({
+    storage: multer.diskStorage({
+        destination: (req, file, cb) => {
+            const ext = path.extname(file.originalname).toLowerCase();
+            if (ext === '.mp3') {
+                cb(null, audioUploadDir);
+            } else {
+                cb(null, imageUploadDir);
+            }
+        },
+        filename: (req, file, cb) => {
+            cb(null, Date.now() + path.extname(file.originalname).toLowerCase());
         }
+    }),
+    fileFilter: (req, file, cb) => {
+        const ext = path.extname(file.originalname).toLowerCase();
+        const allowed = /\.(jpg|jpeg|png|gif|mp3)$/i;
+        allowed.test(ext) ? cb(null, true) : cb(new Error('Format file tidak didukung.'));
+    }
+}).fields([
+    { name: 'backgroundImage', maxCount: 1 },
+    { name: 'mp3File', maxCount: 1 },
+    { name: 'mp3GiftKecil', maxCount: 1 },
+    { name: 'mp3GiftSedang', maxCount: 1 },
+    { name: 'mp3GiftSuperSedang', maxCount: 1 },
+    { name: 'mp3GiftBesar', maxCount: 1 },
+    { name: 'mp3GiftSuperBesar', maxCount: 1 },
+    { name: 'mp3GiftLuarBiasa', maxCount: 1 }
+]);
+
+// API simpan setting
+app.post('/api/save-settings', (req, res) => {
+    if (!req.session.user?.id) {
+        return res.status(401).json({ message: 'Anda belum login.' });
+    }
+
+    const userId = req.session.user.id;
+
+    settingsUpload(req, res, (err) => {
+        if (err) {
+            console.error(err);
+            return res.status(400).json({ message: 'Upload file gagal.' });
+        }
+
+        const newYoutubeLink = req.body.youtubeLink?.trim();
+        const newBackgroundImage = req.files['backgroundImage']?.[0]?.filename;
+        const newMp3File = req.files['mp3File']?.[0]?.filename;
+        const newMp3GiftKecil = req.files['mp3GiftKecil']?.[0]?.filename;
+        const newMp3GiftSedang = req.files['mp3GiftSedang']?.[0]?.filename;
+        const newMp3GiftSuperSedang = req.files['mp3GiftSuperSedang']?.[0]?.filename;
+        const newMp3GiftBesar = req.files['mp3GiftBesar']?.[0]?.filename;
+        const newMp3GiftSuperBesar = req.files['mp3GiftSuperBesar']?.[0]?.filename;
+        const newMp3GiftLuarBiasa = req.files['mp3GiftLuarBiasa']?.[0]?.filename;
+
+        const selectSql = 'SELECT * FROM setting WHERE user_id = ?';
+        db.query(selectSql, [userId], (err, results) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ message: 'Gagal membaca data lama.' });
+            }
+
+            const existing = results[0] || {};
+
+            // Gunakan data lama jika tidak ada input baru
+            const finalYoutubeLink = newYoutubeLink || existing.youtube_link || '';
+            const finalBackgroundImage = newBackgroundImage || existing.background_image || '';
+            const finalMp3File = newMp3File || existing.mp3_file || '';
+            const finalMp3GiftKecil = newMp3GiftKecil || existing.mp3_gift_kecil || '';
+            const finalMp3GiftSedang = newMp3GiftSedang || existing.mp3_gift_sedang || '';
+            const finalMp3GiftSuperSedang = newMp3GiftSuperSedang || existing.mp3_gift_super_sedang || '';
+            const finalMp3GiftBesar = newMp3GiftBesar || existing.mp3_gift_besar || '';
+            const finalMp3GiftSuperBesar = newMp3GiftSuperBesar || existing.mp3_gift_super_besar || '';
+            const finalMp3GiftLuarBiasa = newMp3GiftLuarBiasa || existing.mp3_gift_luar_biasa || '';
+
+            // Fungsi hapus file lama jika ada yang baru
+            const deleteOldFile = (filename, type) => {
+                if (!filename) return;
+                const dir = type === 'mp3' ? audioUploadDir : imageUploadDir;
+                const fullPath = path.join(dir, filename);
+                if (fs.existsSync(fullPath)) {
+                    fs.unlink(fullPath, (err) => {
+                        if (err) console.warn('Gagal hapus file lama:', fullPath);
+                    });
+                }
+            };
+
+            // Hapus file lama hanya jika file baru dikirim
+            if (newBackgroundImage && existing.background_image) {
+                deleteOldFile(existing.background_image, 'image');
+            }
+            if (newMp3File && existing.mp3_file) {
+                deleteOldFile(existing.mp3_file, 'mp3');
+            }
+
+            // Hapus file untuk Gift MP3 jika ada yang baru
+            if (newMp3GiftKecil && existing.mp3_gift_kecil) deleteOldFile(existing.mp3_gift_kecil, 'mp3');
+            if (newMp3GiftSedang && existing.mp3_gift_sedang) deleteOldFile(existing.mp3_gift_sedang, 'mp3');
+            if (newMp3GiftSuperSedang && existing.mp3_gift_super_sedang) deleteOldFile(existing.mp3_gift_super_sedang, 'mp3');
+            if (newMp3GiftBesar && existing.mp3_gift_besar) deleteOldFile(existing.mp3_gift_besar, 'mp3');
+            if (newMp3GiftSuperBesar && existing.mp3_gift_super_besar) deleteOldFile(existing.mp3_gift_super_besar, 'mp3');
+            if (newMp3GiftLuarBiasa && existing.mp3_gift_luar_biasa) deleteOldFile(existing.mp3_gift_luar_biasa, 'mp3');
+
+            const upsertSql = `
+                INSERT INTO setting (user_id, youtube_link, background_image, mp3_file, mp3_gift_kecil, mp3_gift_sedang, mp3_gift_super_sedang, mp3_gift_besar, mp3_gift_super_besar, mp3_gift_luar_biasa)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ON DUPLICATE KEY UPDATE 
+                    youtube_link = VALUES(youtube_link),
+                    background_image = VALUES(background_image),
+                    mp3_file = VALUES(mp3_file),
+                    mp3_gift_kecil = VALUES(mp3_gift_kecil),
+                    mp3_gift_sedang = VALUES(mp3_gift_sedang),
+                    mp3_gift_super_sedang = VALUES(mp3_gift_super_sedang),
+                    mp3_gift_besar = VALUES(mp3_gift_besar),
+                    mp3_gift_super_besar = VALUES(mp3_gift_super_besar),
+                    mp3_gift_luar_biasa = VALUES(mp3_gift_luar_biasa)
+            `;
+
+            const values = [
+                userId, finalYoutubeLink, finalBackgroundImage, finalMp3File,
+                finalMp3GiftKecil, finalMp3GiftSedang, finalMp3GiftSuperSedang, finalMp3GiftBesar, finalMp3GiftSuperBesar, finalMp3GiftLuarBiasa,
+                finalYoutubeLink, finalBackgroundImage, finalMp3File,
+                finalMp3GiftKecil, finalMp3GiftSedang, finalMp3GiftSuperSedang, finalMp3GiftBesar, finalMp3GiftSuperBesar, finalMp3GiftLuarBiasa
+            ];
+
+            db.query(upsertSql, values, (err) => {
+                if (err) {
+                    console.error(err);
+                    return res.status(500).json({ message: 'Gagal menyimpan pengaturan.' });
+                }
+
+                res.json({ message: 'Pengaturan berhasil diperbarui.' });
+            });
+        });
     });
 });
 
@@ -246,12 +445,15 @@ app.post('/check-user', (req, res) => {
 });
 
 // Middleware untuk autentikasi berbasis session
+// Middleware untuk autentikasi berbasis session
 const isAuthenticated = (req, res, next) => {
-    if (!req.session.userId) {
+    if (!req.session.user?.id) {
         return res.status(401).json({ message: "Unauthorized" });
     }
-    next();  // Lanjutkan jika pengguna terautentikasi
+    next(); // Lanjutkan jika pengguna terautentikasi
 };
+
+
 
 // Login Route (menggunakan session untuk menyimpan informasi pengguna)
 app.post('/login', (req, res) => {
@@ -274,19 +476,23 @@ app.post('/login', (req, res) => {
             });
         }
 
-        // Menyimpan informasi pengguna ke dalam session
-        req.session.userId = user.id;
-        req.session.nama = user.nama;
-        req.session.jenis_anggota = user.jenis_anggota;
+        // ✅ Menyimpan informasi pengguna ke dalam session
+        req.session.user = {
+            id: user.id,
+            nama: user.nama,
+            jenis_anggota: user.jenis_anggota
+        };
 
         res.json({ message: "Login successful" });
     });
 });
 
 
+
+// Endpoint untuk mendapatkan data pengguna berdasarkan session
 // Endpoint untuk mendapatkan data pengguna berdasarkan session
 app.get('/user-data', isAuthenticated, (req, res) => {
-    const userId = req.session.userId;
+    const userId = req.session.user.id;
 
     const sql = `
         SELECT 
@@ -318,19 +524,25 @@ app.get('/user-data', isAuthenticated, (req, res) => {
                 user.expired_at = new Date(user.expired_at).toISOString().split("T")[0]; // Format YYYY-MM-DD
             }
 
+            // Format activated_at menjadi format 'DD MMMM YYYY'
+            if (user.activated_at) {
+                user.activated_at = moment(user.activated_at).format('DD MMMM YYYY'); // Format seperti '07 Maret 2025'
+            }
+
             // Perhitungan 10 hari sejak activated_at untuk jenis_anggota 'Member'
             let editButtonVisible = true; // Default tombol edit visible
             if (user.jenis_anggota === 'Member' && user.activated_at) {
                 const now = new Date();
-                const activatedDate = new Date(user.activated_at);
+                let activatedDate = new Date(user.activated_at);
+
+                // Reset jam, menit, detik, dan milidetik pada tanggal sekarang dan tanggal activated_at
+                activatedDate.setHours(0, 0, 0, 0); 
+                now.setHours(0, 0, 0, 0);  // Reset jam untuk perbandingan yang lebih akurat
+
                 const diffTime = now - activatedDate; // Selisih waktu dalam milidetik
                 const diffDays = diffTime / (1000 * 3600 * 24); // Ubah ke hari
 
-                // Debug log
-                console.log(`Activated At: ${user.activated_at}`);
-                console.log(`Current Date: ${now}`);
-                console.log(`Days Difference: ${diffDays}`);
-
+                // Jika sudah lebih dari 10 hari, sembunyikan tombol edit
                 if (diffDays > 10) {
                     editButtonVisible = false; // Sembunyikan tombol edit jika sudah lebih dari 10 hari
                 }
@@ -345,12 +557,12 @@ app.get('/user-data', isAuthenticated, (req, res) => {
 });
 
 
-
+ 
 
 
 app.post('/update-user-data', isAuthenticated, (req, res) => {
     const { nama, whatsapp, username_tiktok1, username_tiktok2, username_tiktok3 } = req.body;
-    const userId = req.session.userId;
+    const userId = req.session.user.id;
 
     // Ambil data user untuk mengetahui jenis anggota dan tanggal activated_at
     db.query('SELECT jenis_anggota, activated_at, nama, whatsapp, username_tiktok1, username_tiktok2, username_tiktok3 FROM users WHERE id = ?', [userId], (err, userResult) => {
@@ -420,7 +632,7 @@ app.post('/update-user-data', isAuthenticated, (req, res) => {
 
 const checkMembershipType = (requiredType) => {
     return (req, res, next) => {
-        const user = req.session;  // Ambil data dari session
+        const user = req.session.user; // Ambil data dari session
 
         if (!user) {
             return res.status(401).json({ message: 'Unauthorized' });
@@ -431,11 +643,27 @@ const checkMembershipType = (requiredType) => {
             return res.status(403).json({ message: `Access denied for ${requiredType} members only.` });
         }
 
-        next();  // Jika sesuai, lanjutkan ke route berikutnya
+        next(); // Jika sesuai, lanjutkan ke route berikutnya
     };
 };
 
 
+// Endpoint untuk memeriksa status keanggotaan pengguna
+app.get('/check-membership/:membershipType', isAuthenticated, (req, res) => {
+    const user = req.session.user;
+    const membershipType = req.params.membershipType;
+
+    if (!user) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    if (user.jenis_anggota !== membershipType) {
+        return res.status(403).json({ message: `Access denied for ${membershipType} members only.` });
+    }
+
+    // Anggota valid, kembalikan response sukses
+    res.json({ message: 'Membership valid' });
+});
 
 
 
@@ -592,11 +820,14 @@ app.post('/logout', isAuthenticated, (req, res) => {
 
 
 app.get('/user/profile', isAuthenticated, (req, res) => {
-    const userId = req.session.userId;
-    console.log('User ID:', userId);
+    const userId = req.session.user.id;
 
-    const sql = `SELECT id, nama, whatsapp, username_tiktok1, username_tiktok2, username_tiktok3, jenis_anggota, expired_at 
-                 FROM users WHERE id = ?`;
+    const sql = `
+        SELECT id, nama, whatsapp, username_tiktok1, username_tiktok2, username_tiktok3, jenis_anggota, expired_at 
+        FROM users 
+        WHERE id = ?
+    `;
+
     db.query(sql, [userId], (err, result) => {
         if (err) {
             return res.status(500).json({ message: 'Error fetching user data' });
@@ -605,14 +836,12 @@ app.get('/user/profile', isAuthenticated, (req, res) => {
         if (result.length > 0) {
             const user = result[0];
 
-            // Format expired_at hanya jika user adalah Member dan expired_at tidak null
             if (user.jenis_anggota === 'Member' && user.expired_at) {
                 user.expired_at = moment(user.expired_at).format('DD MMMM YYYY'); // Contoh: 06 April 2025
             } else {
                 delete user.expired_at;
             }
 
-            console.log('User Data:', user);
             res.json({ user });
         } else {
             res.status(404).json({ message: 'User not found' });
@@ -621,13 +850,15 @@ app.get('/user/profile', isAuthenticated, (req, res) => {
 });
 
 
+
+
 // Endpoint untuk mengupdate bukti bayar
 app.post('/update-payment-proof', upload.single('bukti_bayar'), (req, res) => {
     if (!req.file) {
         return res.status(400).json({ success: false, message: 'Bukti bayar harus diupload' });
     }
 
-    const userId = req.session.userId;
+    const userId = req.session.user.id;
     const bukti_bayar = req.file.filename;
 
     // Cek apakah file lama ada, jika ada, hapus file tersebut
@@ -667,7 +898,7 @@ app.post('/update-payment-proof', upload.single('bukti_bayar'), (req, res) => {
 
 // Endpoint untuk mendapatkan data TikTok pengguna
 app.get('/user/tiktok-data', isAuthenticated, (req, res) => {
-    const userId = req.session.userId;  // Ambil userId dari session
+    const userId = req.session.user.id;  // Ambil userId dari session
 
     const sql = 'SELECT username_tiktok1, username_tiktok2, username_tiktok3 FROM users WHERE id = ?';
     db.query(sql, [userId], (err, result) => {
@@ -752,25 +983,33 @@ app.get('/rumah-pakguru', isAdminAuthenticated, (req, res) => {
 
 
 
-// Route untuk menghapus pengguna (hanya superadmin yang bisa melakukannya)
-function deleteUser(userId) {
-    if (confirm('Apakah Anda yakin ingin menghapus pengguna ini secara permanen?')) {
-        fetch(`/delete-user/${userId}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert(data.message); // Menampilkan pesan sukses
-            location.reload(); // Refresh halaman setelah pengguna dihapus
-        })
-        .catch(error => {
-            console.error('Error deleting user:', error);
-        });
+app.delete('/delete-user/:userId', (req, res) => {
+    const userId = req.params.userId;
+
+    // Pastikan hanya superadmin yang bisa menghapus
+    // Misalnya, kita periksa user yang sedang login (ini hanya contoh)
+    const isSuperAdmin = true; // Kamu bisa ganti dengan pengecekan status superadmin berdasarkan sesi atau token
+
+    if (!isSuperAdmin) {
+        return res.status(403).json({ message: 'Anda tidak memiliki izin untuk menghapus pengguna.' });
     }
-}
+
+    // Query untuk menghapus pengguna berdasarkan userId
+    const query = 'DELETE FROM users WHERE id = ?';
+
+    db.execute(query, [userId], (err, result) => {
+        if (err) {
+            console.error('Error menghapus pengguna:', err);
+            return res.status(500).json({ message: 'Terjadi kesalahan saat menghapus pengguna.' });
+        }
+
+        if (result.affectedRows > 0) {
+            return res.json({ message: 'Pengguna berhasil dihapus.' });
+        } else {
+            return res.status(404).json({ message: 'Pengguna tidak ditemukan.' });
+        }
+    });
+});
 
 
 
@@ -831,13 +1070,17 @@ app.put('/activate-user/:id', isAdminAuthenticated, (req, res) => {
     const { activated_at, expired_at } = req.body;
     const userId = req.params.id;
 
+    // Cek apakah expired_at ada, jika tidak, set ke null
     const sql = `
         UPDATE users
         SET status = 'Aktif', activated_at = ?, expired_at = ?
         WHERE id = ?
     `;
 
-    db.query(sql, [activated_at, expired_at, userId], (err, result) => {
+    // Jika expired_at tidak ada (misalnya bukan Member), kita set null
+    const values = expired_at ? [activated_at, expired_at, userId] : [activated_at, null, userId];
+
+    db.query(sql, values, (err, result) => {
         if (err) {
             console.error('Error activating user:', err);
             return res.status(500).json({ message: "Error activating user" });
@@ -850,6 +1093,9 @@ app.put('/activate-user/:id', isAdminAuthenticated, (req, res) => {
         }
     });
 });
+
+
+
 
 
 app.put('/toggle-status/:id', isAdminAuthenticated, (req, res) => {
@@ -964,10 +1210,55 @@ app.post('/keluar-pak', (req, res) => {
 });
 
 
+app.post('/api/blur-user', (req, res) => {
+  const { uniqueId, profilePictureUrl } = req.body;
+  const sql = `
+    INSERT INTO blurred_users (tiktok_unique_id, profile_picture_url)
+    VALUES (?, ?)
+    ON DUPLICATE KEY UPDATE profile_picture_url = VALUES(profile_picture_url)
+  `;
+  db.query(sql, [uniqueId, profilePictureUrl], (err) => {
+    if (err) return res.status(500).json({ success: false });
+    res.json({ success: true });
+  });
+});
+
+
+
+app.post('/api/unblur-user', (req, res) => {
+  const { uniqueId } = req.body;
+  const sql = `DELETE FROM blurred_users WHERE tiktok_unique_id = ?`;
+  db.query(sql, [uniqueId], (err) => {
+    if (err) return res.status(500).json({ success: false });
+    res.json({ success: true });
+  });
+});
+
+
+
+app.get('/api/blurred-users', (req, res) => {
+  const sql = `SELECT tiktok_unique_id FROM blurred_users`;
+  db.query(sql, (err, results) => {
+    if (err) return res.status(500).json({ success: false });
+    const list = results.map(row => row.tiktok_unique_id);
+    res.json({ success: true, blurredUsers: list });
+  });
+});
+
+
+
+app.get('/api/blurred-users-full', (req, res) => {
+  const sql = `SELECT * FROM blurred_users ORDER BY created_at DESC`;
+  db.query(sql, (err, results) => {
+    if (err) return res.status(500).json({ success: false, message: 'Database error' });
+    res.json({ success: true, users: results });
+  });
+});
+
 
 
 // Start HTTP server
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8081;
 httpServer.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
