@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Apr 2025 pada 08.01
+-- Waktu pembuatan: 22 Apr 2025 pada 09.11
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -42,7 +42,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `nama`, `whatsapp`, `username`, `password`, `role`, `created_at`) VALUES
-(3, 'Bubblephoto', '082334810232', 'Raifa', '$2b$10$H57YwptUX.yTq4Wa/R4aIOdLp49T1TVKWnmUsMRvh10Os2DqK7MXq', 'superadmin', '2025-03-05 18:13:05');
+(3, 'Bubblephoto', '082334810232', 'Bubblephoto', '$2b$10$H57YwptUX.yTq4Wa/R4aIOdLp49T1TVKWnmUsMRvh10Os2DqK7MXq', 'superadmin', '2025-03-05 18:13:05');
 
 -- --------------------------------------------------------
 
